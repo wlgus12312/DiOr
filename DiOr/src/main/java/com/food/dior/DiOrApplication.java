@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SoketTestApplication{
+public class DiOrApplication{
 
 	public static void main(String[] args) {
-		SpringApplication.run(SoketTestApplication.class, args);
+		SpringApplication.run(DiOrApplication.class, args);
 	}
 
 }
