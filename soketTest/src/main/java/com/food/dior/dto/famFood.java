@@ -1,4 +1,4 @@
-package com.test.brain.dto;
+package com.food.dior.dto;
 
 public class famFood {
 	

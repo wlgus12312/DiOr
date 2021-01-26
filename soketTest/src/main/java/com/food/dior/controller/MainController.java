@@ -1,4 +1,4 @@
-package com.test.brain.controller;
+package com.food.dior.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.test.brain.service.MainServiceImpl;
+import com.food.dior.service.MainServiceImpl;
 
 @Controller
 public class MainController {

@@ -1,4 +1,4 @@
-package com.test.brain.dao;
+package com.food.dior.dao;
 
 import java.util.HashMap;
 import java.util.List;

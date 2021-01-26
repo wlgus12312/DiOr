@@ -1,4 +1,4 @@
-package com.test.brain.dao;
+package com.food.dior.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.test.brain.dto.famFood;
+import com.food.dior.dto.famFood;
 
 @Repository("MainDao")
 public class MainDaoImpl implements MainDao{
