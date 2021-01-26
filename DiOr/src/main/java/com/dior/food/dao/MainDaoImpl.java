@@ -1,5 +1,6 @@
 package com.dior.food.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,14 +19,13 @@ public class MainDaoImpl implements MainDao{
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public Map<String, Map<String, Object>> getTest() throws Exception{
-				
+	public ArrayList<famFood> getTest() throws Exception{				
 		String sql = "SELECT * FROM FAM_FOOD";
-		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));
+		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));		
 		
 		foods.forEach(System.out :: println);
 		
-		return null;
+		return (ArrayList<famFood>) foods;
 	}
 
 }

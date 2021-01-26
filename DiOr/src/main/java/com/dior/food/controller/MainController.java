@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dior.food.dto.famFood;
 import com.dior.food.service.MainServiceImpl;
 
 @Controller
@@ -26,10 +27,12 @@ public class MainController {
 	public ModelAndView main() throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
+		List testList   = new ArrayList<famFood>();
 		Map testMap     = new HashMap<String, Map<String, Object>>();
-				
-		testMap = MainService.Maintest();
+		  
+		testList = MainService.Maintest();
 		
+		mv.addObject(testList);
 		mv.setViewName("index");
 		
 		return mv;

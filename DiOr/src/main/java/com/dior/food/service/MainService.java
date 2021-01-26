@@ -1,10 +1,13 @@
 package com.dior.food.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.dior.food.dto.famFood;
+
 public interface MainService{
 
-	Map<String, Map<String, Object>> Maintest() throws Exception;
+	ArrayList<famFood> Maintest() throws Exception;
 
 }
