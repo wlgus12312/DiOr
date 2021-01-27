@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +27,9 @@ public class MainController {
 	private MainServiceImpl MainService;
 	
 	@RequestMapping("/main")
-	public ModelAndView main() throws Exception{
+	public ModelAndView main(HttpServletRequest req) throws Exception{
+		
+		HttpSession session = req.getSession();
 		
 		ModelAndView mv = new ModelAndView();
 		List testList   = new ArrayList<famFood>();
@@ -32,11 +37,11 @@ public class MainController {
 		  
 		testList = MainService.Maintest();
 		
-		mv.addObject(testList);
+		//mv.addObject(testList);
+		mv.addObject("session", session.getId());
 		mv.setViewName("index");
 		
 		return mv;
 	}
-	
-	
+		
 }

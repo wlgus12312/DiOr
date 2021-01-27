@@ -23,7 +23,7 @@ public class MainDaoImpl implements MainDao{
 		String sql = "SELECT * FROM FAM_FOOD";
 		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));		
 		
-		foods.forEach(System.out :: println);
+		//foods.forEach(System.out :: println);
 		
 		return (ArrayList<famFood>) foods;
 	}
