@@ -12,6 +12,18 @@ function setConnected(connected) {
   $("#greetings").html("");
 }
 
+function setConnected2(connected) {
+  $("#connect2").prop("disabled", connected);
+  $("#disconnect2").prop("disabled", !connected);
+  if (connected) {
+    $("#conversation2").show();
+  }
+  else {
+    $("#conversation2").hide();
+  }
+  $("#greetings2").html("");
+}
+
 function connect() {
   var socket = new SockJS('/websocket');
   stompClient = Stomp.over(socket);
@@ -25,6 +37,20 @@ function connect() {
   });
 }
 
+function connect2() {
+  var socket = new SockJS('/websocket');
+  stompClient = Stomp.over(socket);
+  // SockJS와 stomp client를 통해 연결을 시도.
+  stompClient.connect({}, function (frame) {
+    setConnected2(true);
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/greetings2', function (greeting) {
+      showGreeting2(JSON.parse(greeting.body).content);
+    });
+  });
+}
+
+
 function disconnect() {
   if (stompClient !== null) {
     stompClient.disconnect();
@@ -33,13 +59,29 @@ function disconnect() {
   console.log("Disconnected");
 }
 
+function disconnect2() {
+  if (stompClient !== null) {
+    stompClient.disconnect();
+  }
+  setConnected(false);
+  console.log("Disconnected");
+}
+
+
 function sendName() {
   // /app/hello로 JSON 파라미터를 메세지 body로 전송.
   stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
 }
+function sendName2() {
+  // /app/hello로 JSON 파라미터를 메세지 body로 전송.
+  stompClient.send("/app/hi", {}, JSON.stringify({'name': $("#name").val()}));
+}
 
 function showGreeting(message) {
   $("#greetings").append("<tr><td>" + message + "</td></tr>");
+}
+function showGreeting2(message) {
+  $("#greetings2").append("<tr><td>" + message + "</td></tr>");
 }
 
 $(function () {
@@ -47,6 +89,9 @@ $(function () {
     e.preventDefault();
   });
   $( "#connect" ).click(function() { connect(); });
+  $( "#connect2" ).click(function() { connect2(); });
   $( "#disconnect" ).click(function() { disconnect(); });
+  $( "#disconnect2" ).click(function() { disconnect2(); });
   $( "#send" ).click(function() { sendName(); });
+  $( "#send2" ).click(function() { sendName2(); });
 });
