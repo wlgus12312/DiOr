@@ -43,5 +43,23 @@ public class MainController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/menupan")
+	public ModelAndView menupan(HttpServletRequest req) throws Exception{
+		
+		HttpSession session = req.getSession();
+		
+		ModelAndView mv = new ModelAndView();
+		List testList   = new ArrayList<famFood>();
+		Map testMap     = new HashMap<String, Map<String, Object>>();
+		  
+		testList = MainService.Maintest();
+		
+		mv.addObject(testList);
+		//mv.addObject("session", session.getId());
+		mv.setViewName("menupan");
+		
+		return mv;
+	}
 		
 }
