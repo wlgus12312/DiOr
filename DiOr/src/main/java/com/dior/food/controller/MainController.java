@@ -85,5 +85,41 @@ public class MainController {
 		
 		return mv;
 	}	
+	
+	@RequestMapping("/menuAdminStore")
+	public ModelAndView menuAdminStore(HttpServletRequest req) throws Exception{
+		
+		//HttpSession session = req.getSession();
+		
+		ModelAndView mv = new ModelAndView();
+		List storeList   = new ArrayList<famFood>();
+		//Map testMap     = new HashMap<String, Map<String, Object>>();
+		  
+		storeList = AdminService.getMenu();
+		
+		mv.addObject("storeList",storeList);
+		//mv.addObject("session", session.getId());
+		mv.setViewName("menuAdminStore");
+		
+		return mv;
+	}	
+	
+	@RequestMapping("/menuAdminMenu")
+	public ModelAndView menuAdminMenu(HttpServletRequest req) throws Exception{
+		
+		//HttpSession session = req.getSession();
+		
+		ModelAndView mv = new ModelAndView();
+		List storeList   = new ArrayList<famFood>();
+		//Map testMap     = new HashMap<String, Map<String, Object>>();
+		  
+		storeList = AdminService.getMenu();
+		
+		mv.addObject("storeList",storeList);
+		//mv.addObject("session", session.getId());
+		mv.setViewName("menuAdminMenu");
+		
+		return mv;
+	}	
 		
 }
