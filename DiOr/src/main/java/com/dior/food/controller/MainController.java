@@ -41,9 +41,9 @@ public class MainController {
 		ModelAndView mv = new ModelAndView();
 		List testList   = new ArrayList<famFood>();
 		Map testMap     = new HashMap<String, Map<String, Object>>();
-		  
-		testList = MainService.Maintest();
 		
+		testList = MainService.Maintest();
+ 
 		//mv.addObject(testList);
 		mv.addObject("session", session.getId());
 		mv.setViewName("index");
@@ -64,8 +64,9 @@ public class MainController {
 
 		mv.addObject("menuList",menuList);
 		
-		menuList.forEach(System.out :: println);
+		//menuList.forEach(System.out :: println);
 		return mv;
 	}
+	
 		
 }

@@ -20,7 +20,7 @@ public class MenuDaoImpl implements MenuDao{
 
 	@Override
 	public ArrayList<menuDto> getMenu() throws Exception{				
-		String sql = "select A.fdnm, A.fdprice, B.stonm, B.stono from tb_food A, tb_store B\r\n"
+		String sql = "select A.fdno, A.fdnm, A.fdprice, B.stonm, B.stono from tb_food A, tb_store B\r\n"
 				+ "where A.stono = B.stono\r\n"
 				+ "and A.fdopyn = 1 and B.stoopyn = 1";
 		List<menuDto> menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class));		
