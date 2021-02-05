@@ -2,8 +2,6 @@ package com.dior.food.controller;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
@@ -15,11 +13,11 @@ public class GreetingController {
 	
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
-	public Greeting greeting(String message) throws Exception {
-		//public Greeting greeting(OrMassage message) throws Exception {
+	//public Greeting greeting(String message) throws Exception {
+		public Greeting greeting(OrMassage message) throws Exception {
 		//Thread.sleep(100); // delay				
-		System.out.println("message : " + message);		
-		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message) + "!");
+		System.out.println("message : " + message.toString());		
+		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getOrMassage()) + "!");
 	}
 	
 	@MessageMapping("/hi")
