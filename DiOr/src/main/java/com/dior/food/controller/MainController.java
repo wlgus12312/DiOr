@@ -23,6 +23,7 @@ import com.dior.food.dto.menuDto;
 import com.dior.food.service.MainServiceImpl;
 import com.dior.food.service.MenuServiceImpl;
 
+
 @Controller
 public class MainController {
 	
@@ -32,6 +33,9 @@ public class MainController {
 	private MainServiceImpl MainService;
 	@Autowired
 	private MenuServiceImpl MenuService;
+	
+	@Autowired
+	private AdminServiceImpl AdminService;
 	
 	@RequestMapping("/main")
 	public ModelAndView main(HttpServletRequest req) throws Exception{
@@ -68,5 +72,58 @@ public class MainController {
 		return mv;
 	}
 	
+	@RequestMapping("/menuAdmin")
+	public ModelAndView menuAdmin(HttpServletRequest req) throws Exception{
+		
+		//HttpSession session = req.getSession();
+		
+		ModelAndView mv = new ModelAndView();
+		List storeList   = new ArrayList<famFood>();
+		//Map testMap     = new HashMap<String, Map<String, Object>>();
+		  
+		storeList = AdminService.getMenu();
+		
+		mv.addObject("storeList",storeList);
+		//mv.addObject("session", session.getId());
+		mv.setViewName("menuAdmin");
+		
+		return mv;
+	}	
+	
+	@RequestMapping("/menuAdminStore")
+	public ModelAndView menuAdminStore(HttpServletRequest req) throws Exception{
+		
+		//HttpSession session = req.getSession();
+		
+		ModelAndView mv = new ModelAndView();
+		List storeList   = new ArrayList<famFood>();
+		//Map testMap     = new HashMap<String, Map<String, Object>>();
+		  
+		storeList = AdminService.getMenu();
+		
+		mv.addObject("storeList",storeList);
+		//mv.addObject("session", session.getId());
+		mv.setViewName("menuAdminStore");
+		
+		return mv;
+	}	
+	
+	@RequestMapping("/menuAdminMenu")
+	public ModelAndView menuAdminMenu(HttpServletRequest req) throws Exception{
+		
+		//HttpSession session = req.getSession();
+		
+		ModelAndView mv = new ModelAndView();
+		List storeList   = new ArrayList<famFood>();
+		//Map testMap     = new HashMap<String, Map<String, Object>>();
+		  
+		storeList = AdminService.getMenu();
+		
+		mv.addObject("storeList",storeList);
+		//mv.addObject("session", session.getId());
+		mv.setViewName("menuAdminMenu");
+		
+		return mv;
+	}	
 		
 }
