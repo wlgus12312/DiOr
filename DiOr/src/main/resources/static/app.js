@@ -89,8 +89,9 @@ function sendName() {
 function sendO() {
 	alert("1");
   // /app/hello로 JSON 파라미터를 메세지 body로 전송.
-  stompClient.send("/app/hello", {}, JSON.stringify({'name': "주문"}));
-
+	socket.onopen = function(e){
+  		stompClient.send("/app/hello", {}, JSON.stringify({'name': "주문"}));
+	}
 }
 
 function sendName2() {
