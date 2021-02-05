@@ -1,16 +1,19 @@
 package com.dior.food.dto;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 public class famFood {
 	
-	private long no;
-	private String name;
-	private String yn;
-	private String today;
+	@JsonInclude(Include.NON_NULL)
+	private long no       ;
+	private String name   ;
+	private String yn     ;
+	private String today  ;
+	
 	private long stono    ;
 	private String stonm  ;
-	private String stoopyn;
+	private String stopyn ;
 	private String fdnm   ;
 	private String fdprice;
 	private String fdopyn ;
@@ -37,11 +40,11 @@ public class famFood {
 	}
 
 	public String getStoopyn() {
-		return stoopyn;
+		return stopyn;
 	}
 
 	public void setStoopyn(String stoopyn) {
-		this.stoopyn = stoopyn;
+		this.stopyn = stoopyn;
 	}
 
 	public String getFdnm() {
@@ -141,7 +144,7 @@ public class famFood {
 		
 		return "famFood [stono=" + stono + ""
 				+ ", stonm=" + stonm + ""
-				+ ", stoopyn=" + stoopyn + ""
+				+ ", stopyn=" + stopyn + ""
 				+ ", fdnm=" + fdnm + ""
 				+ ", fdprice=" + fdprice + ""
 				+ ", fdopyn=" + fdopyn + ""
@@ -153,17 +156,17 @@ public class famFood {
 	
 //	@Override
 //	public String toString() {
-//		
-//		return "famFood [{stono=" + stono + ""
-//				+ ", stonm=" + stonm + ""
-//				+ ", stoopyn=" + stoopyn + ""
-//				+ ", fdnm=" + fdnm + ""
-//				+ ", fdprice=" + fdprice + ""
-//				+ ", fdopyn=" + fdopyn + ""
-//				+ ", ordno=" + ordno + ""
-//				+ ", fdno=" + fdno + ""
-//				+ ", ordcnt=" + ordcnt + ""
-//				+ ", ordstsc=" + ordstsc + "}]";
+//		return "{\"stono\":" + stono 
+//				+ ", \"stonm\":" + stonm 
+//				+ ", \"stopyn\":" + stopyn 
+//				+ ", \"fdnm\":" + fdnm 
+//				+ ", \"fdprice\":" + fdprice 
+//				+ ", \"fdopyn\":" + fdopyn 
+//				+ ", \"ordno\":" + ordno 
+//				+ ", \"fdno\":" + fdno 
+//				+ ", \"ordcnt\":" + ordcnt 
+//				+ ", \"ordstsc\":" + ordstsc 
+//				+ "}";
 //	}
 	
 }
