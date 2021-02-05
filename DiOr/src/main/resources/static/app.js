@@ -87,11 +87,8 @@ function sendName() {
 }
 
 function sendO() {
-	alert("1");
   // /app/hello로 JSON 파라미터를 메세지 body로 전송.
-	socket.onopen = function(e){
-  		stompClient.send("/app/hello", {}, JSON.stringify({'name': "주문"}));
-	}
+  	stompClient.send("/app/hello", {}, JSON.stringify({'name': "주문"}));
 }
 
 function sendName2() {
@@ -107,7 +104,8 @@ function showGreeting2(message) {
 }
 
 function showOrder(message) {
-	alert(message);
+	//alert(message);
+	console.log("333333333");
   //$("#greetings2").append("<tr><td>" + message + "</td></tr>");
 }
 
