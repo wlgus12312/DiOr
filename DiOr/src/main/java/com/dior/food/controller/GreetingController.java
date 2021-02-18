@@ -12,15 +12,21 @@ import com.dior.food.config.OrMassage;
 
 @RestController
 public class GreetingController {
+	
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
 	public Greeting greeting(String message) throws Exception {
 		//public Greeting greeting(OrMassage message) throws Exception {
-		//Thread.sleep(100); // delay		
-		//System.out.println(message.getOrMassage()+ "");
-		System.out.println("message : " + message);
-		
-		//return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getOrMassage()) + "!");
+		//Thread.sleep(100); // delay				
+		System.out.println("message : " + message);		
 		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message) + "!");
 	}
+	
+	@MessageMapping("/hi")
+	@SendTo("/topic/greetings2")
+	public Greeting greeting2(String message) throws Exception {
+		System.out.println("message : " + message);		
+		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message) + "!");
+	}
+	
 }
