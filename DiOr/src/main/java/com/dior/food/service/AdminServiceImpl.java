@@ -21,6 +21,7 @@ public class AdminServiceImpl implements AdminService{
 		return AdminDao.getStore();
 	}
 	
+	
 	@Override
 	public ArrayList<famFood> getFood() throws Exception{
 		return AdminDao.getFood();

@@ -15,6 +15,7 @@ public interface AdminService{
 	int setMenu_Ins(Map map) throws Exception;
 	int setMenu_Upd(Map map) throws Exception;
 	int setMenu_Del(Map map) throws Exception;
+	
 }
 
 

@@ -19,6 +19,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	
 	@Override
 	public ArrayList<famFood> getStore() throws Exception{				
 		String sql = "SELECT * FROM TB_STORE";
