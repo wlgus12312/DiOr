@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +28,6 @@
           <button id="connect" class="btn btn-default" type="submit">Connect</button>
           <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
           </button>
-            <label for="connect2">WebSocket connection:</label>
-          <button id="connect2" class="btn btn-default" type="submit">Connect2</button>
-          <button id="disconnect2" class="btn btn-default" type="submit" disabled="disabled">Disconnect
-          </button>       
         </div>
       </form>
     </div>
@@ -41,7 +38,6 @@
           <input type="text" id="name" class="form-control" placeholder="Your name here...">
         </div>
         <button id="send" class="btn btn-default" type="submit">Send</button>
-        <button id="send2" class="btn btn-default" type="submit">Send2</button>
       </form>
     </div>
   </div>
@@ -54,15 +50,6 @@
         </tr>
         </thead>
         <tbody id="greetings">
-        </tbody>
-      </table>
-      <table id="conversation2" class="table table-striped">
-        <thead>
-        <tr>
-          <th>Greetings2</th>
-        </tr>
-        </thead>
-        <tbody id="greetings2">
         </tbody>
       </table>
     </div>

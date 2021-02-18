@@ -1,10 +1,15 @@
 package com.dior.food.dto;
 
-public class famFood {
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+public class menuDto {
+	
+	@JsonInclude(Include.NON_NULL)
 	
 	private long stono    ;
 	private String stonm  ;
-	private String stoopyn;
+	private String stopyn ;
 	private String fdnm   ;
 	private String fdprice;
 	private String fdopyn ;
@@ -12,6 +17,7 @@ public class famFood {
 	private long fdno     ;
 	private String ordcnt ;
 	private String ordstsc;
+	
 	
 	public long getStono() {
 		return stono;
@@ -30,11 +36,11 @@ public class famFood {
 	}
 
 	public String getStoopyn() {
-		return stoopyn;
+		return stopyn;
 	}
 
 	public void setStoopyn(String stoopyn) {
-		this.stoopyn = stoopyn;
+		this.stopyn = stoopyn;
 	}
 
 	public String getFdnm() {
@@ -93,48 +99,17 @@ public class famFood {
 		this.ordstsc = ordstsc;
 	}
 
-	public famFood() {
+	public menuDto() {
 		super();
 	}
 
-	public long getNo() {
-		return no;
-	}
-
-	public void setNo(long no) {
-		this.no = no;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getYn() {
-		return yn;
-	}
-
-	public void setYn(String yn) {
-		this.yn = yn;
-	}
-
-	public String getToday() {
-		return today;
-	}
-
-	public void setToday(String today) {
-		this.today = today;
-	}
 
 	@Override
 	public String toString() {
 		
 		return "famFood [stono=" + stono + ""
 				+ ", stonm=" + stonm + ""
-				+ ", stoopyn=" + stoopyn + ""
+				+ ", stopyn=" + stopyn + ""
 				+ ", fdnm=" + fdnm + ""
 				+ ", fdprice=" + fdprice + ""
 				+ ", fdopyn=" + fdopyn + ""
@@ -144,5 +119,19 @@ public class famFood {
 				+ ", ordstsc=" + ordstsc + "]";
 	}
 	
-
+//	@Override
+//	public String toString() {
+//		return "{\"stono\":" + stono 
+//				+ ", \"stonm\":" + stonm 
+//				+ ", \"stopyn\":" + stopyn 
+//				+ ", \"fdnm\":" + fdnm 
+//				+ ", \"fdprice\":" + fdprice 
+//				+ ", \"fdopyn\":" + fdopyn 
+//				+ ", \"ordno\":" + ordno 
+//				+ ", \"fdno\":" + fdno 
+//				+ ", \"ordcnt\":" + ordcnt 
+//				+ ", \"ordstsc\":" + ordstsc 
+//				+ "}";
+//	}
+	
 }

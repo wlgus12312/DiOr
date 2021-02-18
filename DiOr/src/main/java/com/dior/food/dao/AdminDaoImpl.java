@@ -12,20 +12,18 @@ import org.springframework.stereotype.Repository;
 
 import com.dior.food.dto.famFood;
 
-@Repository("MainDao")
-public class MainDaoImpl implements MainDao{
+@Repository("AdminDao")
+public class AdminDaoImpl implements AdminDao{
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public ArrayList<famFood> getTest() throws Exception{				
-		String sql = "select A.fdnm, A.fdprice, B.stonm, B.stono from tb_food A, tb_store B\r\n"
-				+ "where A.stono = B.stono\r\n"
-				+ "and A.fdopyn = 1 and B.stoopyn = 1";
+	public ArrayList<famFood> getMenu() throws Exception{				
+		String sql = "SELECT * FROM TB_STORE";
 		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));		
 		
-//		foods.forEach(System.out :: println);
+		//foods.forEach(System.out :: println);
 		
 		return (ArrayList<famFood>) foods;
 	}
