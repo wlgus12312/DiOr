@@ -126,5 +126,52 @@ public class MainController {
 		
 		return mv;
 	}	
+	
+	
+	@RequestMapping(value="/food1", method=RequestMethod.GET)
+	public ModelAndView food1() throws Exception{
+				
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("food1");
+				
+		List menuList   = new ArrayList<menuDto>();
+		menuList = MenuService.getMenu();
+
+		mv.addObject("menuList",menuList);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/food2", method=RequestMethod.GET)
+	public ModelAndView food2() throws Exception{
+				
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("food2");
+				
+		List menuList   = new ArrayList<menuDto>();
+		menuList = MenuService.getMenu();
+
+		mv.addObject("menuList",menuList);
+		
+		return mv;
+	}	
+	
+	@RequestMapping(value="/food3", method=RequestMethod.GET)
+	public ModelAndView food3() throws Exception{
+				
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("food3");
+				
+		List menuList   = new ArrayList<menuDto>();
+		menuList = MenuService.getMenu();
+
+		mv.addObject("menuList",menuList);
+		
+		return mv;
+	}	
+	
+	
+	
+	
 		
 }
