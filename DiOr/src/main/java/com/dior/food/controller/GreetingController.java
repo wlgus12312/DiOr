@@ -49,5 +49,13 @@ public class GreetingController {
 	public Greeting food3(OrMassage message) throws Exception {
 		return new Greeting(message.getOrdno());
 	}
+	
+	@MessageMapping("/hi")
+	@SendTo("/topic/greetings2")
+	public Greeting greeting2(String message) throws Exception {
+		System.out.println("message : " + message);		
+		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message) + "!");
+	}
+	
 }
       
