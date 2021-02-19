@@ -17,5 +17,3 @@ public interface AdminService{
 	int setMenu_Del(Map map) throws Exception;
 	
 }
-
-

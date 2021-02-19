@@ -12,13 +12,6 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
   	<link rel="icon" type="image/png" sizes="16x16" href="/images/apple-touch-icon.png">
-<!--   	
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
-.w3-bar-block .w3-bar-item {padding:10px} 
-</style>
--->
-  	  
 </head>
 
 <script type="text/javascript">
@@ -84,7 +77,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 			<td align="center">${item.fdopyn}</td>
 		</tr>
 		</c:forEach>
-	</table>
+	</table>	
 </div>
 </body>
 </html>

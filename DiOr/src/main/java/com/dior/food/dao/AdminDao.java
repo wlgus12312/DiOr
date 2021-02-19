@@ -16,5 +16,4 @@ public interface AdminDao{
 	int setMenu_Ins(Map map) throws Exception;
 	int setMenu_Upd(Map map) throws Exception;
 	int setMenu_Del(Map MenuMap) throws Exception;
-	
 }

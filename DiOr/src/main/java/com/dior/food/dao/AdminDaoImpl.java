@@ -19,7 +19,6 @@ public class AdminDaoImpl implements AdminDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	
 	@Override
 	public ArrayList<famFood> getStore() throws Exception{				
 		String sql = "SELECT * FROM TB_STORE";
@@ -94,17 +93,12 @@ public class AdminDaoImpl implements AdminDao{
 	
 	@Override
 	public int setMenu_Ins(Map MenuMap) throws Exception {
-		/*
 		String sql = "INSERT INTO TB_FOOD(fdno, fdnm, fdprice, fdopyn, stono, fdimg) VALUES ((select max(fdno)+1 from tb_food), ?, ?, '1', ?, ?)";
 		jdbcTemplate.update(sql, MenuMap.get("menuName")
 				               , MenuMap.get("menuPrice")
 				               , MenuMap.get("selectStore")
-				               , MenuMap.get("menuImage"));
-		*/
-		String sql = "INSERT INTO TB_FOOD(fdno, fdnm, fdprice, fdopyn, stono) VALUES ((select max(fdno)+1 from tb_food), ?, ?, '1', ?)";
-		jdbcTemplate.update(sql, MenuMap.get("menuName")
-				               , MenuMap.get("menuPrice")
-				               , MenuMap.get("selectStore"));		
+				               //, MenuMap.get("menuImage"));
+				               , null);
 		
 		return 0;
 	}
