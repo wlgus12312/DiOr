@@ -20,12 +20,10 @@ public class MainDaoImpl implements MainDao{
 
 	@Override
 	public ArrayList<famFood> getTest() throws Exception{				
-		String sql = "select A.fdnm, A.fdprice, B.stonm, B.stono from tb_food A, tb_store B\r\n"
-				+ "where A.stono = B.stono\r\n"
-				+ "and A.fdopyn = 1 and B.stoopyn = 1";
+		String sql = "SELECT * FROM FAM_FOOD";
 		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));		
 		
-//		foods.forEach(System.out :: println);
+		//foods.forEach(System.out :: println);
 		
 		return (ArrayList<famFood>) foods;
 	}

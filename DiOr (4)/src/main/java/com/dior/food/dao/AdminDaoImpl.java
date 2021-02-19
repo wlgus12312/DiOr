@@ -97,8 +97,7 @@ public class AdminDaoImpl implements AdminDao{
 		jdbcTemplate.update(sql, MenuMap.get("menuName")
 				               , MenuMap.get("menuPrice")
 				               , MenuMap.get("selectStore")
-				               //, MenuMap.get("menuImage"));
-				               , null);
+				               , MenuMap.get("menuImage"));
 		
 		return 0;
 	}

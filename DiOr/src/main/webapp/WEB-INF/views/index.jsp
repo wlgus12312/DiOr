@@ -10,7 +10,8 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" 
           integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="crossorigin="anonymous"></script>
+          integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -35,7 +36,6 @@
         <div class="form-group">
           <label for="name">What is your name?</label>
           <input type="text" id="name" class="form-control" placeholder="Your name here...">
-          <input type="text" id="age" class="form-control" placeholder="Your age here...">
         </div>
         <button id="send" class="btn btn-default" type="submit">Send</button>
       </form>

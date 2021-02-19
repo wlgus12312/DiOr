@@ -1,7 +1,13 @@
 package com.dior.food.dto;
 
+import org.json.JSONObject;
+
 public class famFood {
 	
+	private long no;
+	private String name;
+	private String yn;
+	private String today;
 	private long stono    ;
 	private String stonm  ;
 	private String stoopyn;
@@ -12,6 +18,7 @@ public class famFood {
 	private long fdno     ;
 	private String ordcnt ;
 	private String ordstsc;
+	
 	
 	public long getStono() {
 		return stono;
@@ -113,5 +120,19 @@ public class famFood {
 				+ ", ordstsc=" + ordstsc + "]";
 	}
 	
-
+//	@Override
+//	public String toString() {
+//		
+//		return "famFood [{stono=" + stono + ""
+//				+ ", stonm=" + stonm + ""
+//				+ ", stoopyn=" + stoopyn + ""
+//				+ ", fdnm=" + fdnm + ""
+//				+ ", fdprice=" + fdprice + ""
+//				+ ", fdopyn=" + fdopyn + ""
+//				+ ", ordno=" + ordno + ""
+//				+ ", fdno=" + fdno + ""
+//				+ ", ordcnt=" + ordcnt + ""
+//				+ ", ordstsc=" + ordstsc + "}]";
+//	}
+	
 }
