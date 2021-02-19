@@ -86,7 +86,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 </div>
 </body>
 <script>
-//connectOrder();
+connect();
+
 var foodCnt = 0;
 var html = '';	
 
@@ -162,6 +163,13 @@ var html = '';
 	
 		//소켓으로보내기. 
 		//sendO();
+		//setTimeout(2000);
+		
+		//alert("dd");
+		//alert("before")
+		//setTimeout(() => alert("after"), 3000)
+		
+
 	}
 	
 	function returnMessage(message){

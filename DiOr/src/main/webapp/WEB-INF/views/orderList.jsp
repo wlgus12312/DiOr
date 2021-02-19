@@ -15,6 +15,7 @@
      
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/app.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
@@ -26,10 +27,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <!-- Top menu -->
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-center w3-padding-16">디지털메뉴판</div>
+    <div class="w3-center w3-padding-16"> 주문번호 : ${param.ordno} </div>
     <div id="tableno"></div>
     <form id="frmParam" name="frmParam" method="get" enctype="multipart/form-data" contentType="application/json">
-		<input type="hidden" id="ordno" name="ordno" value="${param.ordno}">
+		<input type="hidden" id="ordno" name="ordno" value="${ordno}">
 	</form>
   </div>
 </div>
@@ -67,8 +68,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <script>
 
 window.onload = function(){
-	//document.frmParam.action = "/orderList";
-	//document.frmParam.submit();
+	//소켓커넥트
+	connect();
+
+	var data = "${orderList}"; 
+
+	if(data == ''){
+		document.frmParam.action = "/orderList";
+		document.frmParam.submit();
+		
+		
+	} else {
+		console.log("before");
+		setTimeout(function(){
+			sendName();
+		}, 2000);
+		console.log("after");
+	}
+	
+	
+	
 }	
 
 </script>
