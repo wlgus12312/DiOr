@@ -14,6 +14,7 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script src="/js/menu.js"></script> 
   <script src="/app.js"></script>
 </head>
 <body>
