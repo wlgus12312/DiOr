@@ -36,6 +36,7 @@
         <div class="form-group">
           <label for="name">What is your name?</label>
           <input type="text" id="name" class="form-control" placeholder="Your name here...">
+          <input type="text" id="age" class="form-control" placeholder="Your age here...">
         </div>
         <button id="send" class="btn btn-default" type="submit">Send</button>
       </form>
