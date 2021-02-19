@@ -17,7 +17,10 @@ public class menuDto {
 	private long fdno     ;
 	private String ordcnt ;
 	private String ordstsc;
-	
+	private String ordstnm;
+	private long   ords   ;
+	private String rg_dt  ;
+	private String ud_dt  ;
 	
 	public long getStono() {
 		return stono;
@@ -66,7 +69,7 @@ public class menuDto {
 	public void setFdopyn(String fdopyn) {
 		this.fdopyn = fdopyn;
 	}
-
+	
 	public long getOrdno() {
 		return ordno;
 	}
@@ -75,6 +78,14 @@ public class menuDto {
 		this.ordno = ordno;
 	}
 
+	public long getOrds() {
+		return ords;
+	}
+
+	public void setOrds(long ords) {
+		this.ords = ords;
+	}
+	
 	public long getFdno() {
 		return fdno;
 	}
@@ -99,10 +110,19 @@ public class menuDto {
 		this.ordstsc = ordstsc;
 	}
 
+
+	public String getOrdstnm() {
+		return ordstnm;
+	}
+
+	public void setOrdstnm(String ordstnm) {
+		this.ordstnm = ordstnm;
+	}
+	
+	
 	public menuDto() {
 		super();
 	}
-
 
 	@Override
 	public String toString() {
@@ -114,11 +134,32 @@ public class menuDto {
 				+ ", fdprice=" + fdprice + ""
 				+ ", fdopyn=" + fdopyn + ""
 				+ ", ordno=" + ordno + ""
+				+ ", ords=" + ords + ""
 				+ ", fdno=" + fdno + ""
 				+ ", ordcnt=" + ordcnt + ""
-				+ ", ordstsc=" + ordstsc + "]";
+				+ ", ordstsc=" + ordstsc + ""
+				+ ", ordstnm=" + ordstnm + ""
+				+ ", rg_dt=" + rg_dt + ""
+				+ ", ud_dt=" + ud_dt + ""
+				+ "]";
 	}
-	
+
+	public String getRg_dt() {
+		return rg_dt;
+	}
+
+	public void setRg_dt(String rg_dt) {
+		this.rg_dt = rg_dt;
+	}
+
+	public String getUd_dt() {
+		return ud_dt;
+	}
+
+	public void setUd_dt(String ud_dt) {
+		this.ud_dt = ud_dt;
+	}
+
 //	@Override
 //	public String toString() {
 //		return "{\"stono\":" + stono 

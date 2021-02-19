@@ -56,22 +56,20 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/menupan", method=RequestMethod.GET)
-	public ModelAndView menupan() throws Exception{
-		
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("menupan");
-		
-		
-		List menuList   = new ArrayList<menuDto>();
-		menuList = MenuService.getMenu();
-
-		mv.addObject("menuList",menuList);
-		
-		//menuList.forEach(System.out :: println);
-		return mv;
-	}
+	/*
+	 * @RequestMapping(value="/menupan", method=RequestMethod.GET) public
+	 * ModelAndView menupan() throws Exception{
+	 * 
+	 * 
+	 * ModelAndView mv = new ModelAndView(); mv.setViewName("menupan");
+	 * 
+	 * 
+	 * List menuList = new ArrayList<menuDto>(); menuList = MenuService.getMenu();
+	 * 
+	 * mv.addObject("menuList",menuList);
+	 * 
+	 * //menuList.forEach(System.out :: println); return mv; }
+	 */
 	
 	@RequestMapping("/menuAdmin")
 	public ModelAndView menuAdmin(HttpServletRequest req) throws Exception{

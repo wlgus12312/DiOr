@@ -5,8 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.dior.food.dto.menuDto;
 
 public interface MenuDao{
-	ArrayList<menuDto> getMenu() throws Exception;	
+	ArrayList<menuDto> getMenu() throws Exception;
+
+	int getOrdersNo() throws Exception;	
+	
+	int insOrder(JSONObject jObj) throws Exception;	
+	
+	ArrayList<menuDto> getOrder(int ordno) throws Exception;
 }
