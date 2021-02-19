@@ -15,6 +15,7 @@
      
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/app.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
@@ -26,10 +27,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <!-- Top menu -->
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-center w3-padding-16">디지털메뉴판</div>
+    <div class="w3-center w3-padding-16"> 주문번호 : ${param.ordno} </div>
     <div id="tableno"></div>
     <form id="frmParam" name="frmParam" method="get" enctype="multipart/form-data" contentType="application/json">
-		<input type="hidden" id="ordno" name="ordno" value="${param.ordno}">
+		<input type="hidden" id="ordno" name="ordno" value="${ordno}">
 	</form>
   </div>
 </div>
@@ -37,38 +38,56 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
    <!-- First Photo Grid-->
-   <div class="w3-row-padding w3-padding-16 w3-center" >
-   	   <table class= "w3-table-all w3-cell-row">
-	   <c:forEach items="${orderList}" var="item" varStatus="stsc">
-		           	<tr>
-		           		<td> ${item.ordno} </td>
-		            	<td> ${item.ords} </td>
-		            	<td> ${item.stono} </td>
-		            	<td> ${item.stonm} </td>
-		            	<td> ${item.fdno} </td>
-		            	<td> ${item.fdnm} </td>
-		            	<td> ${item.ordcnt} </td>
-		            	<td> ${item.ordstsc} </td>
-		            	<td> ${item.ordstnm} </td>
-		            	<td> ${item.rg_dt} </td>
-		            	<td> ${item.ud_dt} </td>
-		           </tr>
+	<div class="w3-row-padding w3-padding-16 w3-center" >
+	<table class= "w3-table-all w3-cell-row">
+		<c:forEach items="${orderList}" var="item" varStatus="stsc">
+			<tr>
+				<td> ${item.ordno} </td>
+				<td> ${item.ords} </td>
+				<td> ${item.stono} </td>
+				<td> ${item.stonm} </td>
+				<td> ${item.fdno} </td>
+				<td> ${item.fdnm} </td>
+				<td> ${item.ordcnt} </td>
+				<td> ${item.ordstsc} </td>
+				<td> ${item.ordstnm} </td>
+				<td> ${item.rg_dt} </td>
+				<td> ${item.ud_dt} </td>
+			</tr>
 	           
-	           <input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
-	           <input type="hidden" id="stonm${stsc.index}" name="stonm" value="${item.stonm}">
-	           <input type="hidden" id="fdno${stsc.index}" name="fdno" value="${item.fdno}">
-	           <input type="hidden" id="fdnm${stsc.index}" name="fdnm" value="${item.fdnm}">
-	           <input type="hidden" id="fdprice${stsc.index}" name="fdprice" value="${item.fdprice}">
-	      </c:forEach> 
-	    </table> 
-   </div>     
+			<input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
+			<input type="hidden" id="stonm${stsc.index}" name="stonm" value="${item.stonm}">
+			<input type="hidden" id="fdno${stsc.index}" name="fdno" value="${item.fdno}">
+			<input type="hidden" id="fdnm${stsc.index}" name="fdnm" value="${item.fdnm}">
+			<input type="hidden" id="fdprice${stsc.index}" name="fdprice" value="${item.fdprice}">
+	     </c:forEach>
+	</table> 
+	</div>     
 </div>
 </body>
 <script>
 
 window.onload = function(){
-	//document.frmParam.action = "/orderList";
-	//document.frmParam.submit();
+	//소켓커넥트
+	connect();
+
+	var data = "${orderList}"; 
+
+	if(data == ''){
+		document.frmParam.action = "/orderList";
+		document.frmParam.submit();
+		
+		
+	} else {
+		console.log("before");
+		setTimeout(function(){
+			sendName();
+		}, 2000);
+		console.log("after");
+	}
+	
+	
+	
 }	
 
 </script>
