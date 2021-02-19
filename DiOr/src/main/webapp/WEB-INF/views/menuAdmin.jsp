@@ -8,7 +8,6 @@
 <html>
 <head>
   <title>디지털메뉴판 관리</title>
-<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
@@ -86,68 +85,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		</tr>
 		</c:forEach>
 	</table>
-=======
 </head>
 
-<body>
-
-<div id="topmenu">
-  <div style="max-width:1200px;margin:auto">디지털메뉴판 등록</div>
-</div>
-
-
-<div style="max-width:1200px;margin-top:10px">
-	<form method="post" action="/menuAdminStore">
-		<table>
-		    <th>식당등록</th>
-			<tr>
-				<td id="title">식당ID</td>
-				<td>
-					<input type="text" name="storeId" maxlength="20">
-				</td>
-			</tr>
-			<tr>
-				<td id="title">식당명ID</td>
-				<td>
-					<input type="text" name="storeName" maxlength="20">
-				</td>
-			</tr>
-		</table>
-		<input type="submit" value="등록"><input type="reset" value="취소" >
-	</form>
-	<br><br>
-	<form method="post" action="/menuAdminMenu">
-		<table>
-		    <th>메뉴등록</th>
-			<tr>
-				<td id="title">식당명</td>
-				<td>
-					<select name="selectStore">
-                        <option value="">-- 식당을 선택하세요 --</option>
-                        <c:forEach items="${storeList}" var="item" varStatus="stsc">                 
-	                 		<option value="${item.stono}">
-	                 			${item.stonm}
-	                        </option>
-                        </c:forEach>
-                    </select>                    			
-				</td>
-			</tr>
-			<tr>
-				<td id="title">메뉴명</td>
-				<td>
-					<input type="text" name="menuName" maxlength="20">
-				</td>
-			</tr>
-			<tr>
-				<td id="title">가격</td>
-				<td>
-					<input type="text" name="menuPrice" maxlength="20">
-				</td>
-			</tr>			
-		</table>
-		<input type="submit" value="등록"><input type="reset" value="취소" >
-	</form>		
->>>>>>> refs/remotes/origin/JW
 </div>
 </body>
 </html>
