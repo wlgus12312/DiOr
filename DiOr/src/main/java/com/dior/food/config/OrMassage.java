@@ -6,16 +6,18 @@ public class OrMassage {
 	private String fdnm;
 	private String ordcnt;
 	private String ordstsc;
+	private String ords;
 	
 	public OrMassage() {}
 
-	public OrMassage(String ordno, String fdno, String fdnm, String ordcnt, String ordstsc) {
+	public OrMassage(String ordno, String fdno, String fdnm, String ordcnt, String ordstsc, String ords) {
 		super();
 		this.ordno = ordno;
 		this.fdno = fdno;
 		this.fdnm = fdnm;
 		this.ordcnt = ordcnt;
 		this.ordstsc = ordstsc;
+		this.ords = ords;
 	}
 
 	public String getOrdno() {
@@ -58,11 +60,20 @@ public class OrMassage {
 		this.ordstsc = ordstsc;
 	}
 
+	public String getOrds() {
+		return ords;
+	}
+
+	public void setOrds(String ords) {
+		this.ords = ords;
+	}
+
 	@Override
 	public String toString() {
 		return "OrMassage [ordno=" + ordno + ", fdno=" + fdno + ", fdnm=" + fdnm + ", ordcnt=" + ordcnt + ", ordstsc="
-				+ ordstsc + "]";
-	};
+				+ ordstsc + ", ords=" + ords + "]";
+	}
+
 
 
 }

@@ -82,16 +82,61 @@ function connectFood1() {
   // SockJS와 stomp client를 통해 연결을 시도.
   stompClient.connect({}, function (frame) {
     console.log('Connected: ' + frame);
-    stompClient.subscribe('/topic/food1', function (greeting) {
-      food1Order(JSON.parse(greeting.body).content);
+    stompClient.subscribe('/topic/food1', function (msgList) {
+      //food1Order(msgList);
+	  food1Order(JSON.parse(msgList.body));
     });
   });
 }
-
 //음식점1 주문내역
-function food1Order(message) {
-  $("#orderList").append("<tr><td>" + message + "</td></tr>");
+function food1Order(msgList) {	
+	for(var i = 0; i < msgList.length; i++){
+		$("#orderList").append("<tr>");
+		$("#orderList").append("<td>" + msgList[i].ordno + "</td>");
+		$("#orderList").append("<td>" + msgList[i].fdno + "</td>");
+		$("#orderList").append("<td>" + msgList[i].ordcnt + "</td>");
+		$("#orderList").append("<td>" + msgList[i].fdnm + "</td>");
+		$("#orderList").append("<td><button onclick=stOrder("+ msgList[i].ordno + ","+  msgList[i].ords + ")>조리시작</button></td>");
+		$("#orderList").append("<td><button onclick=edOrder("+ msgList[i].ordno + ","+  msgList[i].ords + ")>조리완료</button></td>");
+		$("#orderList").append("</tr>");
+	}	    
 }
+
+//음식점 조리시작
+function stOrder(ordno, ords) {	
+	//조리시작	
+	$.ajax({
+		url:'/stOrder',
+		type:'POST',
+		dataType:'text',
+		data:{
+			ordno:ordno,
+			ords:ords
+		},
+		success:function(data) { 
+			alert("조리시좍~"); 
+		}
+	});		
+	
+}
+//음식점 조리완료
+function edOrder(ordno, ords) {	
+	//조리완료
+		$.ajax({
+		url:'/edOrder',
+		type:'POST',
+		dataType:'text',
+		data:{
+			ordno:ordno,
+			ords:ords
+		},
+		success:function(data) { 
+			alert("조리종료");
+		}
+	});		
+}
+
+
 
 
 $(function () {

@@ -1,5 +1,9 @@
 package com.dior.food.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -19,23 +23,16 @@ public class GreetingController {
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
 	public Greeting greeting(OrMassage message) throws Exception {
-		//Thread.sleep(100); // delay
 		return new Greeting("Hello");
 	}
 	
 	@MessageMapping("/food1")
 	@SendTo("/topic/food1")
-	public Greeting food1() throws Exception {
-		
-		System.out.println("1");
-		
-        OrMassage massage = null;
-        
-		massage = OrderService.selectOrderList(1);
-		
-		Greeting grt = new Greeting(massage.toString());
-		
-		return grt;
+	public List<Map<String, Object>> food1() throws Exception {
+		List<Map<String, Object>> msgList = null;		        
+        msgList = OrderService.selectOrderList(1);        
+        return msgList;
+
 	}
 	
 	@MessageMapping("/food2")
@@ -50,12 +47,6 @@ public class GreetingController {
 		return new Greeting(message.getOrdno());
 	}
 	
-	@MessageMapping("/hi")
-	@SendTo("/topic/greetings2")
-	public Greeting greeting2(String message) throws Exception {
-		System.out.println("message : " + message);		
-		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message) + "!");
-	}
 	
 }
       

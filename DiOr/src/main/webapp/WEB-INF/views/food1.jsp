@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +18,7 @@
   crossorigin="anonymous"></script>          
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="/app.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
@@ -40,11 +43,17 @@ connectFood1();
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
    <!-- First Photo Grid-->
    <div class="w3-row-padding w3-padding-16 w3-center" >
-       <table id="conversation" class="table table-striped">   
-           <thead>
+       <h3>주문내역</h3>
+       <table id="conversation" class="table table-striped">
+           <thead>               
                <tr>
-                   <th>주문내역</th>
-               </tr>
+                   <th>주문번호</th>
+                   <th>주문수량</th>
+                   <th>메뉴번호</th>
+                   <th>메뉴</th>
+                   <th></th>
+                   <th></th>
+               </tr>                 
            </thead>
            <tbody id="orderList">
            </tbody>
