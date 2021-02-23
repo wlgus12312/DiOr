@@ -74,10 +74,10 @@ public class MenuController {
 		int ordno = MenuService.insOrder(jArr);
 		System.out.println("ordno : " + ordno);
 		
-		orderList = MenuService.getOrder(ordno);
-		orderList.forEach(System.out :: println);
+//		orderList = MenuService.getOrder(ordno);
+//		orderList.forEach(System.out :: println);
 		
-		mv.addObject("orderList",orderList);
+//		mv.addObject("orderList",orderList);
 		mv.addObject("ordno",ordno);
 		
 		//mv.addObject("session", session.getId());
@@ -88,8 +88,11 @@ public class MenuController {
 		
 	@RequestMapping(value="/orderList", method=RequestMethod.GET)
 	public ModelAndView orderList(HttpServletRequest req) throws Exception{
+		
 		int ordno = 0;
 		ordno = Integer.parseInt(req.getParameter("ordno"));
+		System.out.println("다음ordno" + ordno);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("orderList");
 		
