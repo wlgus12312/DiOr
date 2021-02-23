@@ -122,10 +122,10 @@ window.onload = function(){
 	
 	connect1();
 	console.log("--------connect1-----------------------------------------------------");
-	//connect2();
-	//console.log("--------connect2-----------------------------------------------------");
-	//connect3();
-	//console.log("--------connect3-----------------------------------------------------");
+	connect2();
+	console.log("--------connect2-----------------------------------------------------");
+	connect3();
+	console.log("--------connect3-----------------------------------------------------");
 
 	var url = document.location.href.split("/")[3]; 
 	
@@ -137,14 +137,14 @@ window.onload = function(){
 	   			if(data[i] == 1){
 	   				sendName1();
 	   			} else if (data[i] == 2){
-	   				//sendName2();
+	   				sendName2();
 	   			} else if (data[i] == 3){
-	   				//sendName3();
+	   				sendName3();
 	   			}
 			}
 			document.frmParam.action = "/orderList";
 			document.frmParam.submit();
-		}, 300);
+		}, 500);
 			
 	} else {
 		
