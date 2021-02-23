@@ -21,6 +21,7 @@ public class menuDto {
 	private long   ords   ;
 	private String rg_dt  ;
 	private String ud_dt  ;
+	private byte[] timg   ;
 	
 	public long getStono() {
 		return stono;
@@ -119,11 +120,36 @@ public class menuDto {
 		this.ordstnm = ordstnm;
 	}
 	
+	public String getRg_dt() {
+		return rg_dt;
+	}
+
+	public void setRg_dt(String rg_dt) {
+		this.rg_dt = rg_dt;
+	}
+
+	public String getUd_dt() {
+		return ud_dt;
+	}
+
+	public void setUd_dt(String ud_dt) {
+		this.ud_dt = ud_dt;
+	}
+
+	public byte[] getTimg() {
+		return timg;
+	}
+
+	public void setTimg(byte[] timg) {
+		this.timg = timg;
+	}
+	
 	
 	public menuDto() {
 		super();
 	}
 
+	
 	@Override
 	public String toString() {
 		
@@ -144,21 +170,6 @@ public class menuDto {
 				+ "]";
 	}
 
-	public String getRg_dt() {
-		return rg_dt;
-	}
-
-	public void setRg_dt(String rg_dt) {
-		this.rg_dt = rg_dt;
-	}
-
-	public String getUd_dt() {
-		return ud_dt;
-	}
-
-	public void setUd_dt(String ud_dt) {
-		this.ud_dt = ud_dt;
-	}
 
 //	@Override
 //	public String toString() {

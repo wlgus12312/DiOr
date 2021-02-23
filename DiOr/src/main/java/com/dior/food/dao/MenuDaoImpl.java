@@ -1,5 +1,7 @@
 package com.dior.food.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
+import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.stereotype.Repository;
 
 import com.dior.food.dto.menuDto;
@@ -23,10 +28,28 @@ public class MenuDaoImpl implements MenuDao{
 
 	@Override
 	public ArrayList<menuDto> getMenu() throws Exception{				
-		String sql = "select A.fdno, A.fdnm, A.fdprice, B.stonm, B.stono from tb_food A, tb_store B\r\n"
+		String sql = "select A.fdno, A.fdnm, A.fdprice, B.stonm, B.stono "
+				+ "from tb_food A, tb_store B\r\n"
 				+ "where A.stono = B.stono\r\n"
 				+ "and A.fdopyn = 1 and B.stoopyn = 1";
 		List<menuDto> menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class));		
+		
+		String sqlimg = "select A.timg "
+				+ "from tb_food A, tb_store B\r\n"
+				+ "where A.stono = B.stono\r\n"
+				+ "and A.fdopyn = 1 and B.stoopyn = 1";
+		LobHandler lobHandler = new DefaultLobHandler();
+		jdbcTemplate.query(sqlimg, new RowMapper() {
+
+			@Override
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				menuDto frontEndData = new menuDto();
+                byte[] requestData = lobHandler.getBlobAsBytes(rs,"timg");
+                frontEndData.setTimg(requestData);
+				return frontEndData;
+			}
+			
+		});
 		
 //		menupan.forEach(System.out :: println);
 		
@@ -63,7 +86,9 @@ public class MenuDaoImpl implements MenuDao{
 		System.out.println("dao ordno:" + ordno);
 		String sql = "select a.ordno\r\n"
 				    + ", a.ords\r\n"
+				    + ", c.stono\r\n"
 					+ ", c.stonm\r\n"
+					+ ", b.fdno\r\n"
 					+ ", b.fdnm\r\n"
 					+ ", a.ordcnt\r\n"
 					+ ", a.ordstsc\r\n"

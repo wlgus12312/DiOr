@@ -47,7 +47,7 @@ public class MenuController {
 	@RequestMapping(value="/insOrder", method=RequestMethod.POST)
 	public ModelAndView insOrder(HttpServletRequest req) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ArrayList<menuDto> orderList   = new ArrayList<menuDto>();
+		ArrayList<String> storeList   = new ArrayList();
 		
 		System.out.println("--------------------------------------");
 //		System.out.println("param: tableno: " + req.getParameter("tableno")
@@ -59,9 +59,15 @@ public class MenuController {
 		
 		int paramCnt = req.getParameterValues("stono").length;
 		System.out.println("paramCnt: " + paramCnt);
+		
 		JSONArray jArr = new JSONArray();
 		JSONObject jObect = null;
+		
+		storeList.add(req.getParameterValues("stono")[0]);
+		
+		String preStoreNo = "";
 		for (int i = 0; i < paramCnt; i++) {
+			System.out.println("         i            "+i);
 			jObect = new JSONObject();
 			jObect.put("rowno", i);
 			jObect.put("tableno", req.getParameterValues("tableno")[0]);
@@ -69,15 +75,22 @@ public class MenuController {
 			jObect.put("fdno", req.getParameterValues("fdno")[i]);
 			jObect.put("ordcnt", req.getParameterValues("ordcnt")[i]);
 			jArr.put(i, jObect);
+			
+			if(i > 0) {
+				if(!req.getParameterValues("stono")[i].equals(req.getParameterValues("stono")[i-1])) {
+					storeList.add(req.getParameterValues("stono")[i]);
+				}
+			}
 		}
+		
 		
 		int ordno = MenuService.insOrder(jArr);
 		System.out.println("ordno : " + ordno);
 		
-		orderList = MenuService.getOrder(ordno);
-		orderList.forEach(System.out :: println);
+//		orderList = MenuService.getOrder(ordno);
+//		orderList.forEach(System.out :: println);
 		
-		mv.addObject("orderList",orderList);
+		mv.addObject("storeList",storeList);
 		mv.addObject("ordno",ordno);
 		
 		//mv.addObject("session", session.getId());
@@ -88,8 +101,11 @@ public class MenuController {
 		
 	@RequestMapping(value="/orderList", method=RequestMethod.GET)
 	public ModelAndView orderList(HttpServletRequest req) throws Exception{
+		
 		int ordno = 0;
 		ordno = Integer.parseInt(req.getParameter("ordno"));
+		System.out.println("다음ordno" + ordno);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("orderList");
 		
