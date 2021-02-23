@@ -118,23 +118,40 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
 window.onload = function(){
 	//소켓커넥트
-	connect();
+	//connect();
+	
+	connect1();
+	console.log("--------connect1-----------------------------------------------------");
+	//connect2();
+	//console.log("--------connect2-----------------------------------------------------");
+	//connect3();
+	//console.log("--------connect3-----------------------------------------------------");
 
-	var data = "${orderList}"; 
-
-	if(data == ''){
+	var url = document.location.href.split("/")[3]; 
+	
+	var data = ${storeList}+""; 
+	console.log("data: " + data);
+	if(url == 'insOrder'){
 		setTimeout(function(){
-			sendName();
+			for(var i=0; i <= data.length; i ++){
+	   			if(data[i] == 1){
+	   				sendName1();
+	   			} else if (data[i] == 2){
+	   				//sendName2();
+	   			} else if (data[i] == 3){
+	   				//sendName3();
+	   			}
+			}
 			document.frmParam.action = "/orderList";
 			document.frmParam.submit();
-		}, 100);	
+		}, 300);
+			
 	} else {
-
 		
 		for(var i=0; i <= ${fn:length(orderList)}; i ++){
+			var stoNm = document.getElementById(eval("'stono"+i+"'")).value;
 			
 			var orstsc = document.getElementById(eval("'ordstsc"+i+"'")).value;
-			
 			if(orstsc == '0'){
 				var stsc = 'ordimg1'+i;
 				fn_showOrd(stsc);
