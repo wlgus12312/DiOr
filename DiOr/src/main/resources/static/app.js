@@ -13,7 +13,7 @@ function setConnected(connected) {
   $("#greetings").html("");
 }
 
-function connect() {
+function connect1() {
   var socket = new SockJS('/websocket');
   stompClient = Stomp.over(socket);
   // SockJS와 stomp client를 통해 연결을 시도.
@@ -25,8 +25,32 @@ function connect() {
     });
   });
 }
+function connect2() {
+  var socket = new SockJS('/websocket');
+  stompClient = Stomp.over(socket);
+  // SockJS와 stomp client를 통해 연결을 시도.
+  stompClient.connect({}, function (frame) {
+    setConnected(true);
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/food2', function (greeting) {
+      showGreeting(JSON.parse(greeting.body).content);
+    });
+  });
+}
+function connect3() {
+  var socket = new SockJS('/websocket');
+  stompClient = Stomp.over(socket);
+  // SockJS와 stomp client를 통해 연결을 시도.
+  stompClient.connect({}, function (frame) {
+    setConnected(true);
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/food3', function (greeting) {
+      showGreeting(JSON.parse(greeting.body).content);
+    });
+  });
+}
 
-function connectOrder() { 
+/*function connectOrder() { 
   var socket = new SockJS('/websocket');
   stompClient = Stomp.over(socket);
   // SockJS와 stomp client를 통해 연결을 시도.
@@ -37,7 +61,7 @@ function connectOrder() {
       showOrder(3);
     });
   });
-}
+}*/
 
 function disconnect() {
   if (stompClient !== null) {
@@ -47,18 +71,24 @@ function disconnect() {
   console.log("Disconnected");
 }
 
-function sendName() {
+function sendName1() {
   // /app/hello로 JSON 파라미터를 메세지 body로 전송.
-  console.log("name : " + $("#name").val());
-
   stompClient.send("/app/food1",
                    {}, //헤더
 				  ''); 
-                   //JSON.stringify({'name': $("#name").val(), 'age' : $("#age").val()}));
- 
+}
+function sendName2() {
+  stompClient.send("/app/food2",
+                   {}, //헤더
+				  ''); 
+}
+function sendName3() {
+  stompClient.send("/app/food3",
+                   {}, //헤더
+				  ''); 
 }
 
-function sendO() {
+/*function sendO() {
   // /app/hello로 JSON 파라미터를 메세지 body로 전송.
   	stompClient.send("/app/hello", {}, JSON.stringify({'name': "주문"}));
 
@@ -67,14 +97,7 @@ function sendO() {
 function showGreeting(message) {
   $("#greetings").append("<tr><td>" + message + "</td></tr>");
 }
-
-function showOrder(message) {
-	//alert(message);
-	console.log("333333333");
-  //$("#greetings2").append("<tr><td>" + message + "</td></tr>");
-}
-
-
+*/
 //음식점1 접속
 function connectFood1() {
   var socket = new SockJS('/websocket');
@@ -88,7 +111,33 @@ function connectFood1() {
     });
   });
 }
-//음식점1 주문내역
+//음식점2 접속
+function connectFood2() {
+  var socket = new SockJS('/websocket');
+  stompClient = Stomp.over(socket);
+  // SockJS와 stomp client를 통해 연결을 시도.
+  stompClient.connect({}, function (frame) {
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/food2', function (msgList) {
+      //food1Order(msgList);
+	  food1Order(JSON.parse(msgList.body));
+    });
+  });
+}
+//음식점3 접속
+function connectFood3() {
+  var socket = new SockJS('/websocket');
+  stompClient = Stomp.over(socket);
+  // SockJS와 stomp client를 통해 연결을 시도.
+  stompClient.connect({}, function (frame) {
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/food3', function (msgList) {
+      //food1Order(msgList);
+	  food1Order(JSON.parse(msgList.body));
+    });
+  });
+}
+//음식점 주문내역
 function food1Order(msgList) {	
 	for(var i = 0; i < msgList.length; i++){
 		$("#orderList").append("<tr>");

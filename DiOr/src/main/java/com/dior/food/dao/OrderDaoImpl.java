@@ -29,14 +29,14 @@ public class OrderDaoImpl implements OrderDao{
 				+ "  from tb_order A,                      \r\n"
 				+ "       tb_food  B                       \r\n"
 				+ " where A.fdno  = B.fdno                 \r\n"
-				+ "   and B.stono = '1'                    \r\n"
+				+ "   and B.stono = ?                    \r\n"
 				+ "   and A.ordno = (select MAX(A.ordno)   \r\n"
 				+ "				    from tb_order A,       \r\n"
 				+ "					     tb_food  B        \r\n"
 				+ "				   where A.fdno = B.fdno   \r\n"
-				+ "				     and B.stono = '1')    ";
+				+ "				     and B.stono = ?)    ";
 		
-		List<Map<String, Object>> msgList = jdbcTemplate.queryForList(sql);		
+		List<Map<String, Object>> msgList = jdbcTemplate.queryForList(sql, i, i);		
 		//OrMassage massage = jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(OrMassage.class));		
 		return msgList;
 	}

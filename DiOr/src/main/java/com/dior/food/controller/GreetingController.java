@@ -37,14 +37,18 @@ public class GreetingController {
 	
 	@MessageMapping("/food2")
 	@SendTo("/topic/food2")
-	public Greeting food2(OrMassage message) throws Exception {
-		return new Greeting(message.getOrdno());
+	public List<Map<String, Object>> food2() throws Exception {
+		List<Map<String, Object>> msgList = null;		        
+        msgList = OrderService.selectOrderList(2);        
+        return msgList;
 	}
 	
 	@MessageMapping("/food3")
 	@SendTo("/topic/food3")
-	public Greeting food3(OrMassage message) throws Exception {
-		return new Greeting(message.getOrdno());
+	public List<Map<String, Object>> food3() throws   Exception {
+		List<Map<String, Object>> msgList = null;		        
+        msgList = OrderService.selectOrderList(3);        
+        return msgList;
 	}
 	
 	
