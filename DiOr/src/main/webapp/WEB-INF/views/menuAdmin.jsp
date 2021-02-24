@@ -35,7 +35,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	function foodMod(val) {
 		window.open("/menuAdmin_M_Pop2?menuId="+val
 		          , "음식 수정"
-		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=310, top=30,left=150");		
+		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=550, height=440, top=30,left=150");		
 	}
 </script>
 
@@ -76,7 +76,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 				</c:otherwise>
 			</c:choose>
 			<td align="left">${item.fdnm}</td>
-			<td><img alt="" src="data:image/jpg;base64, ${item.vimg}"></td> 
+			<td>
+				<img alt="" src="data:image/jpg;base64, ${item.vimg}" width="140" height="auto">
+			</td> 
 			<td align="right">${item.fdprice}</td>
 			<td align="center"><input type="button" class="w3-bar-item w3-black w3-button" value="수정" name= "menuId" id="${item.fdno}" onclick="foodMod(this.id);"></td>
 			<td align="center">${item.fdopyn}</td>
