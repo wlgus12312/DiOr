@@ -6,18 +6,10 @@
 <html>
 <head>
   <title>디지털메뉴판 관리 - 음식등록</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-  	<link rel="icon" type="image/png" sizes="16x16" href="/images/apple-touch-icon.png">
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
-.w3-bar-block .w3-bar-item {padding:20px}
-</style>
 </head>
 
 <body>
-	<form method="post" action="menuAdmin_M_Ins" enctype="multipart/form-data">
+	<form method="post" action="menuAdmin_M_Ins">
 		<table>
 		    <th colspan="2" align="left">음식 등록</th>
 			<tr>
@@ -48,17 +40,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 			<tr>
 				<td id="title">음식사진</td>
 				<td>
-					<input type="file" name="menuImage">
+					<input type="file" name="menuImage" maxlength="20">
 				</td>
 			</tr>			
 		</table>
-		<input type="submit" class="w3-bar-item w3-black w3-button" value="등록"> <input type="reset" class="w3-bar-item w3-black w3-button" value="취소">
+		<input type="submit" value="등록"> <input type="reset" value="취소">
 	</form>
 	
 	<hr>
 	
 	<div style="max-width:1000px;margin:auto;text-align:center;vertical-align:center">
-		<input type="button" value="닫기" class="w3-bar-item w3-black w3-button" onclick="javascript:window.close();">
+		<input type="button" value="닫기" onclick="javascript:window.close();">
 	</div>	
 </body>
 

@@ -5,9 +5,9 @@
 <%@ page import="java.util.*"%>
 
 <!DOCTYPE html>
-<html>
+<html>   
 <head>
-  <title>디지털메뉴판 관리 - 음식삭제 완료</title>
+  <title>디지털메뉴판 관리 - 음식삭제 완료22</title>
 </head>
 
 <script language="javascript">

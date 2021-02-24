@@ -8,14 +8,17 @@
 <html>
 <head>
   <title>디지털메뉴판 관리</title>
+<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
   	<link rel="icon" type="image/png" sizes="16x16" href="/images/apple-touch-icon.png">
+<!--   	
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
-.w3-bar-block .w3-bar-item {padding:20px}
+.w3-bar-block .w3-bar-item {padding:10px} 
 </style>
+-->
   	  
 </head>
 
@@ -23,19 +26,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	function storeAdd() {
 		window.open("/menuAdmin_S_Pop"
 		          , "레스토랑 등록"
-		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=420, top=30,left=150");
+		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=320, top=30,left=150");
 	}
 	
 	function foodAdd() {
 		window.open("/menuAdmin_M_Pop"
 		          , "음식 등록"
-		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=280, top=30,left=150");
+		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=220, top=30,left=150");
 	}
 	
 	function foodMod(val) {
 		window.open("/menuAdmin_M_Pop2?menuId="+val
 		          , "음식 수정"
-		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=310, top=30,left=150");		
+		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=250, top=30,left=150");		
 	}
 </script>
 
@@ -50,8 +53,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <div style="max-width:auto;margin-top:10px">
 	<table align="center">
 		<tr>
-			<td width="305px" align="left"><input type="button" class="w3-bar-item w3-black w3-button" value="레스토랑 추가/수정" onclick="storeAdd();"></td>
-			<td width="305px" align="right"><input type="button" class="w3-bar-item w3-black w3-button" value="음식 추가" onclick="foodAdd();"></td>
+			<td width="305px" align="left"><input type="button" value="레스토랑 추가/수정" onclick="storeAdd();"></td>
+			<td width="305px" align="right"><input type="button" value="음식 추가" onclick="foodAdd();"></td>
 		</tr>
 	</table>
 	
@@ -76,15 +79,75 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 				</c:otherwise>
 			</c:choose>
 			<td align="left">${item.fdnm}</td>
-			<td><img alt="" src="data:image/jpg;base64, ${item.vimg}"></td> 
+			<td>구현중..</td>
 			<td align="right">${item.fdprice}</td>
-			<td align="center"><input type="button" class="w3-bar-item w3-black w3-button" value="수정" name= "menuId" id="${item.fdno}" onclick="foodMod(this.id);"></td>
+			<td align="center"><input type="button" value="수정" name= "menuId" id="${item.fdno}" onclick="foodMod(this.id);"></td>
 			<td align="center">${item.fdopyn}</td>
 		</tr>
 		</c:forEach>
 	</table>
+=======
 </head>
 
+<body>
+
+<div id="topmenu">
+  <div style="max-width:1200px;margin:auto">디지털메뉴판 등록</div>
+</div>
+
+
+<div style="max-width:1200px;margin-top:10px">
+	<form method="post" action="/menuAdminStore">
+		<table>
+		    <th>식당등록</th>
+			<tr>
+				<td id="title">식당ID</td>
+				<td>
+					<input type="text" name="storeId" maxlength="20">
+				</td>
+			</tr>
+			<tr>
+				<td id="title">식당명ID</td>
+				<td>
+					<input type="text" name="storeName" maxlength="20">
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="등록"><input type="reset" value="취소" >
+	</form>
+	<br><br>
+	<form method="post" action="/menuAdminMenu">
+		<table>
+		    <th>메뉴등록</th>
+			<tr>
+				<td id="title">식당명</td>
+				<td>
+					<select name="selectStore">
+                        <option value="">-- 식당을 선택하세요 --</option>
+                        <c:forEach items="${storeList}" var="item" varStatus="stsc">                 
+	                 		<option value="${item.stono}">
+	                 			${item.stonm}
+	                        </option>
+                        </c:forEach>
+                    </select>                    			
+				</td>
+			</tr>
+			<tr>
+				<td id="title">메뉴명</td>
+				<td>
+					<input type="text" name="menuName" maxlength="20">
+				</td>
+			</tr>
+			<tr>
+				<td id="title">가격</td>
+				<td>
+					<input type="text" name="menuPrice" maxlength="20">
+				</td>
+			</tr>			
+		</table>
+		<input type="submit" value="등록"><input type="reset" value="취소" >
+	</form>		
+>>>>>>> refs/remotes/origin/JW
 </div>
 </body>
 </html>
