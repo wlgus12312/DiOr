@@ -6,6 +6,14 @@
 <html>
 <head>
   <title>디지털메뉴판 관리 - 음식수정</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+  	<link rel="icon" type="image/png" sizes="16x16" href="/images/apple-touch-icon.png">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+.w3-bar-block .w3-bar-item {padding:20px}
+</style>  
 </head>
 
 <script type="text/javascript">
@@ -21,7 +29,7 @@
 </script>
 
 <body>
-	<form method="post" action="menuAdmin_M_Upd">
+	<form method="post" action="menuAdmin_M_Upd" enctype="multipart/form-data">
 		<table>
 		    <th colspan="2" align="left">음식 수정</th>
 		    <c:forEach items="${menuList}" var="item" varStatus="stsc">
@@ -47,6 +55,7 @@
 			<tr>
 				<td id="title">음식사진</td>
 				<td>
+					<img alt="" src="data:image/jpg;base64, ${item.vimg}">
 					<input type="file" name="mImage" maxlength="20">
 				</td>
 			</tr>
@@ -67,13 +76,15 @@
 			</tr>			
 			</c:forEach>			
 		</table>
-		<input type="submit" value="수정"> <input type="reset" value="취소"> <input type="button" value="삭제" style="color:red;" onclick="menuDel()">
+		<input type="submit" class="w3-bar-item w3-black w3-button" value="수정"> 
+		<input type="reset" class="w3-bar-item w3-black w3-button" value="취소"> 
+		<input type="button" class="w3-bar-item w3-black w3-button" value="삭제" onclick="menuDel()">
 	</form>
 	
 	<hr>
 	
 	<div style="max-width:1000px;margin:auto;text-align:center;vertical-align:center">
-		<input type="button" value="닫기" onclick="javascript:window.close();">
+		<input type="button" value="닫기" class="w3-bar-item w3-black w3-button" onclick="javascript:window.close();">
 	</div>	
 </body>
 

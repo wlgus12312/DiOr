@@ -1,5 +1,7 @@
 package com.dior.food.dto;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 public class famFood {
 	
 	private long stono    ;
@@ -12,6 +14,8 @@ public class famFood {
 	private long fdno     ;
 	private String ordcnt ;
 	private String ordstsc;
+	private byte[] timg;
+	private String vimg;
 	
 	public long getStono() {
 		return stono;
@@ -96,6 +100,14 @@ public class famFood {
 	public famFood() {
 		super();
 	}
+	
+	public byte[] getTimg() {
+		return timg;
+	}
+
+	public void setTimg(byte[] timg) {
+		this.timg = timg;
+	}	
 
 
 	@Override
@@ -110,7 +122,17 @@ public class famFood {
 				+ ", ordno=" + ordno + ""
 				+ ", fdno=" + fdno + ""
 				+ ", ordcnt=" + ordcnt + ""
+				//+ ", ordstsc=" + ordstsc + "]";
+				+ ", vimg=" + vimg + ""
 				+ ", ordstsc=" + ordstsc + "]";
+	}
+
+	public String getVimg() {
+		return vimg;
+	}
+
+	public void setVimg(String vimg) {
+		this.vimg = vimg;
 	}
 	
 

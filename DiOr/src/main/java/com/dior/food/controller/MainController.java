@@ -1,5 +1,11 @@
 package com.dior.food.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,11 +19,15 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dior.food.dao.AdminDao;
 import com.dior.food.dto.famFood;
 import com.dior.food.dto.menuDto;
 import com.dior.food.service.AdminServiceImpl;
@@ -73,20 +83,15 @@ public class MainController {
 		return mv;
 	}
 	  
-  
-  @RequestMapping("/menuAdmin")
+/*  
+	@RequestMapping("/menuAdmin")
 	public ModelAndView menuAdmin(HttpServletRequest req) throws Exception{
 		
 		//HttpSession session = req.getSession();
 		
 		ModelAndView mv = new ModelAndView();
 		List storeList   = new ArrayList<famFood>();
-		/*  
-		storeList = AdminService.getStore();
-		
-		mv.addObject("storeList",storeList);
-		//mv.addObject("session", session.getId());
-		*/
+
 		storeList = AdminService.getFood();
 		mv.addObject("storeList",storeList);
 		
@@ -94,6 +99,23 @@ public class MainController {
 		
 		return mv;
 	}
+*/
+	
+	@RequestMapping("/menuAdmin")
+	public ModelAndView menuAdmin(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		
+		//HttpSession session = req.getSession();
+		
+		ModelAndView mv = new ModelAndView();
+		List storeList   = new ArrayList<famFood>();
+		
+		storeList = AdminService.getFood();
+		mv.addObject("storeList",storeList);
+		
+		mv.setViewName("menuAdmin");
+		
+		return mv;
+	}	
 	
 	@RequestMapping("/menuAdmin_S_Pop")
 	public ModelAndView menuAdmin_S_Pop(HttpServletRequest req) throws Exception{
@@ -202,7 +224,8 @@ public class MainController {
 	}		
 	
 	@RequestMapping("/menuAdmin_M_Ins")
-	public ModelAndView menuAdmin_M_Ins(HttpServletRequest req) throws Exception{
+	//public ModelAndView menuAdmin_M_Ins(HttpServletRequest req) throws Exception{
+	public ModelAndView menuAdmin_M_Ins(HttpServletRequest req, MultipartRequest req2) throws Exception{
 		
 		//HttpSession session = req.getSession();
 		
@@ -212,8 +235,11 @@ public class MainController {
 		  
 		menuMap.put("selectStore", req.getParameter("selectStore"));
 		menuMap.put("menuName", req.getParameter("menuName"));
-		menuMap.put("menuPrice", req.getParameter("menuPrice"));
-		menuMap.put("menuImage", req.getParameter("menuImage"));
+		menuMap.put("menuPrice", req.getParameter("menuPrice"));		
+		menuMap.put("menuImage", req2.getFile("menuImage").getBytes());
+		
+		//System.out.println("*"+req2.getFile("menuImage").getBytes()+"*");
+		
 		
 		int result = AdminService.setMenu_Ins(menuMap);
 		
@@ -225,7 +251,7 @@ public class MainController {
 	}	
 	
 	@RequestMapping("/menuAdmin_M_Upd")
-	public ModelAndView menuAdmin_M_Upd(HttpServletRequest req) throws Exception{
+	public ModelAndView menuAdmin_M_Upd(HttpServletRequest req, MultipartRequest req2) throws Exception{
 		
 		//HttpSession session = req.getSession();
 		
@@ -235,9 +261,9 @@ public class MainController {
 		  
 		menuMap.put("mName", req.getParameter("mName"));
 		menuMap.put("mPrice", req.getParameter("mPrice"));
-		//menuMap.put("mImage", req.getParameter("mImage"));
 		menuMap.put("mYn", req.getParameter("mYn"));
 		menuMap.put("mNo", req.getParameter("mNo"));
+		menuMap.put("mImage", req2.getFile("mImage").getBytes());
 		
 		int result = AdminService.setMenu_Upd(menuMap);
 		
@@ -311,5 +337,37 @@ public class MainController {
 		mv.addObject("menuList",menuList);
 		
 		return mv;
-	}	
+	}
+
+	public static byte[] imageToByteArray(String filePath) throws Exception {
+		byte[] returnValue = null;
+		
+		ByteArrayOutputStream baos = null;
+		FileInputStream fis = null;
+		
+		try {
+			baos = new ByteArrayOutputStream();
+			fis = new FileInputStream(filePath);
+			
+			byte[] buf = new byte[1024];
+			int read = 0;
+			
+			while((read=fis.read(buf, 0, buf.length)) != -1) {
+				baos.write(buf, 0, read);
+			}
+			
+			returnValue = baos.toByteArray();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(baos != null) {
+				baos.close();
+			}
+			if(fis != null) {
+				fis.close();
+			}
+		}
+		
+		return returnValue;
+	}
 }

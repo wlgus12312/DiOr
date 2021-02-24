@@ -1,11 +1,13 @@
 package com.dior.food.dao;
 
+import java.io.FileInputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -40,14 +42,21 @@ public class AdminDaoImpl implements AdminDao{
 		 		   + "     , Replace(Convert(Varchar, Convert(Money, B.FDPRICE),112),'.00','') AS FDPRICE  "
 	 			   + "     , CASE WHEN B.FDOPYN = 1 THEN '오픈' ELSE '미오픈' END AS FDOPYN   "
  			       //+ "     , B.FDIMG    "
+ 			      + "     , B.TIMG    "
 				   + "  FROM TB_STORE A "
 				   + "     , TB_FOOD  B "
 				   + " WHERE A.STONO = B.STONO "
 				   //+ "   AND A.STOOPYN = '1' "
 				   + " ORDER BY A.STOOPYN DESC, A.STONO ASC, B.FDNO ";
 		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));		
-		
-		//foods.forEach(System.out :: println);
+       
+		for(int i=0; i<foods.size(); i++) {
+			if(foods.get(i).getTimg() != null) {
+				byte[] bt = foods.get(i).getTimg();
+	            String vimg = new String( Base64.encodeBase64(bt));
+	            foods.get(i).setVimg(vimg);
+			}
+		}
 		
 		return (ArrayList<famFood>) foods;
 	}	
@@ -61,7 +70,7 @@ public class AdminDaoImpl implements AdminDao{
 			 	   + "     , B.FDNM     "
 		 		   + "     , B.FDPRICE  "
 	 			   + "     , B.FDOPYN   "
-			       //+ "     , B.FDIMG    "
+			       + "     , B.TIMG    "
 				   + "  FROM TB_STORE A "
 				   + "     , TB_FOOD  B "
 				   + " WHERE A.STONO = B.STONO "
@@ -70,6 +79,14 @@ public class AdminDaoImpl implements AdminDao{
 				   + " ORDER BY A.STOOPYN DESC, A.STONO ASC, B.FDNO ";
 		
 		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));
+		
+		for(int i=0; i<foods.size(); i++) {
+			if(foods.get(i).getTimg() != null) {
+				byte[] bt = foods.get(i).getTimg();
+	            String vimg = new String( Base64.encodeBase64(bt));
+	            foods.get(i).setVimg(vimg);
+			}
+		}		
 		
 		return (ArrayList<famFood>) foods;
 	}	
@@ -94,27 +111,30 @@ public class AdminDaoImpl implements AdminDao{
 	
 	@Override
 	public int setMenu_Ins(Map MenuMap) throws Exception {
-		/*
-		String sql = "INSERT INTO TB_FOOD(fdno, fdnm, fdprice, fdopyn, stono, fdimg) VALUES ((select max(fdno)+1 from tb_food), ?, ?, '1', ?, ?)";
+		
+		String sql = "INSERT INTO TB_FOOD(fdno, fdnm, fdprice, fdopyn, stono, timg) VALUES ((select max(fdno)+1 from tb_food), ?, ?, '1', ?, ?)";
 		jdbcTemplate.update(sql, MenuMap.get("menuName")
 				               , MenuMap.get("menuPrice")
 				               , MenuMap.get("selectStore")
 				               , MenuMap.get("menuImage"));
-		*/
-		String sql = "INSERT INTO TB_FOOD(fdno, fdnm, fdprice, fdopyn, stono) VALUES ((select max(fdno)+1 from tb_food), ?, ?, '1', ?)";
-		jdbcTemplate.update(sql, MenuMap.get("menuName")
-				               , MenuMap.get("menuPrice")
-				               , MenuMap.get("selectStore"));		
+		
+		//System.out.println("!!"+MenuMap.get("menuImage")+"!!");
+		
+//		String sql = "INSERT INTO TB_FOOD(fdno, fdnm, fdprice, fdopyn, stono) VALUES ((select max(fdno)+1 from tb_food), ?, ?, '1', ?)";
+//		jdbcTemplate.update(sql, MenuMap.get("menuName")
+//				               , MenuMap.get("menuPrice")
+//				               , MenuMap.get("selectStore"));
 		
 		return 0;
 	}
 	
 	@Override
 	public int setMenu_Upd(Map MenuMap) throws Exception {
-		String sql = "UPDATE TB_FOOD SET fdnm = ?, fdprice = ?, fdopyn = ? WHERE fdno = ? ";
+		String sql = "UPDATE TB_FOOD SET fdnm = ?, fdprice = ?, fdopyn = ?, timg = ? WHERE fdno = ? ";
 		jdbcTemplate.update(sql, MenuMap.get("mName")
 				               , MenuMap.get("mPrice")
 				               , MenuMap.get("mYn")
+				               , MenuMap.get("mImage")
 				               , MenuMap.get("mNo"));
 		
 		return 0;
