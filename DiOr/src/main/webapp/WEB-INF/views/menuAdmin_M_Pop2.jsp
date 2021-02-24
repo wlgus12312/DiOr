@@ -55,7 +55,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 			<tr>
 				<td id="title">음식사진</td>
 				<td>
-					<img alt="" src="data:image/jpg;base64, ${item.vimg}">
+					<img alt="" src="data:image/jpg;base64, ${item.vimg}" width="180" height="100">
+					<br>
 					<input type="file" name="mImage" maxlength="20">
 				</td>
 			</tr>
