@@ -9,9 +9,9 @@ public class menuDto {
 	
 	private long stono    ;
 	private String stonm  ;
-	private String stopyn ;
+	private String stoopyn;
 	private String fdnm   ;
-	private String fdprice;
+	private long fdprice  ;
 	private String fdopyn ;
 	private long ordno    ;
 	private long fdno     ;
@@ -22,6 +22,7 @@ public class menuDto {
 	private String rg_dt  ;
 	private String ud_dt  ;
 	private byte[] timg   ;
+	private String viewImg;
 	
 	public long getStono() {
 		return stono;
@@ -40,11 +41,11 @@ public class menuDto {
 	}
 
 	public String getStoopyn() {
-		return stopyn;
+		return stoopyn;
 	}
 
 	public void setStoopyn(String stoopyn) {
-		this.stopyn = stoopyn;
+		this.stoopyn = stoopyn;
 	}
 
 	public String getFdnm() {
@@ -55,11 +56,11 @@ public class menuDto {
 		this.fdnm = fdnm;
 	}
 
-	public String getFdprice() {
+	public long getFdprice() {
 		return fdprice;
 	}
 
-	public void setFdprice(String fdprice) {
+	public void setFdprice(long fdprice) {
 		this.fdprice = fdprice;
 	}
 
@@ -153,9 +154,9 @@ public class menuDto {
 	@Override
 	public String toString() {
 		
-		return "famFood [stono=" + stono + ""
+		return "[stono=" + stono + ""
 				+ ", stonm=" + stonm + ""
-				+ ", stopyn=" + stopyn + ""
+				+ ", stoopyn=" + stoopyn + ""
 				+ ", fdnm=" + fdnm + ""
 				+ ", fdprice=" + fdprice + ""
 				+ ", fdopyn=" + fdopyn + ""
@@ -168,6 +169,14 @@ public class menuDto {
 				+ ", rg_dt=" + rg_dt + ""
 				+ ", ud_dt=" + ud_dt + ""
 				+ "]";
+	}
+
+	public String getViewImg() {
+		return viewImg;
+	}
+
+	public void setViewImg(String viewImg) {
+		this.viewImg = viewImg;
 	}
 
 
