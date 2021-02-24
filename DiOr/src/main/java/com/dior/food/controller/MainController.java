@@ -361,8 +361,6 @@ public class MainController {
 		return returnValue;
 	}
 
-	}	
-
 	//조리시작 UPDATE
 	@RequestMapping(value="/stOrder", method=RequestMethod.POST)
 	public void stOrder(@RequestParam HashMap<String, String> params) throws Exception{				
