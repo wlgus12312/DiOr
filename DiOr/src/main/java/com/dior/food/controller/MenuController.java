@@ -1,10 +1,13 @@
 package com.dior.food.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -30,13 +33,20 @@ public class MenuController {
 	@RequestMapping(value="/menupan", method=RequestMethod.GET)
 	public ModelAndView menupan() throws Exception{
 		
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("menupan");
 		
-		
 		ArrayList<menuDto> menuList   = new ArrayList<menuDto>();
 		menuList = MenuService.getMenu();
+		byte[] bytes = null;
+		for(int i =0; i<menuList.size(); i++) {
+				bytes = menuList.get(i).getTimg();
+				if(bytes != null) {
+					byte[] encodeBase64 = Base64.encodeBase64(bytes);
+					String base64Encoded = new String(encodeBase64, "UTF-8");
+					menuList.get(i).setViewImg(base64Encoded);
+				}
+		}
 
 		mv.addObject("menuList",menuList);
 		
@@ -87,12 +97,9 @@ public class MenuController {
 		int ordno = MenuService.insOrder(jArr);
 		System.out.println("ordno : " + ordno);
 		
-//		orderList = MenuService.getOrder(ordno);
-//		orderList.forEach(System.out :: println);
-		
 		mv.addObject("storeList",storeList);
 		mv.addObject("ordno",ordno);
-		
+
 		//mv.addObject("session", session.getId());
 		mv.setViewName("orderList");
 		
