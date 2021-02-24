@@ -1,5 +1,7 @@
 package com.dior.food.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
+import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.stereotype.Repository;
 
 import com.dior.food.dto.menuDto;
@@ -22,13 +27,46 @@ public class MenuDaoImpl implements MenuDao{
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public ArrayList<menuDto> getMenu() throws Exception{				
-		String sql = "select A.fdno, A.fdnm, A.fdprice, B.stonm, B.stono from tb_food A, tb_store B\r\n"
-				+ "where A.stono = B.stono\r\n"
-				+ "and A.fdopyn = 1 and B.stoopyn = 1";
-		List<menuDto> menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class));		
+	public ArrayList<menuDto> getMenu() throws Exception{	
+		String sql = "";
+		List<menuDto> menupan = null;
 		
-//		menupan.forEach(System.out :: println);
+		try {
+			
+		sql = "select A.fdno, A.fdnm, A.fdprice, B.stonm, B.stono, A.timg \r\n"
+				+ "from tb_food A, tb_store B\r\n"
+				+ "where A.stono = B.stono\r\n"
+				+ "and A.fdopyn = 1 and B.stoopyn = 1 ";
+		
+		System.out.println(sql); 
+		
+		menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class));
+		System.out.println("이미지"+ menupan.stream());
+//		menupan = jdbcTemplate.query(sql, new RowMapper<menuDto>() {
+//
+//			@Override 
+//			public menuDto mapRow(ResultSet rs, int rowNum) throws SQLException{
+//				menuDto menupan = new menuDto();
+//				LobHandler lobHandler = new DefaultLobHandler();
+//				byte[] blobAsBytes = lobHandler.getBlobAsBytes(rs, 5);
+//				menupan.setStono(rs.getInt("stono"));
+//				menupan.setStonm(rs.getString("stonm"));
+//				menupan.setFdnm(rs.getString("fdnm"));
+//				menupan.setFdno(rs.getInt("fdno"));
+//				menupan.setFdprice(rs.getInt("fdprice"));
+//				menupan.setTimg(new String(blobAsBytes));
+//				
+//				System.out.println("이미지나와라" + menupan.getTimg());
+//				return menupan;
+//			}
+//		});
+//		
+		
+		menupan.forEach(System.out :: println);
+		
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("SQL ERROR: "+e);
+		}
 		
 		return (ArrayList<menuDto>) menupan;
 	}
@@ -63,7 +101,9 @@ public class MenuDaoImpl implements MenuDao{
 		System.out.println("dao ordno:" + ordno);
 		String sql = "select a.ordno\r\n"
 				    + ", a.ords\r\n"
+				    + ", c.stono\r\n"
 					+ ", c.stonm\r\n"
+					+ ", b.fdno\r\n"
 					+ ", b.fdnm\r\n"
 					+ ", a.ordcnt\r\n"
 					+ ", a.ordstsc\r\n"

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +17,35 @@
      
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/app.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 
+.arrow-right {
+  position: absolute;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid black;
+  margin-left: 9px;
+  animation: horizontal 0.7s ease-in-out infinite;
+}
+
+@keyframes horizontal {
+  0% {
+    margin-left: 9px;
+  }
+  50% {
+    margin-left: 11px;
+  }
+  100% {
+    margin-left: 9px;
+  }
+}
 </style>
 </head>
 
@@ -26,49 +53,132 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <!-- Top menu -->
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-center w3-padding-16">디지털메뉴판</div>
+    <div class="w3-center w3-padding-16"> 주문번호 : ${param.ordno} </div>
     <div id="tableno"></div>
     <form id="frmParam" name="frmParam" method="get" enctype="multipart/form-data" contentType="application/json">
-		<input type="hidden" id="ordno" name="ordno" value="${param.ordno}">
+		<input type="hidden" id="ordno" name="ordno" value="${ordno}">
 	</form>
   </div>
 </div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-   <!-- First Photo Grid-->
-   <div class="w3-row-padding w3-padding-16 w3-center" >
-   	   <table class= "w3-table-all w3-cell-row">
-	   <c:forEach items="${orderList}" var="item" varStatus="stsc">
-		           	<tr>
-		           		<td> ${item.ordno} </td>
-		            	<td> ${item.ords} </td>
-		            	<td> ${item.stono} </td>
-		            	<td> ${item.stonm} </td>
-		            	<td> ${item.fdno} </td>
-		            	<td> ${item.fdnm} </td>
-		            	<td> ${item.ordcnt} </td>
-		            	<td> ${item.ordstsc} </td>
-		            	<td> ${item.ordstnm} </td>
-		            	<td> ${item.rg_dt} </td>
-		            	<td> ${item.ud_dt} </td>
-		           </tr>
+	<!-- order status bar -->
+	<div class="w3-row-padding">
+		<button class="w3-bar-item w3-black w3-button w3-right" onclick="fn_refresh()" >새로고침</button>
+		<br><br>
+		<c:forEach items="${orderList}" var="item" varStatus="stsc">
+			<h3 class ="w3-left"> ${item.stonm} - ${item.fdnm} </h3><br><br>
+			<hr>
+			<p class="w3-center">
+				<span id="ordimg1${stsc.index}" class ="w3-left">주문&nbsp;&nbsp;</span>
+				<span id="ordimg2${stsc.index}" class ="w3-center">조리중&nbsp;</span>
+				<span id="ordimg3${stsc.index}" class ="w3-right" style="m">조리완료</span>
+			</p>
+		<hr>
+		<br>
+		</c:forEach>
+	</div>
+    <!-- table Grid-->
+	<div class="w3-row-padding w3-padding-16 w3-center" >
+	<table class= "w3-table-all w3-cell-row">
+		<thead>
+			<th>주문번호</th>
+			<th>상세</th>
+			<th>음식점</th>
+			<th>메뉴</th>
+			<th>갯수</th>
+			<th>주문상태</th>
+			<th>주문시각</th>
+		</thead>
+		<tbody>
+		<c:forEach items="${orderList}" var="item" varStatus="stsc">
+			<tr>
+				<td> ${item.ordno} </td>
+				<td> ${item.ords} </td>
+				<td> ${item.stonm} </td>
+				<td> ${item.fdnm} </td>
+				<td> ${item.ordcnt} </td>
+				<td> ${item.ordstnm} </td>
+				<td> ${item.rg_dt} </td>
+			</tr>
 	           
-	           <input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
-	           <input type="hidden" id="stonm${stsc.index}" name="stonm" value="${item.stonm}">
-	           <input type="hidden" id="fdno${stsc.index}" name="fdno" value="${item.fdno}">
-	           <input type="hidden" id="fdnm${stsc.index}" name="fdnm" value="${item.fdnm}">
-	           <input type="hidden" id="fdprice${stsc.index}" name="fdprice" value="${item.fdprice}">
-	      </c:forEach> 
-	    </table> 
-   </div>     
+			<input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
+			<input type="hidden" id="stonm${stsc.index}" name="stonm" value="${item.stonm}">
+			<input type="hidden" id="fdno${stsc.index}" name="fdno" value="${item.fdno}">
+			<input type="hidden" id="fdnm${stsc.index}" name="fdnm" value="${item.fdnm}">
+			<input type="hidden" id="ordstsc${stsc.index}" name="ordstsc" value="${item.ordstsc}">
+	     </c:forEach>
+	     </tbody>
+	</table> 
+	</div>     
 </div>
 </body>
 <script>
 
 window.onload = function(){
-	//document.frmParam.action = "/orderList";
-	//document.frmParam.submit();
+	//소켓커넥트
+	//connect();
+	
+	connect1();
+	console.log("--------connect1-----------------------------------------------------");
+	connect2();
+	console.log("--------connect2-----------------------------------------------------");
+	connect3();
+	console.log("--------connect3-----------------------------------------------------");
+
+	var url = document.location.href.split("/")[3]; 
+	
+	var data = ${storeList}+""; 
+	console.log("data: " + data);
+	if(url == 'insOrder'){
+		setTimeout(function(){
+			for(var i=0; i <= data.length; i ++){
+	   			if(data[i] == 1){
+	   				sendName1();
+	   			} else if (data[i] == 2){
+	   				sendName2();
+	   			} else if (data[i] == 3){
+	   				sendName3();
+	   			}
+			}
+			document.frmParam.action = "/orderList";
+			document.frmParam.submit();
+		}, 500);
+			
+	} else {
+		
+		for(var i=0; i <= ${fn:length(orderList)}; i ++){
+			var stoNm = document.getElementById(eval("'stono"+i+"'")).value;
+			
+			var orstsc = document.getElementById(eval("'ordstsc"+i+"'")).value;
+			if(orstsc == '0'){
+				var stsc = 'ordimg1'+i;
+				fn_showOrd(stsc);
+			} else if (orstsc == '1'){
+				var stsc = 'ordimg2'+i;
+				fn_showOrd(stsc);
+			} else {
+				var stsc = 'ordimg3'+i;
+				fn_showOrd(stsc);
+			}
+		}
+		
+		setTimeout(function(){fn_refresh(),3000});
+	}
+	
+}
+
+function fn_showOrd(stsc){
+	var html = '<span class="arrow-right"></span>';
+	$(eval("'#"+stsc+" *'")).remove();
+	$(eval("'#"+stsc+"'")).append(html);
+	
+}
+
+
+function fn_refresh(){
+	window.location.reload();
 }	
 
 </script>

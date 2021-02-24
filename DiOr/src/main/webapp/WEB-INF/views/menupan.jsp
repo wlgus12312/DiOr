@@ -69,8 +69,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
       
       <c:forEach items="${menuList}" var="item" varStatus="stsc">
            <div class="w3-quarter">
-           ${item.stonm}
-             <img src="/images/pork_cutlet.png" alt="${item.stonm}" style="width:100%">
+           ${item.stonm} 
+             <img id="menuImage" alt="${item.stonm}" src="data:image/jpeg;base64, ${item.viewImg}" > 
+             <%-- <img src="/images/pork_cutlet.png" alt="${item.stonm}" style="width:100%">   --%>
              <h5>${item.fdnm}<br>${item.fdprice} 원</h5>
              <button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_shoppingBag(${stsc.index})">담기</buton>
              <p>
@@ -86,7 +87,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 </div>
 </body>
 <script>
-//connectOrder();
+//connect();
+
 var foodCnt = 0;
 var html = '';	
 
@@ -162,6 +164,13 @@ var html = '';
 	
 		//소켓으로보내기. 
 		//sendO();
+		//setTimeout(2000);
+		
+		//alert("dd");
+		//alert("before")
+		//setTimeout(() => alert("after"), 3000)
+		
+
 	}
 	
 	function returnMessage(message){

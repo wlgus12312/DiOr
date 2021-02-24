@@ -25,16 +25,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dior.food.dao.AdminDao;
 import com.dior.food.dto.famFood;
 import com.dior.food.dto.menuDto;
+import com.dior.food.service.*;
 import com.dior.food.service.AdminServiceImpl;
 import com.dior.food.service.MainServiceImpl;
 import com.dior.food.service.MenuServiceImpl;
 
-@Controller
+@RestController
 public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
@@ -46,6 +49,12 @@ public class MainController {
 	
 	@Autowired
 	private AdminServiceImpl AdminService;
+	
+	
+	//조리시작, 종료
+	@Autowired
+	private OrderService OrderService;
+	
 	
 	@RequestMapping("/main")
 	public ModelAndView main(HttpServletRequest req) throws Exception{
@@ -294,49 +303,30 @@ public class MainController {
 		
 		return mv;
 	}	 
+	
   
 	
-	
+	//음식점 뷰
 	@RequestMapping(value="/food1", method=RequestMethod.GET)
-	public ModelAndView food1() throws Exception{
-				
+	public ModelAndView food1() throws Exception{				
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("food1");
-				
-		List menuList   = new ArrayList<menuDto>();
-		menuList = MenuService.getMenu();
-
-		mv.addObject("menuList",menuList);
-		
+		mv.setViewName("food1");				
 		return mv;
 	}
 	
 	@RequestMapping(value="/food2", method=RequestMethod.GET)
-	public ModelAndView food2() throws Exception{
-				
+	public ModelAndView food2() throws Exception{				
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("food2");
-				
-		List menuList   = new ArrayList<menuDto>();
-		menuList = MenuService.getMenu();
-
-		mv.addObject("menuList",menuList);
-		
 		return mv;
 	}	
 	
 	@RequestMapping(value="/food3", method=RequestMethod.GET)
 	public ModelAndView food3() throws Exception{
-				
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("food3");
-				
-		List menuList   = new ArrayList<menuDto>();
-		menuList = MenuService.getMenu();
-
-		mv.addObject("menuList",menuList);
-		
 		return mv;
+
 	}
 
 	public static byte[] imageToByteArray(String filePath) throws Exception {
@@ -370,4 +360,18 @@ public class MainController {
 		
 		return returnValue;
 	}
+
+	}	
+
+	//조리시작 UPDATE
+	@RequestMapping(value="/stOrder", method=RequestMethod.POST)
+	public void stOrder(@RequestParam HashMap<String, String> params) throws Exception{				
+		OrderService.updatestOrder(params);		
+	}
+	//조리시작 UPDATE
+	@RequestMapping(value="/edOrder", method=RequestMethod.POST)
+	public void edOrder(@RequestParam HashMap<String, String> params) throws Exception{				
+		OrderService.updateedOrder(params);
+	}
+
 }

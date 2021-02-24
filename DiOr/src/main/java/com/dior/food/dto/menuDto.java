@@ -9,9 +9,9 @@ public class menuDto {
 	
 	private long stono    ;
 	private String stonm  ;
-	private String stopyn ;
+	private String stoopyn;
 	private String fdnm   ;
-	private String fdprice;
+	private long fdprice  ;
 	private String fdopyn ;
 	private long ordno    ;
 	private long fdno     ;
@@ -21,6 +21,8 @@ public class menuDto {
 	private long   ords   ;
 	private String rg_dt  ;
 	private String ud_dt  ;
+	private byte[] timg   ;
+	private String viewImg;
 	
 	public long getStono() {
 		return stono;
@@ -39,11 +41,11 @@ public class menuDto {
 	}
 
 	public String getStoopyn() {
-		return stopyn;
+		return stoopyn;
 	}
 
 	public void setStoopyn(String stoopyn) {
-		this.stopyn = stoopyn;
+		this.stoopyn = stoopyn;
 	}
 
 	public String getFdnm() {
@@ -54,11 +56,11 @@ public class menuDto {
 		this.fdnm = fdnm;
 	}
 
-	public String getFdprice() {
+	public long getFdprice() {
 		return fdprice;
 	}
 
-	public void setFdprice(String fdprice) {
+	public void setFdprice(long fdprice) {
 		this.fdprice = fdprice;
 	}
 
@@ -119,31 +121,6 @@ public class menuDto {
 		this.ordstnm = ordstnm;
 	}
 	
-	
-	public menuDto() {
-		super();
-	}
-
-	@Override
-	public String toString() {
-		
-		return "famFood [stono=" + stono + ""
-				+ ", stonm=" + stonm + ""
-				+ ", stopyn=" + stopyn + ""
-				+ ", fdnm=" + fdnm + ""
-				+ ", fdprice=" + fdprice + ""
-				+ ", fdopyn=" + fdopyn + ""
-				+ ", ordno=" + ordno + ""
-				+ ", ords=" + ords + ""
-				+ ", fdno=" + fdno + ""
-				+ ", ordcnt=" + ordcnt + ""
-				+ ", ordstsc=" + ordstsc + ""
-				+ ", ordstnm=" + ordstnm + ""
-				+ ", rg_dt=" + rg_dt + ""
-				+ ", ud_dt=" + ud_dt + ""
-				+ "]";
-	}
-
 	public String getRg_dt() {
 		return rg_dt;
 	}
@@ -159,6 +136,49 @@ public class menuDto {
 	public void setUd_dt(String ud_dt) {
 		this.ud_dt = ud_dt;
 	}
+
+	public byte[] getTimg() {
+		return timg;
+	}
+
+	public void setTimg(byte[] timg) {
+		this.timg = timg;
+	}
+	
+	
+	public menuDto() {
+		super();
+	}
+
+	
+	@Override
+	public String toString() {
+		
+		return "[stono=" + stono + ""
+				+ ", stonm=" + stonm + ""
+				+ ", stoopyn=" + stoopyn + ""
+				+ ", fdnm=" + fdnm + ""
+				+ ", fdprice=" + fdprice + ""
+				+ ", fdopyn=" + fdopyn + ""
+				+ ", ordno=" + ordno + ""
+				+ ", ords=" + ords + ""
+				+ ", fdno=" + fdno + ""
+				+ ", ordcnt=" + ordcnt + ""
+				+ ", ordstsc=" + ordstsc + ""
+				+ ", ordstnm=" + ordstnm + ""
+				+ ", rg_dt=" + rg_dt + ""
+				+ ", ud_dt=" + ud_dt + ""
+				+ "]";
+	}
+
+	public String getViewImg() {
+		return viewImg;
+	}
+
+	public void setViewImg(String viewImg) {
+		this.viewImg = viewImg;
+	}
+
 
 //	@Override
 //	public String toString() {
