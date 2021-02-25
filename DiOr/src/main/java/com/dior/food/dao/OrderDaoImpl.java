@@ -43,7 +43,9 @@ public class OrderDaoImpl implements OrderDao{
 
 	@Override
 	public void updatestOrder(HashMap<String, String> params) throws Exception {
-		jdbcTemplate.update("update tb_order set ordstsc = 1 "
+		jdbcTemplate.update("update tb_order "
+			              + "   set ordstsc = 1, "
+				          + "       ud_dt   = getdate() "
 				          + "where ordno = ? "
 				          + "and   ords  = ? ",
 				          params.get("ordno"),
@@ -53,12 +55,14 @@ public class OrderDaoImpl implements OrderDao{
 
 	@Override
 	public void updateedOrder(HashMap<String, String> params) throws Exception {
-		jdbcTemplate.update("update tb_order set ordstsc = 2 "
-		          + "where ordno = ? "
-		          + "and   ords  = ? ",
-		          params.get("ordno"),
-		          params.get("ords")
-		          );
+		jdbcTemplate.update("update tb_order "
+				        + "     set ordstsc = 2,"
+				        + "         ud_dt   = getdate()  "
+		                + "where ordno = ? "
+		                + "and   ords  = ? ",
+				        params.get("ordno"),
+				        params.get("ords")
+				        );
 	}
 	
 }
