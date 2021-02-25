@@ -21,7 +21,6 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
-
 .arrow-right {
   position: absolute;
   display: inline-block;
@@ -81,17 +80,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	</div>
     <!-- table Grid-->
 	<div class="w3-row-padding w3-padding-16 w3-center" >
-	<table class= "w3-table-all w3-cell-row">
-		<thead>
-			<th>주문번호</th>
-			<th>상세</th>
-			<th>음식점</th>
-			<th>메뉴</th>
-			<th>갯수</th>
-			<th>주문상태</th>
-			<th>주문시각</th>
-		</thead>
-		<tbody>
+	<table class= "w3-table-all">
+		<tr>
+			<th style="background-color:black; color:white;">주문번호</th>
+			<th style="background-color:black; color:white;">상세</th>
+			<th style="background-color:black; color:white;">음식점</th>
+			<th style="background-color:black; color:white;">메뉴</th>
+			<th style="background-color:black; color:white;">갯수</th>
+			<th style="background-color:black; color:white;">주문상태</th>
+			<th style="background-color:black; color:white;">주문시각</th>
+		</tr>
 		<c:forEach items="${orderList}" var="item" varStatus="stsc">
 			<tr>
 				<td> ${item.ordno} </td>
@@ -109,7 +107,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 			<input type="hidden" id="fdnm${stsc.index}" name="fdnm" value="${item.fdnm}">
 			<input type="hidden" id="ordstsc${stsc.index}" name="ordstsc" value="${item.ordstsc}">
 	     </c:forEach>
-	     </tbody>
 	</table> 
 	</div>     
 </div>

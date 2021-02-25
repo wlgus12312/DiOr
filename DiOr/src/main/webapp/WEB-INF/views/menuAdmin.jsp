@@ -40,22 +40,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 </script>
 
 <body>
-<div id="topmenu">
-  <!-- <div style="max-width:1200px;margin:auto;text-align:center"><b>디지털메뉴판 등록</b></div> -->
-  <div style="max-width:auto;margin:auto;text-align:center;vertical-align:center"><b>디지털메뉴판 등록</b></div>
+<!-- Top menu -->
+<div class="w3-top">
+  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+    <div class="w3-center w3-padding-16"> 디지털메뉴판 등록 </div>
+  </div>
 </div>
-
 <hr>
-
-<div style="max-width:auto;margin-top:10px">
+<div class="w3-main w3-content w3-padding" style="max-width:auto;margin-top:50px">
 	<table align="center">
 		<tr>
 			<td width="305px" align="left"><input type="button" class="w3-bar-item w3-black w3-button" value="레스토랑 추가/수정" onclick="storeAdd();"></td>
 			<td width="305px" align="right"><input type="button" class="w3-bar-item w3-black w3-button" value="음식 추가" onclick="foodAdd();"></td>
 		</tr>
 	</table>
-	
-	<table border="1" align="center">
+	<!-- table Grid-->
+	<div class="w3-row-padding w3-padding-16 w3-center" >
+	<table class= "w3-table-all w3-cell-row">
 		<tr align="center">
 			<td width="120px" style="background-color:black; color:white;">레스토랑</td>
 			<td width="140px" style="background-color:black; color:white;">음식명</td>
@@ -85,8 +86,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		</tr>
 		</c:forEach>
 	</table>
-</head>
-
+	</div>
 </div>
 </body>
 </html>
