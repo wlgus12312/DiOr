@@ -150,13 +150,14 @@ var html = '';
 						   + '<input type="hidden" name ="fdno" id="' + 'bfdno'+ paFdNoId +'" value="' + document.getElementById(paFdno).value + '">' 
 						   + '<input type="hidden" name ="fdprice" id="' + 'bfdprice'+ paFdNoId +'" value="' + document.getElementById(paFdprice).value + '">' 
 						   + '<input type="hidden" name ="ordcnt" id="' + 'bfdcnt'+ paFdNoId +'" value="1">' 
-						   + '------------------------'
+						   + '<br>------------------------'
 				           + '<br>가게이름: ' + document.getElementById(paStonm).value
 				           + '<br>메뉴이름: ' + document.getElementById(paFdnm).value 
 				           + '<br>금액: ' + document.getElementById(paFdprice).value 
 				           + '<br><span id="'+'bcnt'+ paFdNoId + '">수량: <span>1</span></span>'
-				           + '</div>'
-				           + '------------------------';		
+				           + '<br>------------------------'
+				           + '</div>';
+				          
 			
 			html = contentFrm;
 			$('#basketTit').append(html);
