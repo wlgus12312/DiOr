@@ -29,9 +29,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 </script>
 
 <body>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:10px">
 	<form method="post" action="menuAdmin_M_Upd" enctype="multipart/form-data">
-		<table>
-		    <th colspan="2" align="left">음식 수정</th>
+		<table  class="w3-table-all">
+		    <tr><th colspan="2" align="left" style="background-color:black; color:white;">음식 수정</th></tr>
 		    <c:forEach items="${menuList}" var="item" varStatus="stsc">
 			<tr>
 				<td id="title">식당명</td>
@@ -65,28 +67,29 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
                 <td align="center">
                 	<c:choose>
                 		<c:when test="${item.fdopyn==1}">
-		                	오픈<input type="radio" name="mYn" id="opyn" value="1" checked>&nbsp;&nbsp;
-		                	미오픈<input type="radio" name="mYn" id="opyn" value="0">                		
+		                	오픈 &nbsp;&nbsp;<input type="radio" name="mYn" id="opyn" value="1" checked class="w3-radio">&nbsp;&nbsp;
+		                	미오픈<input type="radio" name="mYn" id="opyn" value="0" class="w3-radio">                		
                 		</c:when>
                 		<c:otherwise>
-		                	오픈<input type="radio" name="mYn" id="opyn" value="1">&nbsp;&nbsp;
-		                	미오픈<input type="radio" name="mYn" id="opyn" value="0" checked>                 		
+		                	오픈 &nbsp;&nbsp;<input type="radio" name="mYn" id="opyn" value="1" class="w3-radio" >&nbsp;&nbsp;
+		                	미오픈<input type="radio" name="mYn" id="opyn" value="0" checked class="w3-radio">                 		
                 		</c:otherwise>
                 	</c:choose>
                 </td>
 			</tr>			
 			</c:forEach>			
 		</table>
-		<input type="submit" class="w3-bar-item w3-black w3-button" value="수정"> 
-		<input type="reset" class="w3-bar-item w3-black w3-button" value="취소"> 
-		<input type="button" class="w3-bar-item w3-black w3-button" value="삭제" onclick="menuDel()">
+		<input type="button" class="w3-bar-item w3-black w3-button w3-right" value="삭제" onclick="menuDel()">
+		<input type="reset" class="w3-bar-item w3-black w3-button w3-right" value="취소"> 
+		<input type="submit" class="w3-bar-item w3-black w3-button w3-right" value="수정"> 
 	</form>
 	
-	<hr>
+	<br><br>
 	
 	<div style="max-width:1000px;margin:auto;text-align:center;vertical-align:center">
 		<input type="button" value="닫기" class="w3-bar-item w3-black w3-button" onclick="javascript:window.close();">
 	</div>	
+</div>
 </body>
 
 </html>

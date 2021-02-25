@@ -32,9 +32,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 </script>
 
 <body>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:10px">
 	<form method="post" action="menuAdmin_S_Ins">
-		<table>
-		    <th colspan="2" align="left">레스토랑 등록</th>
+		<table class="w3-table-all">
+			<tr><th colspan="2" align="left" style="background-color:black; color:white;">레스토랑 등록</th></tr>
 			<tr>
 				<td id="title">레스토랑명</td>
 				<td>
@@ -42,14 +44,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 				</td>
 			</tr>
 		</table>
-		<input type="submit" class="w3-bar-item w3-black w3-button" value="등록"> <input type="reset" class="w3-bar-item w3-black w3-button" value="취소">
+		<input type="reset" class="w3-bar-item w3-black w3-button w3-right" value="취소">
+		<input type="submit" class="w3-bar-item w3-black w3-button w3-right" value="등록">
 	</form>
 	
-	<hr>
+	<br><br>
 	
 	<form method="post" action="menuAdmin_S_Upd">
-		<table>
-		    <th colspan="2" align="left">레스토랑 수정</th>
+		<table class="w3-table-all">
+		    <tr><th colspan="2" align="left" style="background-color:black; color:white;">레스토랑 수정</th></tr>
 			<tr>
 				<td id="title">식당목록</td>
 				<td>
@@ -79,20 +82,21 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 			<tr>
 				<td id="title">운영여부</td>
                 <td align="center">
-                	운영<input type="radio" name="sYn" id="opyn" value="1">&nbsp;&nbsp;
-                	미운영<input type="radio" name="sYn" id="opyn" value="0">
+                	운영 &nbsp;&nbsp;<input type="radio" name="sYn" id="opyn" value="1" class="w3-radio">&nbsp;&nbsp;
+                	미운영 &nbsp; <input type="radio" name="sYn" id="opyn" value="0" class="w3-radio">
                 </td>
 			</tr>
-			
 		</table>
-		<input type="submit" class="w3-bar-item w3-black w3-button" value="수정"> <input type="reset" class="w3-bar-item w3-black w3-button" value="취소">
+		<input type="reset" class="w3-bar-item w3-black w3-button w3-right" value="취소">
+		<input type="submit" class="w3-bar-item w3-black w3-button w3-right" value="수정">
 	</form>
 	
-	<hr>
+	<br><br>
 	
 	<div style="max-width:1000px;margin:auto;text-align:center;vertical-align:center">
 		<input type="button" class="w3-bar-item w3-black w3-button" value="닫기" onclick="javascript:window.close();">
 	</div>
+</div>
 </body>
 
 </html>
