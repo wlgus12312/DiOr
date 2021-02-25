@@ -45,11 +45,11 @@ connectFood1();
            <thead style="">               
                <tr>
                    <th style="background-color:black; color:white;">주문번호</th>
-                   <th style="background-color:black; color:white;">주문수량</th>
                    <th style="background-color:black; color:white;">메뉴번호</th>
+                   <th style="background-color:black; color:white;">주문수량</th>
                    <th style="background-color:black; color:white;">메뉴</th>
-                   <th style="background-color:black; color:white;"></th>
-                   <th style="background-color:black; color:white;"></th>
+                   <th style="background-color:black; color:white;">시작</th>
+                   <th style="background-color:black; color:white;">완료</th>
                </tr>                 
            </thead>
            <tbody id="orderList">
