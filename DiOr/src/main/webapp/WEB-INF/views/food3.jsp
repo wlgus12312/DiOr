@@ -33,9 +33,7 @@ connectFood3();
 <!-- Top menu -->
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-button w3-padding-16 w3-right "><img src="/images/iconmonstr-friend-6-240.png" style="max-width:50px;"></div>
-    <div class="w3-center w3-padding-16">FOOD3</div>
-    <div id="tableno"></div>
+    <div class="w3-center w3-padding-16"> 면대장 주문내역 </div>
   </div>
 </div>
 
@@ -43,16 +41,15 @@ connectFood3();
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
    <!-- First Photo Grid-->
    <div class="w3-row-padding w3-padding-16 w3-center" >
-       <h3>주문내역</h3>
-       <table id="conversation" class="table table-striped">
+       <table id="conversation" class="w3-table-all">
            <thead>               
                <tr>
-                   <th>주문번호</th>
-                   <th>주문수량</th>
-                   <th>메뉴번호</th>
-                   <th>메뉴</th>
-                   <th></th>
-                   <th></th>
+                   <th style="background-color:black; color:white;">주문번호</th>
+                   <th style="background-color:black; color:white;">주문수량</th>
+                   <th style="background-color:black; color:white;">메뉴번호</th>
+                   <th style="background-color:black; color:white;">메뉴</th>
+                   <th style="background-color:black; color:white;"></th>
+                   <th style="background-color:black; color:white;"></th>
                </tr>                 
            </thead>
            <tbody id="orderList">

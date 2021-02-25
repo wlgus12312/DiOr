@@ -20,9 +20,38 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 
+.container{
+    border:4px solid #ddd;
+    display: block;
+    width:100%;
+    height:100%;
+
+    overflow: hidden;
+    position:relative;
+    
+}
+.container img{
+    position:absolute;
+    left:0%;
+    top:-10%
+}
+
+.w3-image-ratio { 
+	position: relative; 
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	max-width: 100%; 
+
+	padding-top: 75%
+
+
+}
+
 </style>
 </head>
-<div></div>
+
 
 <body>
 <!-- Vue -->
@@ -68,21 +97,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
    <div class="w3-row-padding w3-padding-16 w3-center" >
       
       <c:forEach items="${menuList}" var="item" varStatus="stsc">
-           <div class="w3-quarter">
-           ${item.stonm} 
-             <img id="menuImage" alt="${item.stonm}" style="width:100%" src="data:image/jpeg;base64, ${item.viewImg}" > 
-             <%-- <img src="/images/pork_cutlet.png" alt="${item.stonm}" style="width:100%">   --%>
-             <h5>${item.fdnm}<br>${item.fdprice} 원</h5>
-             <button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_shoppingBag(${stsc.index})">담기</buton>
-             <p>
-           </div>
-           
-           <input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
-           <input type="hidden" id="stonm${stsc.index}" name="stonm" value="${item.stonm}">
-           <input type="hidden" id="fdno${stsc.index}" name="fdno" value="${item.fdno}">
-           <input type="hidden" id="fdnm${stsc.index}" name="fdnm" value="${item.fdnm}">
-           <input type="hidden" id="fdprice${stsc.index}" name="fdprice" value="${item.fdprice}">
-      </c:forEach>   
+      	<div class="w3-quarter">
+      	<hr>${item.stonm} 
+		<img class="w3-image" alt="${item.stonm}" src="data:image/jpeg;base64, ${item.viewImg}" > 
+		<h5>${item.fdnm}<br>${item.fdprice} 원</h5>
+		<button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_shoppingBag(${stsc.index})">담기</buton>
+			<input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
+			<input type="hidden" id="stonm${stsc.index}" name="stonm" value="${item.stonm}">
+			<input type="hidden" id="fdno${stsc.index}" name="fdno" value="${item.fdno}">
+			<input type="hidden" id="fdnm${stsc.index}" name="fdnm" value="${item.fdnm}">
+			<input type="hidden" id="fdprice${stsc.index}" name="fdprice" value="${item.fdprice}">
+		</div>
+      </c:forEach> 
    </div>     
 </div>
 </body>
@@ -196,3 +222,4 @@ var html = '';
 
 </script>
 </html>
+            
