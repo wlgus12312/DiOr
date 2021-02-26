@@ -23,19 +23,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	function storeAdd() {
 		window.open("/menuAdmin_S_Pop"
 		          , "레스토랑 등록"
-		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=420, top=30,left=150");
+		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=460, top=30,left=150");
 	}
 	
 	function foodAdd() {
 		window.open("/menuAdmin_M_Pop"
 		          , "음식 등록"
-		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=280, top=30,left=150");
+		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=330, top=30,left=150");
 	}
 	
 	function foodMod(val) {
 		window.open("/menuAdmin_M_Pop2?menuId="+val
 		          , "음식 수정"
-		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=550, height=440, top=30,left=150");		
+		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=550, height=480, top=30,left=150");		
 	}
 </script>
 
