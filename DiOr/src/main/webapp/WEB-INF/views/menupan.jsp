@@ -98,7 +98,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
       
       <c:forEach items="${menuList}" var="item" varStatus="stsc">
       	<div class="w3-quarter">
-      	<hr>${item.stonm} 
+      	<hr>${item.stonm} <br>
 		<img class="w3-image" alt="${item.stonm}" src="data:image/jpeg;base64, ${item.viewImg}" > 
 		<h5>${item.fdnm}<br>${item.fdprice} 원</h5>
 		<button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_shoppingBag(${stsc.index})">담기</buton>
