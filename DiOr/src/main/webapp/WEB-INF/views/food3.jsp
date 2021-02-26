@@ -37,6 +37,7 @@ connectFood3();
   </div>
 </div>
 
+
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
    <!-- First Photo Grid-->
@@ -45,11 +46,11 @@ connectFood3();
            <thead>               
                <tr>
                    <th style="background-color:black; color:white;">주문번호</th>
-                   <th style="background-color:black; color:white;">주문수량</th>
                    <th style="background-color:black; color:white;">메뉴번호</th>
+                   <th style="background-color:black; color:white;">주문수량</th>
                    <th style="background-color:black; color:white;">메뉴</th>
-                   <th style="background-color:black; color:white;"></th>
-                   <th style="background-color:black; color:white;"></th>
+                   <th style="background-color:black; color:white;">시작</th>
+                   <th style="background-color:black; color:white;">완료</th>
                </tr>                 
            </thead>
            <tbody id="orderList">
