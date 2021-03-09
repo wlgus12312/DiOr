@@ -1,25 +1,24 @@
 package com.dior.food.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dior.food.dao.MenuDaoImpl;
+import com.dior.food.dao.MenuDao;
 import com.dior.food.dto.menuDto;
 
 @Service("MenuService")
 public class MenuServiceImpl implements MenuService{
 	
 	@Autowired
-	private MenuDaoImpl MenuDao;
+	private MenuDao MenuDao;
 	
 	@Override
-	public ArrayList<menuDto> getMenu() throws Exception{
-		return MenuDao.getMenu();
+	public ArrayList<menuDto> getMenu(JSONObject jObect) throws Exception{
+		return MenuDao.getMenu(jObect);
 	}
 
 	public int insOrder(JSONArray jArr) throws Exception {
@@ -46,6 +45,6 @@ public class MenuServiceImpl implements MenuService{
 	public ArrayList<menuDto> getOrder(int ordNo) throws Exception{
 		System.out.println("service");
 		return MenuDao.getOrder(ordNo);
-	}	
-		
+	}
+
 }
