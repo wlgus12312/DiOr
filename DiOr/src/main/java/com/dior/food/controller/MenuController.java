@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dior.food.dto.menuDto;
-import com.dior.food.service.MenuServiceImpl;
+import com.dior.food.service.MenuService;
 
 
 @Controller
@@ -28,26 +28,32 @@ public class MenuController {
 	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
 	
 	@Autowired
-	private MenuServiceImpl MenuService;
+	private MenuService MenuService;
 	
 	@RequestMapping(value="/menupan", method=RequestMethod.GET)
-	public ModelAndView menupan() throws Exception{
+	public ModelAndView menupan(HttpServletRequest req) throws Exception{
+		
+		int paramstono = req.getParameterValues("stono").length;
+		System.out.println("paramstono: " + paramstono);
+		
+		JSONObject jObect = new JSONObject();
+		jObect.put("stono", paramstono);
+		
+		ArrayList<menuDto> menuList   = new ArrayList<menuDto>();
+		menuList = MenuService.getMenu(jObect);
+		byte[] bytes = null;
+		for(int i =0; i<menuList.size(); i++) {
+			bytes = menuList.get(i).getTimg();
+			if(bytes != null) {
+				byte[] encodeBase64 = Base64.encodeBase64(bytes);
+				String base64Encoded = new String(encodeBase64, "UTF-8");
+				menuList.get(i).setViewImg(base64Encoded);
+			}
+		}
+		
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("menupan");
-		
-		ArrayList<menuDto> menuList   = new ArrayList<menuDto>();
-		menuList = MenuService.getMenu();
-		byte[] bytes = null;
-		for(int i =0; i<menuList.size(); i++) {
-				bytes = menuList.get(i).getTimg();
-				if(bytes != null) {
-					byte[] encodeBase64 = Base64.encodeBase64(bytes);
-					String base64Encoded = new String(encodeBase64, "UTF-8");
-					menuList.get(i).setViewImg(base64Encoded);
-				}
-		}
-
 		mv.addObject("menuList",menuList);
 		
 		//menuList.forEach(System.out :: println);
@@ -77,7 +83,7 @@ public class MenuController {
 		
 		String preStoreNo = "";
 		for (int i = 0; i < paramCnt; i++) {
-			System.out.println("         i            "+i);
+			System.out.println("i: "+i);
 			jObect = new JSONObject();
 			jObect.put("rowno", i);
 			jObect.put("tableno", req.getParameterValues("tableno")[0]);
@@ -92,7 +98,6 @@ public class MenuController {
 				}
 			}
 		}
-		
 		
 		int ordno = MenuService.insOrder(jArr);
 		System.out.println("ordno : " + ordno);

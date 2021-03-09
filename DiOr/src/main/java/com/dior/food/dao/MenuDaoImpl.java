@@ -27,7 +27,7 @@ public class MenuDaoImpl implements MenuDao{
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public ArrayList<menuDto> getMenu() throws Exception{	
+	public ArrayList<menuDto> getMenu(JSONObject jObect) throws Exception{	
 		String sql = "";
 		List<menuDto> menupan = null;
 		
@@ -36,11 +36,11 @@ public class MenuDaoImpl implements MenuDao{
 		sql = "select A.fdno, A.fdnm, A.fdprice, B.stonm, B.stono, A.timg \r\n"
 				+ "from tb_food A, tb_store B\r\n"
 				+ "where A.stono = B.stono\r\n"
-				+ "and A.fdopyn = 1 and B.stoopyn = 1 order by B.stono, A.fdno";
+				+ "and A.fdopyn = 1 and B.stoopyn = 1 and B.stono = ? order by B.stono, A.fdno";
 		
 		System.out.println(sql); 
 		
-		menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class));
+		menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class), jObect.get("stono"));
 		System.out.println("이미지"+ menupan.stream());
 
 		menupan.forEach(System.out :: println);
