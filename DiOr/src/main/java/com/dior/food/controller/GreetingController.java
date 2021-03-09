@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
@@ -50,6 +51,16 @@ public class GreetingController {
         msgList = OrderService.selectOrderList(3);        
         return msgList;
 	}
+	
+	@MessageMapping("/food{stono}")
+	@SendTo("/topic/food{stono}")
+	public List<Map<String, Object>> food(@PathVariable("stono") int stono) throws Exception {
+		List<Map<String, Object>> msgList = null;		
+		System.out.println("foodNo : " + stono);
+        msgList = OrderService.selectOrderList(stono);        
+        return msgList;
+	}
+	
 	
 	
 }

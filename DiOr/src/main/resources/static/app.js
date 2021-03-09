@@ -137,6 +137,23 @@ function connectFood3() {
     });
   });
 }
+
+
+
+//음식점 접속
+function connectFood(stono) {
+  var socket = new SockJS('/websocket');
+  stompClient = Stomp.over(socket);
+  // SockJS와 stomp client를 통해 연결을 시도.
+  stompClient.connect({}, function (frame) {
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/food'+ stono, function (msgList) {
+      //food1Order(msgList);
+	  food1Order(JSON.parse(msgList.body));
+    });
+  });
+}
+
 //음식점 주문내역
 function food1Order(msgList) {	
 	for(var i = 0; i < msgList.length; i++){

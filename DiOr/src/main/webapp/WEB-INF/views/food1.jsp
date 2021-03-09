@@ -27,7 +27,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 </style>
 </head>
 <script>
-connectFood1();
+
+connectFood(1);
 </script>
 <body>
 
