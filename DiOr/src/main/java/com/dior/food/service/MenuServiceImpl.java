@@ -47,4 +47,9 @@ public class MenuServiceImpl implements MenuService{
 		return MenuDao.getOrder(ordNo);
 	}
 
+	@Override
+	public ArrayList<menuDto> getSto() throws Exception {
+		return MenuDao.getSto();
+	}
+
 }
