@@ -361,6 +361,16 @@ public class MainController {
 		return returnValue;
 	}
 
+	
+	//음식점 뷰
+	@RequestMapping(value="/food", method=RequestMethod.GET)
+	public ModelAndView food(HttpServletRequest request) throws Exception{				
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("food");		
+		String stono = request.getParameter("stono");
+		mv.addObject("stono", stono);
+		return mv;
+	}	
 	//조리시작 UPDATE
 	@RequestMapping(value="/stOrder", method=RequestMethod.POST)
 	public void stOrder(@RequestParam HashMap<String, String> params) throws Exception{				
