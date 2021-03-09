@@ -12,13 +12,13 @@ import org.springframework.web.util.HtmlUtils;
 
 import com.dior.food.config.Greeting;
 import com.dior.food.config.OrMassage;
-import com.dior.food.service.OrderServiceImpl;
+import com.dior.food.service.OrderService;
 
 @RestController
 public class GreetingController {
 	
 	@Autowired
-	private OrderServiceImpl OrderService;
+	private OrderService OrderService;
 		
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
