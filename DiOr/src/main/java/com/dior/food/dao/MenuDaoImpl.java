@@ -121,6 +121,29 @@ public class MenuDaoImpl implements MenuDao{
 		return ordersNo;
 	}
 
+	@Override
+	public ArrayList<menuDto> getSto() throws Exception {
+		String sql = "";
+		List<menuDto> menupan = null;
+		
+		try {
+			
+		sql = "select stonm, stono from tb_store";
+		
+		System.out.println(sql); 
+		
+		menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class));
+		System.out.println("이미지"+ menupan.stream());
+
+		menupan.forEach(System.out :: println);
+		
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("SQL ERROR: "+e);
+		}
+		
+		return (ArrayList<menuDto>) menupan;
+	}
+
 
 
 }
