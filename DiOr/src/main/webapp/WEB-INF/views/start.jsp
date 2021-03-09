@@ -55,12 +55,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		<div class="w3-center w3-padding-16">디지털메뉴판</div>
 	</div>
 	<div class="w3-center">
-	<hr><form id="frmParam"></form>
+	<hr>
 		<c:forEach items="${stoList}" var="item" varStatus="stsc">
 			<button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_submit(${item.stono})">${item.stonm}</button>
-			<input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
 			<hr>
 		</c:forEach>
+		<form id="frmParam"name="frmParam" method="post" enctype="multipart/form-data" contentType="application/json">
+			<input type="hidden" id="frmStono" name="stono" value="">
+		</form>
 	</div>
 </div>
 
@@ -68,9 +70,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
 <script> 
 function fn_submit(stono){
-	document.frmParam.action = "/food"+stono;
+    document.getElementById("frmStono").value = stono;
+	document.frmParam.action = "/food";
 	document.frmParam.submit();
-
 }
 
 </script>
