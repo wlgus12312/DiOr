@@ -7,14 +7,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dior.food.dao.AdminDaoImpl;
+import com.dior.food.dao.AdminDao;
 import com.dior.food.dto.famFood;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
-	private AdminDaoImpl AdminDao;
+	private AdminDao AdminDao;
 	
 	@Override
 	public ArrayList<famFood> getStore() throws Exception{
