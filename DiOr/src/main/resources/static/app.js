@@ -88,6 +88,7 @@ function sendName3() {
 				  ''); 
 }
 
+
 //음식점 접속
 function connectFood(stono) {
   var socket = new SockJS('/websocket');
