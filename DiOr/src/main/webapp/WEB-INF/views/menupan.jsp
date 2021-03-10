@@ -101,7 +101,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
       	<hr>${item.stonm} <br>
 		<img class="w3-image" alt="${item.stonm}" src="data:image/jpeg;base64, ${item.viewImg}" > 
 		<h5>${item.fdnm}<br>${item.fdprice} 원</h5>
-		<button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_shoppingBag(${stsc.index})">담기</buton>
+		<button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_shoppingBag(${stsc.index})">담기</button>
 			<input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
 			<input type="hidden" id="stonm${stsc.index}" name="stonm" value="${item.stonm}">
 			<input type="hidden" id="fdno${stsc.index}" name="fdno" value="${item.fdno}">

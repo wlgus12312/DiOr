@@ -44,7 +44,7 @@ public class MenuController {
 	@RequestMapping(value="/menupan", method=RequestMethod.GET)
 	public ModelAndView menupan(HttpServletRequest req) throws Exception{
 		
-		int paramstono = req.getParameterValues("stono").length;
+		String paramstono = req.getParameter("stono");
 		System.out.println("paramstono: " + paramstono);
 		
 		JSONObject jObect = new JSONObject();
