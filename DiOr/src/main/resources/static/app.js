@@ -13,6 +13,19 @@ function setConnected(connected) {
   $("#greetings").html("");
 }
 
+function connect(stono) {
+  var socket = new SockJS('/websocket');
+  stompClient = Stomp.over(socket);
+  // SockJS와 stomp client를 통해 연결을 시도.
+  stompClient.connect({}, function (frame) {
+    setConnected(true);
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/food'+stono, function (greeting) {
+//      showGreeting(JSON.parse(greeting.body).content);
+    });
+  });
+}
+
 function connect1() {
   var socket = new SockJS('/websocket');
   stompClient = Stomp.over(socket);
@@ -69,6 +82,13 @@ function disconnect() {
   }
   setConnected(false);
   console.log("Disconnected");
+}
+
+function sendName(stono) {
+  // /app/hello로 JSON 파라미터를 메세지 body로 전송.
+  stompClient.send("/app/food"+stono,
+                   {}, //헤더
+				  ''); 
 }
 
 function sendName1() {
