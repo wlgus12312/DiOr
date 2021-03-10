@@ -27,31 +27,6 @@ public class GreetingController {
 		return new Greeting("Hello");
 	}
 	
-	@MessageMapping("/food1")
-	@SendTo("/topic/food1")
-	public List<Map<String, Object>> food1() throws Exception {
-		List<Map<String, Object>> msgList = null;		        
-        msgList = OrderService.selectOrderList(1);        
-        return msgList;
-
-	}
-	
-	@MessageMapping("/food2")
-	@SendTo("/topic/food2")
-	public List<Map<String, Object>> food2() throws Exception {
-		List<Map<String, Object>> msgList = null;		        
-        msgList = OrderService.selectOrderList(2);        
-        return msgList;
-	}
-	
-	@MessageMapping("/food3")
-	@SendTo("/topic/food3")
-	public List<Map<String, Object>> food3() throws   Exception {
-		List<Map<String, Object>> msgList = null;		        
-        msgList = OrderService.selectOrderList(3);        
-        return msgList;
-	}
-	
 	@MessageMapping("/food{stono}")
 	@SendTo("/topic/food{stono}")
 	public List<Map<String, Object>> food(@PathVariable("stono") int stono) throws Exception {

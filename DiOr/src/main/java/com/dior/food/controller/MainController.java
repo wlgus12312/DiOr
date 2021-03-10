@@ -304,31 +304,6 @@ public class MainController {
 		return mv;
 	}	 
 	
-  
-	
-	//음식점 뷰
-	@RequestMapping(value="/food1", method=RequestMethod.GET)
-	public ModelAndView food1() throws Exception{				
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("food1");				
-		return mv;
-	}
-	
-	@RequestMapping(value="/food2", method=RequestMethod.GET)
-	public ModelAndView food2() throws Exception{				
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("food2");
-		return mv;
-	}	
-	
-	@RequestMapping(value="/food3", method=RequestMethod.GET)
-	public ModelAndView food3() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("food3");
-		return mv;
-
-	}
-
 	public static byte[] imageToByteArray(String filePath) throws Exception {
 		byte[] returnValue = null;
 		
