@@ -338,7 +338,7 @@ public class MainController {
 
 	
 	//음식점 뷰
-	@RequestMapping(value="/food", method=RequestMethod.GET)
+	@RequestMapping(value="/food", method=RequestMethod.POST)
 	public ModelAndView food(HttpServletRequest request) throws Exception{				
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("food");		
