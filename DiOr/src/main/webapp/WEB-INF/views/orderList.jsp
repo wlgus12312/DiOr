@@ -115,30 +115,29 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
 window.onload = function(){
 	//소켓커넥트
-	//connect();
 	
-	connect1();
-	console.log("--------connect1-----------------------------------------------------");
-	connect2();
-	console.log("--------connect2-----------------------------------------------------");
-	connect3();
-	console.log("--------connect3-----------------------------------------------------");
-
 	var url = document.location.href.split("/")[3]; 
+	var stono = ${storeList}+""; 
+	console.log("Connect stono: " + stono[0]);
 	
-	var data = ${storeList}+""; 
-	console.log("data: " + data);
+	connect(stono[0]); //단건커넥
+	
+/*	푸드코트 다건 커넥 로직	
+	for(var i=0; i <= stono.length; i ++){
+		connect(stono[i]); 
+	}
+*/	
+
 	if(url == 'insOrder'){
 		setTimeout(function(){
-			for(var i=0; i <= data.length; i ++){
-	   			if(data[i] == 1){
-	   				sendName1();
-	   			} else if (data[i] == 2){
-	   				sendName2();
-	   			} else if (data[i] == 3){
-	   				sendName3();
-	   			}
-			}
+		console.log("Send stono: " + stono[0]);
+			sendName(stono[0]);
+				
+/*	푸드코트 다건 메세지 send  	
+	for(var i=0; i <= data.length; i ++){
+  			sendName(stono[i]);
+	}
+*/
 			document.frmParam.action = "/orderList";
 			document.frmParam.submit();
 		}, 500);
@@ -146,7 +145,7 @@ window.onload = function(){
 	} else {
 		
 		for(var i=0; i <= ${fn:length(orderList)}; i ++){
-			var stoNm = document.getElementById(eval("'stono"+i+"'")).value;
+			//var stoNm = document.getElementById(eval("'stono"+i+"'")).value;
 			
 			var orstsc = document.getElementById(eval("'ordstsc"+i+"'")).value;
 			if(orstsc == '0'){
