@@ -37,6 +37,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		          , "음식 수정"
 		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=550, height=480, top=30,left=150");		
 	}
+	
+	function qrAdmin() {
+		location.href = "/qrAdmin";
+	}	
 </script>
 
 <body>
@@ -51,6 +55,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	<table align="center">
 		<tr>
 			<td width="305px" align="left"><input type="button" class="w3-bar-item w3-black w3-button" value="레스토랑 추가/수정" onclick="storeAdd();"></td>
+			<td width="305px" align="center"><input type="button" class="w3-bar-item w3-black w3-button" value="QR관리" onclick="qrAdmin();"></td>
 			<td width="305px" align="right"><input type="button" class="w3-bar-item w3-black w3-button" value="음식 추가" onclick="foodAdd();"></td>
 		</tr>
 	</table>

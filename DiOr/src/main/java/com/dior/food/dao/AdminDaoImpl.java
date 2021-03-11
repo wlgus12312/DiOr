@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.dior.food.dto.famFood;
+import com.dior.food.dto.famQR;
 
 @Repository("AdminDao")
 public class AdminDaoImpl implements AdminDao{
@@ -146,7 +147,41 @@ public class AdminDaoImpl implements AdminDao{
 		jdbcTemplate.update(sql, MenuMap.get("mNo"));
 		
 		return 0;
-	}		
+	}
+	
+	@Override
+	public ArrayList<famQR> getQR() throws Exception{				
+		//String sql = "SELECT QR_SEQ, QR_DIV, QR_CODE, QR_IMG FROM TB_QR";
+		String sql = "SELECT QR_SEQ, QR_DIV, QR_URL, QR_CODE FROM TB_QR";
+		List<famQR> qrs = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famQR.class));		
+		
+		qrs.forEach(System.out :: println);
+		
+		return (ArrayList<famQR>) qrs;
+	}
+	
+	@Override
+	public int setQR_Ins(Map qrMap) throws Exception {
+		//String sql = "INSERT INTO TB_QR(qr_seq, qr_div, qr_code, qr_img) VALUES ((select isnull(max(qr_seq)+1,1) from tb_qr), ?, ?, ?)";
+		String sql = "INSERT INTO TB_QR(qr_seq, qr_div, qr_url, qr_code) VALUES ((select isnull(max(qr_seq)+1,1) from tb_qr), ?, ?, ?)";
+		
+		System.out.println(qrMap.get("sYn"));
+		System.out.println(qrMap.get("sUrl"));
+		System.out.println(qrMap.get("sImg"));
+		
+		jdbcTemplate.update(sql, qrMap.get("sYn")
+				               , qrMap.get("sUrl")
+				               , qrMap.get("sImg"));
+		
+		//System.out.println("!!"+MenuMap.get("menuImage")+"!!");
+		
+//		String sql = "INSERT INTO TB_FOOD(fdno, fdnm, fdprice, fdopyn, stono) VALUES ((select max(fdno)+1 from tb_food), ?, ?, '1', ?)";
+//		jdbcTemplate.update(sql, MenuMap.get("menuName")
+//				               , MenuMap.get("menuPrice")
+//				               , MenuMap.get("selectStore"));
+		
+		return 0;
+	}	
 
 
 }

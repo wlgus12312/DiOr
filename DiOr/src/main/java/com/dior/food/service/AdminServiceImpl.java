@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.dior.food.dao.AdminDao;
 import com.dior.food.dto.famFood;
+import com.dior.food.dto.famQR;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService{
@@ -61,6 +62,17 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		int result = AdminDao.setMenu_Del(menuMap);
 		return result;
-	}		
+	}
+	
+	@Override
+	public ArrayList<famQR> getQR() throws Exception{
+		return AdminDao.getQR();
+	}
+	
+	public int setQR_Ins(Map qrMap) throws Exception{
+		// TODO Auto-generated method stub
+		int result = AdminDao.setQR_Ins(qrMap);
+		return result;
+	}	
 		
 }
