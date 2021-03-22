@@ -1,13 +1,17 @@
 package com.dior.food.controller;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import java.nio.charset.StandardCharsets;
+
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Encoder;
@@ -16,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,15 +38,23 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.AbstractView;
 
 import com.dior.food.dao.AdminDao;
 import com.dior.food.dto.famFood;
+import com.dior.food.dto.famQR;
 import com.dior.food.dto.menuDto;
 import com.dior.food.service.*;
 import com.dior.food.service.AdminServiceImpl;
 import com.dior.food.service.MainServiceImpl;
 import com.dior.food.service.MenuServiceImpl;
 import com.google.zxing.BarcodeFormat;
+import com.dior.food.service.AdminService;
+import com.dior.food.service.MainService;
+import com.dior.food.service.MenuService;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -52,12 +65,12 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@Autowired
-	private MainServiceImpl MainService;
+	private MainService MainService;
 	@Autowired
-	private MenuServiceImpl MenuService;
+	private MenuService MenuService;
 	
 	@Autowired
-	private AdminServiceImpl AdminService;
+	private AdminService AdminService;
 	
 	
 	//조리시작, 종료
@@ -67,17 +80,13 @@ public class MainController {
 	
 	@RequestMapping("/main")
 	public ModelAndView main(HttpServletRequest req) throws Exception{
-		
-		HttpSession session = req.getSession();
-		
+
 		ModelAndView mv = new ModelAndView();
 		List testList   = new ArrayList<famFood>();
 		Map testMap     = new HashMap<String, Map<String, Object>>();
 		
 		testList = MainService.Maintest();
  
-		//mv.addObject(testList);
-		mv.addObject("session", session.getId());
 		mv.setViewName("index");
 		
 		return mv;
@@ -85,9 +94,7 @@ public class MainController {
 
 	@RequestMapping("/menupan")
 	public ModelAndView menupan(HttpServletRequest req) throws Exception{
-		
-		HttpSession session = req.getSession();
-		
+
 		ModelAndView mv = new ModelAndView();
 		List testList   = new ArrayList<famFood>();
 		Map testMap     = new HashMap<String, Map<String, Object>>();
@@ -95,35 +102,14 @@ public class MainController {
 		testList = MainService.Maintest();
 		
 		mv.addObject(testList);
-		//mv.addObject("session", session.getId());
 		mv.setViewName("menupan");
 		
 		return mv;
 	}
 	  
-/*  
-	@RequestMapping("/menuAdmin")
-	public ModelAndView menuAdmin(HttpServletRequest req) throws Exception{
-		
-		//HttpSession session = req.getSession();
-		
-		ModelAndView mv = new ModelAndView();
-		List storeList   = new ArrayList<famFood>();
-
-		storeList = AdminService.getFood();
-		mv.addObject("storeList",storeList);
-		
-		mv.setViewName("menuAdmin");
-		
-		return mv;
-	}
-*/
-	
 	@RequestMapping("/menuAdmin")
 	public ModelAndView menuAdmin(HttpServletRequest req, HttpServletResponse res) throws Exception{
-		
-		//HttpSession session = req.getSession();
-		
+
 		ModelAndView mv = new ModelAndView();
 		List storeList   = new ArrayList<famFood>();
 		
@@ -137,25 +123,13 @@ public class MainController {
 	
 	@RequestMapping("/menuAdmin_S_Pop")
 	public ModelAndView menuAdmin_S_Pop(HttpServletRequest req) throws Exception{
-		
-		//HttpSession session = req.getSession();
-		
+			
 		ModelAndView mv = new ModelAndView();
 		List storeList   = new ArrayList<famFood>();
-		//Map storeMap     = new HashMap<String, Map<String, Object>>();
-		
-		//storeMap.put("storeId", req.getParameter("storeId"));
-		//storeMap.put("storeName", req.getParameter("storeName"));
-		
-		//int result = AdminService.setStore_Ins(storeMap);
-		  
-		//storeList = AdminService.getMenu();
-		
+
 		storeList = AdminService.getStore();
 		
 		mv.addObject("storeList",storeList);
-		//mv.addObject("result",result);
-		//mv.addObject("session", session.getId());
 		mv.setViewName("menuAdmin_S_Pop");
 		
 		return mv;
@@ -164,19 +138,16 @@ public class MainController {
 	@RequestMapping("/menuAdmin_S_Ins")
 	public ModelAndView menuAdmin_S_Ins(HttpServletRequest req) throws Exception{
 		
-		//HttpSession session = req.getSession();
-		
 		ModelAndView mv = new ModelAndView();
-		//List storeList   = new ArrayList<famFood>();
+		
 		Map storeMap     = new HashMap<String, Map<String, Object>>();
 		
 		storeMap.put("storeName", req.getParameter("storeName"));
+		storeMap.put("storeTel", req.getParameter("storeTel"));
 		
 		int result = AdminService.setStore_Ins(storeMap);
 		  
-		//storeList = AdminService.getMenu();		
 		mv.addObject("result",result);
-		//mv.addObject("session", session.getId());
 		mv.setViewName("menuAdmin_S_Ins");
 		
 		return mv;
@@ -185,10 +156,8 @@ public class MainController {
 	@RequestMapping("/menuAdmin_S_Upd")
 	public ModelAndView menuAdmin_S_Upd(HttpServletRequest req) throws Exception{
 		
-		//HttpSession session = req.getSession();
-		
 		ModelAndView mv = new ModelAndView();
-		//List storeList   = new ArrayList<famFood>();
+		
 		Map storeMap     = new HashMap<String, Map<String, Object>>();
 		
 		storeMap.put("sName", req.getParameter("sName"));
@@ -197,9 +166,7 @@ public class MainController {
 		
 		int result = AdminService.setStore_Upd(storeMap);
 		  
-		//storeList = AdminService.getMenu();		
 		mv.addObject("result",result);
-		//mv.addObject("session", session.getId());
 		mv.setViewName("menuAdmin_S_Upd");
 		
 		return mv;
@@ -208,12 +175,9 @@ public class MainController {
 	@RequestMapping("/menuAdmin_M_Pop")
 	public ModelAndView menuAdmin_M_Pop(HttpServletRequest req) throws Exception{
 		
-		//HttpSession session = req.getSession();
-		
 		ModelAndView mv = new ModelAndView();
 		List storeList   = new ArrayList<famFood>();
-		//Map testMap     = new HashMap<String, Map<String, Object>>();
-		  
+				  
 		storeList = AdminService.getStore();
 		
 		mv.addObject("storeList",storeList);
@@ -224,8 +188,6 @@ public class MainController {
 	
 	@RequestMapping("/menuAdmin_M_Pop2")
 	public ModelAndView menuAdmin_M_Pop2(HttpServletRequest req) throws Exception{
-		
-		//HttpSession session = req.getSession();
 		
 		ModelAndView mv = new ModelAndView();
 		List menuList   = new ArrayList<famFood>();
@@ -245,10 +207,8 @@ public class MainController {
 	//public ModelAndView menuAdmin_M_Ins(HttpServletRequest req) throws Exception{
 	public ModelAndView menuAdmin_M_Ins(HttpServletRequest req, MultipartRequest req2) throws Exception{
 		
-		//HttpSession session = req.getSession();
-		
 		ModelAndView mv = new ModelAndView();
-		//List storeList   = new ArrayList<famFood>();
+		
 		Map menuMap     = new HashMap<String, Map<String, Object>>();
 		  
 		menuMap.put("selectStore", req.getParameter("selectStore"));
@@ -256,13 +216,10 @@ public class MainController {
 		menuMap.put("menuPrice", req.getParameter("menuPrice"));		
 		menuMap.put("menuImage", req2.getFile("menuImage").getBytes());
 		
-		//System.out.println("*"+req2.getFile("menuImage").getBytes()+"*");
-		
-		
 		int result = AdminService.setMenu_Ins(menuMap);
 		
 		mv.addObject("result",result);
-		//mv.addObject("session", session.getId());
+		
 		mv.setViewName("menuAdmin_M_Ins");
 		
 		return mv;
@@ -271,10 +228,8 @@ public class MainController {
 	@RequestMapping("/menuAdmin_M_Upd")
 	public ModelAndView menuAdmin_M_Upd(HttpServletRequest req, MultipartRequest req2) throws Exception{
 		
-		//HttpSession session = req.getSession();
-		
 		ModelAndView mv = new ModelAndView();
-		//List storeList   = new ArrayList<famFood>();
+		
 		Map menuMap     = new HashMap<String, Map<String, Object>>();
 		  
 		menuMap.put("mName", req.getParameter("mName"));
@@ -286,7 +241,6 @@ public class MainController {
 		int result = AdminService.setMenu_Upd(menuMap);
 		
 		mv.addObject("result",result);
-		//mv.addObject("session", session.getId());
 		mv.setViewName("menuAdmin_M_Upd");
 		
 		return mv;
@@ -294,11 +248,8 @@ public class MainController {
 	
 	@RequestMapping("/menuAdmin_M_Del")
 	public ModelAndView menuAdmin_M_Del(HttpServletRequest req) throws Exception{
-		
-		//HttpSession session = req.getSession();
-		
+
 		ModelAndView mv = new ModelAndView();
-		//List storeList   = new ArrayList<famFood>();
 		Map menuMap     = new HashMap<String, Map<String, Object>>();
 		
 		menuMap.put("mNo", req.getParameter("mNo"));
@@ -306,44 +257,69 @@ public class MainController {
 		int result = AdminService.setMenu_Del(menuMap);
 		
 		mv.addObject("result",result);
-		//mv.addObject("session", session.getId());
 		mv.setViewName("menuAdmin_M_Del");
 		mv.clear();
 		
 		return mv;
 	}	 
 	
-	public static byte[] imageToByteArray(String filePath) throws Exception {
-		byte[] returnValue = null;
+	@RequestMapping("/qrAdmin")
+	public ModelAndView qrAdmin(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		
-		ByteArrayOutputStream baos = null;
-		FileInputStream fis = null;
+		ModelAndView mv = new ModelAndView();
+		List qrList   = new ArrayList<famQR>();
 		
-		try {
-			baos = new ByteArrayOutputStream();
-			fis = new FileInputStream(filePath);
-			
-			byte[] buf = new byte[1024];
-			int read = 0;
-			
-			while((read=fis.read(buf, 0, buf.length)) != -1) {
-				baos.write(buf, 0, read);
-			}
-			
-			returnValue = baos.toByteArray();
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			if(baos != null) {
-				baos.close();
-			}
-			if(fis != null) {
-				fis.close();
-			}
-		}
+		qrList = AdminService.getQR();
+		mv.addObject("qrList",qrList);
 		
-		return returnValue;
+		mv.setViewName("qrAdmin");
+		
+		return mv;
 	}
+	
+	@RequestMapping("/qrAdmin_S_Pop")
+	public ModelAndView qrAdmin_S_Pop(HttpServletRequest req) throws Exception{
+
+		ModelAndView mv = new ModelAndView();
+		List qrList   = new ArrayList<famQR>();
+        
+		qrList = AdminService.getQR();
+		
+		mv.addObject("qrList",qrList);
+		mv.setViewName("qrAdmin_S_Pop");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/qrAdmin_S_Code")
+	public ModelAndView qrAdmin_S_Code(HttpServletRequest req) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		  
+		mv.setViewName("qrAdmin_S_Code");
+		
+		return mv;	
+	}
+	
+	@RequestMapping("/qrAdmin_S_Ins")
+	//public ModelAndView menuAdmin_M_Ins(HttpServletRequest req) throws Exception{
+	public ModelAndView qrAdmin_S_Ins(HttpServletRequest req, MultipartRequest req2) throws Exception{
+				
+		ModelAndView mv = new ModelAndView();
+		Map qrMap     = new HashMap<String, Map<String, Object>>();
+		  
+		qrMap.put("sYn", req.getParameter("sYn"));
+		qrMap.put("sUrl", req.getParameter("sUrl"));
+		qrMap.put("sImg", req.getParameter("hCode"));
+		
+		int result = AdminService.setQR_Ins(qrMap);
+		
+		mv.addObject("result",result);
+		mv.setViewName("qrAdmin_S_Ins");
+		
+		return mv;
+	}	
+
 
 	
 	//음식점 뷰
