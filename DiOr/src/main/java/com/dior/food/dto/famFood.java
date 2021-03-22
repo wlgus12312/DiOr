@@ -6,10 +6,10 @@ public class famFood {
 	
 	private long stono    ;
 	private String stonm  ;
-	private String stoopyn;
+	private String stotel ;
 	private String fdnm   ;
 	private String fdprice;
-	private String fdopyn ;
+	private String fdop_yn ;
 	private long ordno    ;
 	private long fdno     ;
 	private String ordcnt ;
@@ -32,14 +32,14 @@ public class famFood {
 	public void setStonm(String stonm) {
 		this.stonm = stonm;
 	}
-
-	public String getStoopyn() {
-		return stoopyn;
+	
+	public String getStotel() {
+		return stotel;
 	}
 
-	public void setStoopyn(String stoopyn) {
-		this.stoopyn = stoopyn;
-	}
+	public void setStotel(String stotel) {
+		this.stotel = stotel;
+	}	
 
 	public String getFdnm() {
 		return fdnm;
@@ -57,12 +57,12 @@ public class famFood {
 		this.fdprice = fdprice;
 	}
 
-	public String getFdopyn() {
-		return fdopyn;
+	public String getFdop_yn() {
+		return fdop_yn;
 	}
 
-	public void setFdopyn(String fdopyn) {
-		this.fdopyn = fdopyn;
+	public void setFdop_yn(String fdop_yn) {
+		this.fdop_yn = fdop_yn;
 	}
 
 	public long getOrdno() {
@@ -115,14 +115,13 @@ public class famFood {
 		
 		return "famFood [stono=" + stono + ""
 				+ ", stonm=" + stonm + ""
-				+ ", stoopyn=" + stoopyn + ""
+				+ ", stotel=" + stotel + ""
 				+ ", fdnm=" + fdnm + ""
 				+ ", fdprice=" + fdprice + ""
-				+ ", fdopyn=" + fdopyn + ""
+				+ ", fdop_yn=" + fdop_yn + ""
 				+ ", ordno=" + ordno + ""
 				+ ", fdno=" + fdno + ""
-				+ ", ordcnt=" + ordcnt + ""
-				//+ ", ordstsc=" + ordstsc + "]";
+				+ ", ordcnt=" + ordcnt + "" 
 				+ ", vimg=" + vimg + ""
 				+ ", ordstsc=" + ordstsc + "]";
 	}

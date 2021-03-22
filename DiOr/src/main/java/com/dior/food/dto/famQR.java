@@ -2,10 +2,10 @@ package com.dior.food.dto;
 
 public class famQR {
 	
-	private long qr_seq;
-	private String qr_div;
-	private String qr_url;
-	private String qr_code;	
+	private long qrno;
+	private String div;
+	private String url;
+	private String qimg;	
 
 	private byte[] timg;
 	private String vimg;
@@ -14,36 +14,36 @@ public class famQR {
 		super();
 	}
 	
-	public long getQr_seq() {
-		return qr_seq;
+	public long getQrno() {
+		return qrno;
 	}
 
-	public void setQr_seq(long qr_seq) {
-		this.qr_seq = qr_seq;
+	public void setQrno(long qrno) {
+		this.qrno = qrno;
 	}
 
-	public String getQr_div() {
-		return qr_div;
+	public String getDiv() {
+		return div;
 	}
 
-	public void setQr_div(String qr_div) {
-		this.qr_div = qr_div;
+	public void setDiv(String div) {
+		this.div = div;
 	}
 	
-	public String getQr_url() {
-		return qr_url;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setQr_url(String qr_url) {
-		this.qr_url = qr_url;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
-	public String getQr_code() {
-		return qr_code;
+	public String getQimg() {
+		return qimg;
 	}
 
-	public void setQr_code(String qr_code) {
-		this.qr_code = qr_code;
+	public void setQimg(String qimg) {
+		this.qimg = qimg;
 	}	
 	
 	public byte[] getTimg() {
@@ -58,10 +58,10 @@ public class famQR {
 	@Override
 	public String toString() {
 		
-		return "famQR [qr_seq=" + qr_seq + ""
-				+ ", qr_div=" + qr_div + ""
-				+ ", qr_url=" + qr_url + ""
-				+ ", qr_code=" + qr_code + "]";
+		return "famQR [qr_seq=" + qrno + ""
+				+ ", qdiv=" + div + ""
+				+ ", url=" + url + ""
+				+ ", qimg=" + qimg + "]";
 				//+ ", qr_code=" + qr_code + ""
 				//+ ", vimg=" + vimg + "]";
 	}

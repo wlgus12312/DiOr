@@ -49,7 +49,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 				<td id="title">QR구분</td>
 				<td align="center">
                 	식당 &nbsp;&nbsp;<input type="radio" name="sYn" id="opyn" value="0" class="w3-radio">&nbsp;&nbsp;
-                	메뉴 &nbsp; <input type="radio" name="sYn" id="opyn" value="1" class="w3-radio">
+                	음식 &nbsp; <input type="radio" name="sYn" id="opyn" value="1" class="w3-radio">
                 </td>
 			</tr>
 			<tr>
@@ -66,56 +66,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 					<!-- <img id="sImg" style="display:none" onload="this.style.display='block'"/>  -->
 					<img id="sImg" alt="" width="100" height="100"/>
 					<input type="hidden" id="hCode" name="hCode">
+					<br><br><input type="file" id="sFile" name="sFile" value="파일">
 				</td>
 			</tr>
 		</table>
 		<input type="reset" class="w3-bar-item w3-black w3-button w3-right" value="취소">
 		<input type="submit" class="w3-bar-item w3-black w3-button w3-right" value="등록">
 	</form>
-	<!-- 
-	<br><br>
 	
-	<form method="post" action="menuAdmin_S_Upd">
-		<table class="w3-table-all">
-		    <tr><th colspan="2" align="left" style="background-color:black; color:white;">레스토랑 수정</th></tr>
-			<tr>
-				<td id="title">식당목록</td>
-				<td>
-					<select name="sList" onchange="fnChange(this.value, this.options[this.selectedIndex].text)">
-                        <option value="">-- 식당을 선택하세요 --</option>
-                        <c:forEach items="${storeList}" var="item" varStatus="stsc">                 
-	                 		<option value="${item.stono},${item.stoopyn}">
-	                 			${item.stonm}
-	                        </option>
-                        </c:forEach>
-                    </select>                    			
-				</td>
-			</tr>		    
-			<tr>
-				<td id="title">식당ID</td>
-				<td>
-					<input type="text" name="sId" maxlength="20" style="background-color:#e2e2e2;" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td id="title">식당명</td>
-				<td>
-					<input type="text" name="sName" maxlength="20">
-				</td>
-			</tr>
-
-			<tr>
-				<td id="title">운영여부</td>
-                <td align="center">
-                	운영 &nbsp;&nbsp;<input type="radio" name="sYn" id="opyn" value="1" class="w3-radio">&nbsp;&nbsp;
-                	미운영 &nbsp; <input type="radio" name="sYn" id="opyn" value="0" class="w3-radio">
-                </td>
-			</tr>
-		</table>
-		<input type="reset" class="w3-bar-item w3-black w3-button w3-right" value="취소">
-		<input type="submit" class="w3-bar-item w3-black w3-button w3-right" value="수정">
-	</form>
-	-->
 	<br><br>
 	
 	<div style="max-width:1000px;margin:auto;text-align:center;vertical-align:center">

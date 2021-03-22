@@ -175,6 +175,7 @@ public class MainController {
 		Map storeMap     = new HashMap<String, Map<String, Object>>();
 		
 		storeMap.put("storeName", req.getParameter("storeName"));
+		storeMap.put("storeTel", req.getParameter("storeTel"));
 		
 		int result = AdminService.setStore_Ins(storeMap);
 		  

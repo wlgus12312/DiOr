@@ -59,6 +59,8 @@
 	opener.document.getElementById("hCode").value = qrText;
 	opener.parent.fnQRRef();
 	
+	opener.document.getElementById("sFile").value = qrText;
+	
 	window.close();	
 </script>
 </html>

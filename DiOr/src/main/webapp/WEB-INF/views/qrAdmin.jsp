@@ -31,6 +31,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		          , "음식 수정"
 		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=550, height=480, top=30,left=150");		
 	}
+	
+	function menuAdmin() {
+		location.href = "/menuAdmin";
+	}		
 		
 </script>
 
@@ -42,10 +46,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
   </div>
 </div>
 <hr>
-<div class="w3-main w3-content w3-padding" style="max-width:auto;margin-top:50px">
-	<table align="center" class= "w3-table-all w3-cell-row">
+<div style="max-width:auto;margin-top:50px">
+	<table align="center">
 		<tr>
 			<td width="305px" align="left"><input type="button" class="w3-bar-item w3-black w3-button" value="QR코드 등록" onclick="qrAdd();"></td>
+			<td width="305px" align="right"><input type="button" class="w3-bar-item w3-black w3-button" value="메뉴관리" onclick="menuAdmin();"></td>
 		</tr>
 	</table>
 	<!-- table Grid-->
@@ -60,17 +65,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		<c:forEach items="${qrList}" var="item" varStatus="stsc">
 		<tr>
 			<c:choose>
-				<c:when test="${item.qr_div==0}">
+				<c:when test="${item.qdiv==0}">
 					<td align="left">식당</td>
 				</c:when>
 				<c:otherwise>
-					<td align="left">메뉴</td>
+					<td align="left">음식</td>
 				</c:otherwise>
 			</c:choose>
-			<td align="left">${item.qr_url}</td>
+			<td align="left">${item.url}</td>
 			<td>
 				<!-- <img alt="" src="data:image/jpg;base64, ${item.vimg}" width="100" height="100">  -->
-				<img alt="" src="${item.qr_code}" width="100" height="100">
+				<img alt="" src="${item.qimg}" width="100" height="100">
 			</td> 
 			<td align="center"><input type="button" class="w3-bar-item w3-black w3-button" value="수정" name= "menuId" id="${item.qr_seq}" onclick="foodMod(this.id);"></td>
 		</tr>
