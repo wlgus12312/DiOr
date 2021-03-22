@@ -18,15 +18,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
 <script>
 	function fnChange(val, text) 
-	{ 
+	{
+		//alert(val);
 		if(val != "") { 
 			document.getElementsByName("sId")[0].value = val.substr(0,1);
 			document.getElementsByName("sName")[0].value = text;
-			if(val.substr(2,1) == "1") {
-				document.getElementsByName("sYn")[0].checked = true;
-			} else {
-				document.getElementsByName("sYn")[1].checked = true;
-			} 
+			document.getElementsByName("sTel")[0].value = val.substr(2);
+			
+			//if(val.substr(2,1) == "1") {
+			//	document.getElementsByName("sYn")[0].checked = true;
+			//} else {
+			//	document.getElementsByName("sYn")[1].checked = true;
+			//} 
+			
 		}
 	}
 </script>
@@ -42,6 +46,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 				<td>
 					<input type="text" name="storeName" maxlength="20">
 				</td>
+			</tr>
+			<tr>
+				<td id="title">식당 전화번호</td>
+				<td>
+					<input type="text" name="storeTel" maxlength="20">
+				</td>			
 			</tr>
 		</table>
 		<input type="reset" class="w3-bar-item w3-black w3-button w3-right" value="취소">
@@ -59,7 +69,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 					<select name="sList" onchange="fnChange(this.value, this.options[this.selectedIndex].text)">
                         <option value="">-- 식당을 선택하세요 --</option>
                         <c:forEach items="${storeList}" var="item" varStatus="stsc">                 
-	                 		<option value="${item.stono},${item.stoopyn}">
+	                 		<option value="${item.stono},${item.stotel}">
+	                 		<!-- <option value="${item.stono}">  -->
 	                 			${item.stonm}
 	                        </option>
                         </c:forEach>
@@ -78,7 +89,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 					<input type="text" name="sName" maxlength="20">
 				</td>
 			</tr>
-
+			<tr>
+				<td id="title">식당 전화번호</td>
+				<td>
+					<input type="text" name="sTel" maxlength="20">
+				</td>
+			</tr>			
+			<!-- 
 			<tr>
 				<td id="title">운영여부</td>
                 <td align="center">
@@ -86,6 +103,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
                 	미운영 &nbsp; <input type="radio" name="sYn" id="opyn" value="0" class="w3-radio">
                 </td>
 			</tr>
+			-->
 		</table>
 		<input type="reset" class="w3-bar-item w3-black w3-button w3-right" value="취소">
 		<input type="submit" class="w3-bar-item w3-black w3-button w3-right" value="수정">
