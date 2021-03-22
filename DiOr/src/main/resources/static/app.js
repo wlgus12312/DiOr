@@ -131,8 +131,8 @@ function food1Order(msgList) {
 		$("#orderList").append("<td>" + msgList[i].fdno + "</td>");
 		$("#orderList").append("<td>" + msgList[i].ordcnt + "</td>");
 		$("#orderList").append("<td>" + msgList[i].fdnm + "</td>");
-		$("#orderList").append("<td><button class='w3-bar-item w3-black w3-button w3-right' onclick=stOrder("+ msgList[i].ordno + ","+  msgList[i].ords + ")>조리시작</button></td>");
-		$("#orderList").append("<td><button class='w3-bar-item w3-black w3-button w3-right' onclick=edOrder("+ msgList[i].ordno + ","+  msgList[i].ords + ")>조리완료</button></td>");
+		$("#orderList").append("<td><button class='w3-bar-item w3-black w3-button w3-right' onclick=stOrder("+ msgList[i].ordno + ","+  msgList[i].fdno + ")>조리시작</button></td>");
+		$("#orderList").append("<td><button class='w3-bar-item w3-black w3-button w3-right' onclick=edOrder("+ msgList[i].ordno + ","+  msgList[i].fdno + ")>조리완료</button></td>");
 		$("#orderList").append("</tr>");
 	}	    
 }
