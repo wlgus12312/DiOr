@@ -96,7 +96,7 @@ public class MenuController {
 			System.out.println("i: "+i);
 			jObect = new JSONObject();
 			jObect.put("rowno", i);
-			jObect.put("tableno", req.getParameterValues("tableno")[0]);
+			jObect.put("tabno", req.getParameterValues("tabno")[0]);
 			jObect.put("stono", req.getParameterValues("stono")[i]);
 			jObect.put("fdno", req.getParameterValues("fdno")[i]);
 			jObect.put("ordcnt", req.getParameterValues("ordcnt")[i]);

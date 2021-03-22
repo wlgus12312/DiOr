@@ -70,7 +70,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	</div>
 
 	<form id="frmParam" name="frmParam" method="post" enctype="multipart/form-data" contentType="application/json">
-		<input type="hidden" id="tableno" name="tblno" value="${param.tableno}">
+		<input type="hidden" id="tableno" name="tabno" value="${param.tableno}">
 		<div id="basketTit"></div>
 	</form>
   
