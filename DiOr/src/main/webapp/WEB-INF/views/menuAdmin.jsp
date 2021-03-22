@@ -23,7 +23,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	function storeAdd() {
 		window.open("/menuAdmin_S_Pop"
 		          , "레스토랑 등록"
-		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=460, top=30,left=150");
+		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=450, height=480, top=30,left=150");
 	}
 	
 	function foodAdd() {
@@ -37,6 +37,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		          , "음식 수정"
 		          , "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no,width=550, height=480, top=30,left=150");		
 	}
+	
+	function qrAdmin() {
+		location.href = "/qrAdmin";
+	}	
 </script>
 
 <body>
@@ -51,6 +55,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	<table align="center">
 		<tr>
 			<td width="305px" align="left"><input type="button" class="w3-bar-item w3-black w3-button" value="레스토랑 추가/수정" onclick="storeAdd();"></td>
+			<td width="305px" align="center"><input type="button" class="w3-bar-item w3-black w3-button" value="QR관리" onclick="qrAdmin();"></td>
 			<td width="305px" align="right"><input type="button" class="w3-bar-item w3-black w3-button" value="음식 추가" onclick="foodAdd();"></td>
 		</tr>
 	</table>
@@ -67,22 +72,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		</tr>
 		<c:forEach items="${storeList}" var="item" varStatus="stsc">
 		<tr>
-			<!-- <td align="left">${item.stonm}</td>  -->
-			<c:choose>
-				<c:when test="${item.stoopyn==1}">
-					<td align="left">${item.stonm}</td>
-				</c:when>
-				<c:otherwise>
-					<td align="left" style="background-color:#e2e2e2;">${item.stonm}</td>
-				</c:otherwise>
-			</c:choose>
+			<td align="left">${item.stonm}</td>
 			<td align="left">${item.fdnm}</td>
 			<td>
-				<img alt="" src="data:image/jpg;base64, ${item.vimg}" width="140" height="auto">
+				<img alt="" src="data:image/jpg;base64, ${item.vimg}" width="140" height="140">
 			</td> 
 			<td align="right">${item.fdprice}</td>
 			<td align="center"><input type="button" class="w3-bar-item w3-black w3-button" value="수정" name= "menuId" id="${item.fdno}" onclick="foodMod(this.id);"></td>
-			<td align="center">${item.fdopyn}</td>
+			<td align="center">${item.fdop_yn}</td>
 		</tr>
 		</c:forEach>
 	</table>

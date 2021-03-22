@@ -108,57 +108,6 @@ function sendName3() {
 				  ''); 
 }
 
-/*function sendO() {
-  // /app/hello로 JSON 파라미터를 메세지 body로 전송.
-  	stompClient.send("/app/hello", {}, JSON.stringify({'name': "주문"}));
-
-}
-
-function showGreeting(message) {
-  $("#greetings").append("<tr><td>" + message + "</td></tr>");
-}
-*/
-//음식점1 접속
-function connectFood1() {
-  var socket = new SockJS('/websocket');
-  stompClient = Stomp.over(socket);
-  // SockJS와 stomp client를 통해 연결을 시도.
-  stompClient.connect({}, function (frame) {
-    console.log('Connected: ' + frame);
-    stompClient.subscribe('/topic/food1', function (msgList) {
-      //food1Order(msgList);
-	  food1Order(JSON.parse(msgList.body));
-    });
-  });
-}
-//음식점2 접속
-function connectFood2() {
-  var socket = new SockJS('/websocket');
-  stompClient = Stomp.over(socket);
-  // SockJS와 stomp client를 통해 연결을 시도.
-  stompClient.connect({}, function (frame) {
-    console.log('Connected: ' + frame);
-    stompClient.subscribe('/topic/food2', function (msgList) {
-      //food1Order(msgList);
-	  food1Order(JSON.parse(msgList.body));
-    });
-  });
-}
-//음식점3 접속
-function connectFood3() {
-  var socket = new SockJS('/websocket');
-  stompClient = Stomp.over(socket);
-  // SockJS와 stomp client를 통해 연결을 시도.
-  stompClient.connect({}, function (frame) {
-    console.log('Connected: ' + frame);
-    stompClient.subscribe('/topic/food3', function (msgList) {
-      //food1Order(msgList);
-	  food1Order(JSON.parse(msgList.body));
-    });
-  });
-}
-
-
 
 //음식점 접속
 function connectFood(stono) {

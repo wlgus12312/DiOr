@@ -61,7 +61,6 @@ public class menuDto {
 		this.stonm = stonm;
 	}
 
-
 	public String getFdnm() {
 		return fdnm;
 	}
@@ -112,7 +111,6 @@ public class menuDto {
 		this.ordstsc = ordstsc;
 	}
 
-
 	public String getOrdstnm() {
 		return ordstnm;
 	}
@@ -145,7 +143,6 @@ public class menuDto {
 		this.timg = timg;
 	}
 	
-
 	public String getViewImg() {
 		return viewImg;
 	}
@@ -177,12 +174,6 @@ public class menuDto {
 	public void setFdop_yn(long fdop_yn) {
 		this.fdop_yn = fdop_yn;
 	}
-	
-	public menuDto() {
-		super();
-	}
 
-	
-	
 
 }
