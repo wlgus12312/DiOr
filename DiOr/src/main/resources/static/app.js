@@ -138,7 +138,7 @@ function food1Order(msgList) {
 }
 
 //음식점 조리시작
-function stOrder(ordno, ords) {	
+function stOrder(ordno, fdno) {	
 	//조리시작	
 	$.ajax({
 		url:'/stOrder',
@@ -146,7 +146,7 @@ function stOrder(ordno, ords) {
 		dataType:'text',
 		data:{
 			ordno:ordno,
-			ords:ords
+			fdno:fdno
 		},
 		success:function(data) { 
 			alert("조리시좍~"); 
@@ -155,7 +155,7 @@ function stOrder(ordno, ords) {
 	
 }
 //음식점 조리완료
-function edOrder(ordno, ords) {	
+function edOrder(ordno, fdno) {	
 	//조리완료
 		$.ajax({
 		url:'/edOrder',
@@ -163,7 +163,7 @@ function edOrder(ordno, ords) {
 		dataType:'text',
 		data:{
 			ordno:ordno,
-			ords:ords
+			fdno:fdno
 		},
 		success:function(data) { 
 			alert("조리종료");

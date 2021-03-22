@@ -24,7 +24,6 @@ public class OrderDaoImpl implements OrderDao{
 				+ "     , A.fdno                           \r\n"
 				+ "	 , A.ordcnt                            \r\n"
 				+ "	 , A.ordstsc                           \r\n"
-				+ "	 , A.ords                              \r\n"
 				+ "	 , B.fdnm                              \r\n"
 				+ "  from tb_order A,                      \r\n"
 				+ "       tb_food  B                       \r\n"
@@ -47,9 +46,9 @@ public class OrderDaoImpl implements OrderDao{
 			              + "   set ordstsc = 1, "
 				          + "       ud_dt   = getdate() "
 				          + "where ordno = ? "
-				          + "and   ords  = ? ",
+				          + "and   fdno  = ? ",
 				          params.get("ordno"),
-				          params.get("ords")
+				          params.get("fdno")
 				          );
 	}
 
@@ -59,9 +58,9 @@ public class OrderDaoImpl implements OrderDao{
 				        + "     set ordstsc = 2,"
 				        + "         ud_dt   = getdate()  "
 		                + "where ordno = ? "
-		                + "and   ords  = ? ",
+		                + "and   fdno  = ? ",
 				        params.get("ordno"),
-				        params.get("ords")
+				        params.get("fdno")
 				        );
 	}
 	
