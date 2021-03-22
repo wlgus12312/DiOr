@@ -23,27 +23,27 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
+
 </style>
 </head>
 <script>
-connectFood2();
+connectFood(${stono});
 </script>
 <body>
 
 <!-- Top menu -->
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-center w3-padding-16"> 장터국밥 주문내역 </div>
+    <div class="w3-center w3-padding-16">주문내역 </div>
   </div>
 </div>
 
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-   <!-- First Photo Grid-->
-   <div class="w3-row-padding w3-padding-16 w3-center" >
+   <div class="w3-row-padding w3-padding-16 w3-center">
        <table id="conversation" class="w3-table-all">
-           <thead>               
+           <thead style="">               
                <tr>
                    <th style="background-color:black; color:white;">주문번호</th>
                    <th style="background-color:black; color:white;">메뉴번호</th>

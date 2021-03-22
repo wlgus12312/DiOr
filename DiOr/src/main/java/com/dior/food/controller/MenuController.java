@@ -29,11 +29,22 @@ public class MenuController {
 	
 	@Autowired
 	private MenuService MenuService;
+
+	@RequestMapping(value="/start", method=RequestMethod.GET)
+	public ModelAndView logIn() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("start");
+		ArrayList<menuDto> stoList   = new ArrayList<menuDto>();
+		stoList = MenuService.getSto();
+		mv.addObject("stoList",stoList);
+		return mv;
+	}
+	
 	
 	@RequestMapping(value="/menupan", method=RequestMethod.GET)
 	public ModelAndView menupan(HttpServletRequest req) throws Exception{
 		
-		int paramstono = req.getParameterValues("stono").length;
+		String paramstono = req.getParameter("stono");
 		System.out.println("paramstono: " + paramstono);
 		
 		JSONObject jObect = new JSONObject();
@@ -81,7 +92,6 @@ public class MenuController {
 		
 		storeList.add(req.getParameterValues("stono")[0]);
 		
-		String preStoreNo = "";
 		for (int i = 0; i < paramCnt; i++) {
 			System.out.println("i: "+i);
 			jObect = new JSONObject();

@@ -59,13 +59,14 @@ public class MenuDaoImpl implements MenuDao{
 		
 		try {
 			sql = "insert into tb_order (\r\n"
-					+ "ordno, ords, fdno, ordcnt, ordstsc,  rg_dt, ud_dt ) values (\r\n"
-					+ " ? , ISNULL((select MAX(ords)+1 from tb_order where ordno = ? ),1) , ? , ? , 0 , getdate(), getdate())";
+					+ "ordno, ords, fdno, tblno, ordcnt, ordstsc,  rg_dt, ud_dt ) values (\r\n"
+					+ " ? , ISNULL((select MAX(ords)+1 from tb_order where ordno = ? ),1) , ? , ? , ? , 0 , getdate(), getdate())";
 		
 			jdbcTemplate.update(sql
 					, jObj.get("ordno")
 					, jObj.get("ordno")
 					, jObj.get("fdno")
+					, jObj.get("tblno")
 					, jObj.get("ordcnt")
 					);		
 		
@@ -119,6 +120,29 @@ public class MenuDaoImpl implements MenuDao{
 		String sql = "select MAX(ordno) +1 from tb_order";
 		ordersNo = jdbcTemplate.queryForObject(sql, int.class);	
 		return ordersNo;
+	}
+
+	@Override
+	public ArrayList<menuDto> getSto() throws Exception {
+		String sql = "";
+		List<menuDto> menupan = null;
+		
+		try {
+			
+		sql = "select stonm, stono from tb_store";
+		
+		System.out.println(sql); 
+		
+		menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class));
+		System.out.println("이미지"+ menupan.stream());
+
+		menupan.forEach(System.out :: println);
+		
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("SQL ERROR: "+e);
+		}
+		
+		return (ArrayList<menuDto>) menupan;
 	}
 
 

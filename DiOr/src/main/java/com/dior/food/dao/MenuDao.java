@@ -19,4 +19,6 @@ public interface MenuDao{
 	
 	ArrayList<menuDto> getOrder(int ordno) throws Exception;
 
+	ArrayList<menuDto> getSto() throws Exception;
+
 }

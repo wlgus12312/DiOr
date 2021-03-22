@@ -23,6 +23,7 @@ public class menuDto {
 	private String ud_dt  ;
 	private byte[] timg   ;
 	private String viewImg;
+	private long tblno    ;
 	
 	public long getStono() {
 		return stono;
@@ -160,6 +161,7 @@ public class menuDto {
 				+ ", fdnm=" + fdnm + ""
 				+ ", fdprice=" + fdprice + ""
 				+ ", fdopyn=" + fdopyn + ""
+				+ ", tblno=" + tblno + ""
 				+ ", ordno=" + ordno + ""
 				+ ", ords=" + ords + ""
 				+ ", fdno=" + fdno + ""
@@ -177,6 +179,14 @@ public class menuDto {
 
 	public void setViewImg(String viewImg) {
 		this.viewImg = viewImg;
+	}
+
+	public long getTblno() {
+		return tblno;
+	}
+
+	public void setTblno(long tblno) {
+		this.tblno = tblno;
 	}
 
 

@@ -70,7 +70,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	</div>
 
 	<form id="frmParam" name="frmParam" method="post" enctype="multipart/form-data" contentType="application/json">
-		<input type="hidden" id="tableno" name="tableno" value="${param.tableno}">
+		<input type="hidden" id="tableno" name="tblno" value="${param.tableno}">
 		<div id="basketTit"></div>
 	</form>
   
@@ -81,13 +81,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <!-- Top menu -->
 <div class="w3-top">
   <div class="w3-white" style="max-width:1200px;margin:auto">
-    <!-- <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div> -->
     <div class="w3-button w3-padding-16 w3-left ">
     	<img src="/images/iconmonstr-friend-6-240.png" style="max-width:45px;" onclick="bask_open()">
     		<div id="foodcnt" class="w3-red"></div>
     </div>
     <div class="w3-center w3-padding-16">디지털메뉴판</div>
-    <%-- <div id="tableno">${param.tableno}</div> --%>
   </div>
 </div>
 
@@ -101,7 +99,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
       	<hr>${item.stonm} <br>
 		<img class="w3-image" alt="${item.stonm}" src="data:image/jpeg;base64, ${item.viewImg}" > 
 		<h5>${item.fdnm}<br>${item.fdprice} 원</h5>
-		<button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_shoppingBag(${stsc.index})">담기</buton>
+		<button id="btn" class="w3-bar-item w3-black w3-button" onclick="fn_shoppingBag(${stsc.index})">담기</button>
 			<input type="hidden" id="stono${stsc.index}" name="stono" value="${item.stono}">
 			<input type="hidden" id="stonm${stsc.index}" name="stonm" value="${item.stonm}">
 			<input type="hidden" id="fdno${stsc.index}" name="fdno" value="${item.fdno}">
@@ -184,7 +182,6 @@ var html = '';
 	}
 	
 	function order(){
-		
 		
 		document.frmParam.action = "/insOrder";
 		document.frmParam.submit();
