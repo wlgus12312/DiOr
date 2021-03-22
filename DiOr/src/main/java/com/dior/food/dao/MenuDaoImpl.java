@@ -36,7 +36,7 @@ public class MenuDaoImpl implements MenuDao{
 		sql = "select A.fdno, A.fdnm, A.fdprice, B.stonm, B.stono, A.timg \r\n"
 				+ "from tb_food A, tb_store B\r\n"
 				+ "where A.stono = B.stono\r\n"
-				+ "and A.fdopyn = 1 and B.stoopyn = 1 and B.stono = ? order by B.stono, A.fdno";
+				+ "and A.fdop_yn = 1 and B.stono = ? order by B.stono, A.fdno";
 		
 		System.out.println(sql); 
 		
@@ -59,13 +59,14 @@ public class MenuDaoImpl implements MenuDao{
 		
 		try {
 			sql = "insert into tb_order (\r\n"
-					+ "ordno, ords, fdno, ordcnt, ordstsc,  rg_dt, ud_dt ) values (\r\n"
-					+ " ? , ISNULL((select MAX(ords)+1 from tb_order where ordno = ? ),1) , ? , ? , 0 , getdate(), getdate())";
+					+ "ordno, ords, fdno, tabno, ordcnt, ordstsc,  rg_dt, ud_dt ) values (\r\n"
+					+ " ? , ISNULL((select MAX(ords)+1 from tb_order where ordno = ? ),1) , ? , ? , ? , 0 , getdate(), getdate())";
 		
 			jdbcTemplate.update(sql
 					, jObj.get("ordno")
 					, jObj.get("ordno")
 					, jObj.get("fdno")
+					, jObj.get("tabno")
 					, jObj.get("ordcnt")
 					);		
 		
@@ -81,7 +82,6 @@ public class MenuDaoImpl implements MenuDao{
 		
 		System.out.println("dao ordno:" + ordno);
 		String sql = "select a.ordno\r\n"
-				    + ", a.ords\r\n"
 				    + ", c.stono\r\n"
 					+ ", c.stonm\r\n"
 					+ ", b.fdno\r\n"
@@ -111,7 +111,7 @@ public class MenuDaoImpl implements MenuDao{
 			result.add(e); 
 		}
 		
-		return  result;
+		return result;
 	}
 
 	public int getOrdersNo() {
@@ -133,8 +133,7 @@ public class MenuDaoImpl implements MenuDao{
 		System.out.println(sql); 
 		
 		menupan = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(menuDto.class));
-		System.out.println("이미지"+ menupan.stream());
-
+		
 		menupan.forEach(System.out :: println);
 		
 		} catch (EmptyResultDataAccessException e) {

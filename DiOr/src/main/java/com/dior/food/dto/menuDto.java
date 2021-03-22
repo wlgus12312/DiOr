@@ -9,20 +9,41 @@ public class menuDto {
 	
 	private long stono    ;
 	private String stonm  ;
-	private String stoopyn;
+	private long fddiv    ;
 	private String fdnm   ;
 	private long fdprice  ;
-	private String fdopyn ;
+	private long fdop_yn  ;
 	private long ordno    ;
 	private long fdno     ;
+	private long tabno    ;
 	private String ordcnt ;
 	private String ordstsc;
 	private String ordstnm;
-	private long   ords   ;
 	private String rg_dt  ;
 	private String ud_dt  ;
 	private byte[] timg   ;
 	private String viewImg;
+	
+	
+	@Override
+	public String toString() {
+		
+		return "[stono=" + stono + ""
+				+ ", stonm=" + stonm + ""
+				+ ", fddiv=" + fddiv + ""
+				+ ", fdnm=" + fdnm + ""
+				+ ", fdprice=" + fdprice + ""
+				+ ", fdop_yn=" + fdop_yn + ""
+				+ ", ordno=" + ordno + ""
+				+ ", fdno=" + fdno + ""				
+				+ ", tabno=" + tabno + ""
+				+ ", ordcnt=" + ordcnt + ""
+				+ ", ordstsc=" + ordstsc + ""
+				+ ", ordstnm=" + ordstnm + ""
+				+ ", rg_dt=" + rg_dt + ""
+				+ ", ud_dt=" + ud_dt + ""
+				+ "]";
+	}
 	
 	public long getStono() {
 		return stono;
@@ -38,14 +59,6 @@ public class menuDto {
 
 	public void setStonm(String stonm) {
 		this.stonm = stonm;
-	}
-
-	public String getStoopyn() {
-		return stoopyn;
-	}
-
-	public void setStoopyn(String stoopyn) {
-		this.stoopyn = stoopyn;
 	}
 
 	public String getFdnm() {
@@ -64,13 +77,6 @@ public class menuDto {
 		this.fdprice = fdprice;
 	}
 
-	public String getFdopyn() {
-		return fdopyn;
-	}
-
-	public void setFdopyn(String fdopyn) {
-		this.fdopyn = fdopyn;
-	}
 	
 	public long getOrdno() {
 		return ordno;
@@ -80,13 +86,6 @@ public class menuDto {
 		this.ordno = ordno;
 	}
 
-	public long getOrds() {
-		return ords;
-	}
-
-	public void setOrds(long ords) {
-		this.ords = ords;
-	}
 	
 	public long getFdno() {
 		return fdno;
@@ -111,7 +110,6 @@ public class menuDto {
 	public void setOrdstsc(String ordstsc) {
 		this.ordstsc = ordstsc;
 	}
-
 
 	public String getOrdstnm() {
 		return ordstnm;
@@ -145,32 +143,6 @@ public class menuDto {
 		this.timg = timg;
 	}
 	
-	
-	public menuDto() {
-		super();
-	}
-
-	
-	@Override
-	public String toString() {
-		
-		return "[stono=" + stono + ""
-				+ ", stonm=" + stonm + ""
-				+ ", stoopyn=" + stoopyn + ""
-				+ ", fdnm=" + fdnm + ""
-				+ ", fdprice=" + fdprice + ""
-				+ ", fdopyn=" + fdopyn + ""
-				+ ", ordno=" + ordno + ""
-				+ ", ords=" + ords + ""
-				+ ", fdno=" + fdno + ""
-				+ ", ordcnt=" + ordcnt + ""
-				+ ", ordstsc=" + ordstsc + ""
-				+ ", ordstnm=" + ordstnm + ""
-				+ ", rg_dt=" + rg_dt + ""
-				+ ", ud_dt=" + ud_dt + ""
-				+ "]";
-	}
-
 	public String getViewImg() {
 		return viewImg;
 	}
@@ -179,20 +151,29 @@ public class menuDto {
 		this.viewImg = viewImg;
 	}
 
+	public long getTabno() {
+		return tabno;
+	}
 
-//	@Override
-//	public String toString() {
-//		return "{\"stono\":" + stono 
-//				+ ", \"stonm\":" + stonm 
-//				+ ", \"stopyn\":" + stopyn 
-//				+ ", \"fdnm\":" + fdnm 
-//				+ ", \"fdprice\":" + fdprice 
-//				+ ", \"fdopyn\":" + fdopyn 
-//				+ ", \"ordno\":" + ordno 
-//				+ ", \"fdno\":" + fdno 
-//				+ ", \"ordcnt\":" + ordcnt 
-//				+ ", \"ordstsc\":" + ordstsc 
-//				+ "}";
-//	}
-	
+	public void setTabno(long tabno) {
+		this.tabno = tabno;
+	}
+
+	public long getFddiv() {
+		return fddiv;
+	}
+
+	public void setFddiv(long fddiv) {
+		this.fddiv = fddiv;
+	}
+
+	public long getFdop_yn() {
+		return fdop_yn;
+	}
+
+	public void setFdop_yn(long fdop_yn) {
+		this.fdop_yn = fdop_yn;
+	}
+
+
 }
