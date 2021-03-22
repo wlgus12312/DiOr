@@ -66,7 +66,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 				<td id="title">메뉴오픈여부</td>
                 <td align="center">
                 	<c:choose>
-                		<c:when test="${item.fdopyn==1}">
+                		<c:when test="${item.fdop_yn==1}">
 		                	오픈 &nbsp;&nbsp;<input type="radio" name="mYn" id="opyn" value="1" checked class="w3-radio">&nbsp;&nbsp;
 		                	미오픈<input type="radio" name="mYn" id="opyn" value="0" class="w3-radio">                		
                 		</c:when>

@@ -9,7 +9,7 @@ public class menuDto {
 	
 	private long stono    ;
 	private String stonm  ;
-	private String stoopyn;
+	//private String stoopyn;
 	private String fdnm   ;
 	private long fdprice  ;
 	private String fdopyn ;
@@ -41,13 +41,13 @@ public class menuDto {
 		this.stonm = stonm;
 	}
 
-	public String getStoopyn() {
-		return stoopyn;
-	}
-
-	public void setStoopyn(String stoopyn) {
-		this.stoopyn = stoopyn;
-	}
+//	public String getStoopyn() {
+//		return stoopyn;
+//	}
+//
+//	public void setStoopyn(String stoopyn) {
+//		this.stoopyn = stoopyn;
+//	}
 
 	public String getFdnm() {
 		return fdnm;
@@ -157,7 +157,7 @@ public class menuDto {
 		
 		return "[stono=" + stono + ""
 				+ ", stonm=" + stonm + ""
-				+ ", stoopyn=" + stoopyn + ""
+				//+ ", stoopyn=" + stoopyn + ""
 				+ ", fdnm=" + fdnm + ""
 				+ ", fdprice=" + fdprice + ""
 				+ ", fdopyn=" + fdopyn + ""
