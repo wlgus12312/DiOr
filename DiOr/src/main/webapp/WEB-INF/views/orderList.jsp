@@ -83,7 +83,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	<table class= "w3-table-all">
 		<tr>
 			<th style="background-color:black; color:white;">주문번호</th>
-			<th style="background-color:black; color:white;">상세</th>
 			<th style="background-color:black; color:white;">음식점</th>
 			<th style="background-color:black; color:white;">메뉴</th>
 			<th style="background-color:black; color:white;">갯수</th>
@@ -93,7 +92,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		<c:forEach items="${orderList}" var="item" varStatus="stsc">
 			<tr>
 				<td> ${item.ordno} </td>
-				<td> ${item.ords} </td>
 				<td> ${item.stonm} </td>
 				<td> ${item.fdnm} </td>
 				<td> ${item.ordcnt} </td>

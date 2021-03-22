@@ -59,11 +59,10 @@ public class MenuDaoImpl implements MenuDao{
 		
 		try {
 			sql = "insert into tb_order (\r\n"
-					+ "ordno, ords, fdno, tabno, ordcnt, ordstsc,  rg_dt, ud_dt ) values (\r\n"
-					+ " ? , ISNULL((select MAX(ords)+1 from tb_order where ordno = ? ),1) , ? , ? , ? , 0 , getdate(), getdate())";
+					+ "ordno, fdno, tabno, ordcnt, ordstsc,  rg_dt, ud_dt ) values (\r\n"
+					+ " ? , ? , ? , ? , 0 , getdate(), getdate())";
 		
 			jdbcTemplate.update(sql
-					, jObj.get("ordno")
 					, jObj.get("ordno")
 					, jObj.get("fdno")
 					, jObj.get("tabno")
@@ -116,7 +115,7 @@ public class MenuDaoImpl implements MenuDao{
 
 	public int getOrdersNo() {
 		int ordersNo = 0; 
-		String sql = "select MAX(ordno) +1 from tb_order";
+		String sql = "select isnull(max(ordno) + 1,1) from tb_order";
 		ordersNo = jdbcTemplate.queryForObject(sql, int.class);	
 		return ordersNo;
 	}
