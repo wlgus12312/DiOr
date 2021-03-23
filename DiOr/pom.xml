@@ -146,6 +146,15 @@
 		    <artifactId>javase</artifactId>
 		    <version>3.1.0</version>
 		</dependency>
+		
+		<!-- 외장톰캣 -->
+		<dependency>
+     		<groupId>org.springframework.boot</groupId>
+      		<artifactId>spring-boot-starter-tomcat</artifactId>
+    		<scope>provided</scope>
+	  </dependency>	
+		
+		
 	</dependencies>
 
 	
@@ -159,4 +168,5 @@
 		</plugins>
 	</build>
 
+	<packaging>war</packaging>
 </project>
