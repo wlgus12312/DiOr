@@ -13,6 +13,9 @@ public interface AdminDao{
 	ArrayList<famFood> getStore() throws Exception;
 	ArrayList<famFood> getFood() throws Exception;
 	ArrayList<famFood> getFood(Map menuMap) throws Exception;
+	ArrayList<famFood> get_ResStore(Map menuMap) throws Exception;
+	ArrayList<famFood> get_ResFood(Map menuMap) throws Exception;
+	ArrayList<famFood> get_ResFood2(Map menuMap) throws Exception;
 	ArrayList<famQR> getQR() throws Exception;;
 	int setStore_Ins(Map map) throws Exception;
 	int setStore_Upd(Map map) throws Exception;

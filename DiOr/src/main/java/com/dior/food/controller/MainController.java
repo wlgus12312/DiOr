@@ -119,6 +119,24 @@ public class MainController {
 		mv.setViewName("menuAdmin");
 		
 		return mv;
+	}
+	
+	@RequestMapping("/menu_Res_Admin")
+	public ModelAndView menu_Res_Admin(HttpServletRequest req, HttpServletResponse res) throws Exception{
+
+		ModelAndView mv = new ModelAndView();
+		Map storeMap     = new HashMap<String, Map<String, Object>>();
+		List storeList   = new ArrayList<famFood>();
+		
+		//storeMap.put("storeId", req.getParameter("storeId"));
+		storeMap.put("storeId", "1"); //Test.. 화면에서 레스토랑ID 받아서 처리예정 
+		
+		storeList = AdminService.get_ResFood(storeMap);
+		mv.addObject("storeList",storeList);
+		
+		mv.setViewName("menu_Res_Admin");
+		
+		return mv;
 	}	
 	
 	@RequestMapping("/menuAdmin_S_Pop")
@@ -171,6 +189,24 @@ public class MainController {
 		
 		return mv;
 	}	
+	
+	@RequestMapping("/menu_Res_Admin_M_Pop")
+	public ModelAndView menu_Res_Admin_M_Pop(HttpServletRequest req) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		List storeList   = new ArrayList<famFood>();
+		
+		Map storeMap     = new HashMap<String, Map<String, Object>>();
+				  
+		storeMap.put("storeId", req.getParameter("storeId"));
+		
+		storeList = AdminService.get_ResStore(storeMap);
+		
+		mv.addObject("storeList",storeList);
+		mv.setViewName("menu_Res_Admin_M_Pop");
+		
+		return mv;
+	} 
 	
 	@RequestMapping("/menuAdmin_M_Pop")
 	public ModelAndView menuAdmin_M_Pop(HttpServletRequest req) throws Exception{
@@ -237,6 +273,7 @@ public class MainController {
 		menuMap.put("mYn", req.getParameter("mYn"));
 		menuMap.put("mNo", req.getParameter("mNo"));
 		menuMap.put("mImage", req2.getFile("mImage").getBytes());
+		menuMap.put("mSize", req2.getFile("mImage").getSize());
 		
 		int result = AdminService.setMenu_Upd(menuMap);
 		
@@ -261,7 +298,7 @@ public class MainController {
 		mv.clear();
 		
 		return mv;
-	}	 
+	}
 	
 	@RequestMapping("/qrAdmin")
 	public ModelAndView qrAdmin(HttpServletRequest req, HttpServletResponse res) throws Exception{

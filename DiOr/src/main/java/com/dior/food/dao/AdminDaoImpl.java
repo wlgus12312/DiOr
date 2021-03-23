@@ -34,6 +34,17 @@ public class AdminDaoImpl implements AdminDao{
 	}
 	
 	@Override
+	public ArrayList<famFood> get_ResStore(Map menuMap) throws Exception{				
+		String sql = "SELECT * FROM TB_STORE"
+				   + " WHERE STONO = " + menuMap.get("storeId");
+		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));		
+		
+		//foods.forEach(System.out :: println);
+		
+		return (ArrayList<famFood>) foods;
+	}
+	
+	@Override
 	public ArrayList<famFood> getFood() throws Exception{				
 		String sql = "SELECT A.STONO   " 
 				   + "     , A.STONM    "  
@@ -88,7 +99,65 @@ public class AdminDaoImpl implements AdminDao{
 		}		
 		
 		return (ArrayList<famFood>) foods;
+	}
+	
+	@Override
+	public ArrayList<famFood> get_ResFood(Map menuMap) throws Exception{				
+		String sql = "SELECT A.STONO   " 
+				   + "     , A.STONM    "  
+				   + "     , A.STOTEL   "
+				   + "     , B.FDNO     "
+			 	   + "     , B.FDNM     "
+		 		   + "     , Replace(Convert(Varchar, Convert(Money, B.FDPRICE),112),'.00','') AS FDPRICE  "
+	 			   + "     , CASE WHEN B.FDOP_YN = 1 THEN '오픈' ELSE '미오픈' END AS FDOP_YN   "
+ 			       //+ "     , B.FDIMG    "
+ 			       + "     , B.TIMG    "
+				   + "  FROM TB_STORE A "
+				   + "     , TB_FOOD  B "
+				   + " WHERE A.STONO = B.STONO "
+				   + "   AND A.STONO = " + menuMap.get("storeId")
+				   + " ORDER BY A.STONO ASC, B.FDNO ";
+		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));		
+       
+		for(int i=0; i<foods.size(); i++) {
+			if(foods.get(i).getTimg() != null) {
+				byte[] bt = foods.get(i).getTimg();
+	            String vimg = new String( Base64.encodeBase64(bt));
+	            foods.get(i).setVimg(vimg);
+			}
+		}
+		
+		return (ArrayList<famFood>) foods;
 	}	
+	
+	@Override
+	public ArrayList<famFood> get_ResFood2(Map menuMap) throws Exception {
+		String sql = "SELECT A.STONO   " 
+				   + "     , A.STONM    "
+				   + "     , A.STOTEL   "
+				   + "     , B.FDNO     "
+			 	   + "     , B.FDNM     "
+		 		   + "     , B.FDPRICE  "
+	 			   + "     , B.FDOP_YN   "
+			       + "     , B.TIMG    "
+				   + "  FROM TB_STORE A "
+				   + "     , TB_FOOD  B "
+				   + " WHERE A.STONO = B.STONO "
+				   + "   AND B.FDNO = " + menuMap.get("menuId")
+				   + " ORDER BY A.STONO ASC, B.FDNO ";
+		
+		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));
+		
+		for(int i=0; i<foods.size(); i++) {
+			if(foods.get(i).getTimg() != null) {
+				byte[] bt = foods.get(i).getTimg();
+	            String vimg = new String( Base64.encodeBase64(bt));
+	            foods.get(i).setVimg(vimg);
+			}
+		}		
+		
+		return (ArrayList<famFood>) foods;
+	}
 
 	@Override
 	public int setStore_Ins(Map storeMap) throws Exception {
@@ -131,12 +200,22 @@ public class AdminDaoImpl implements AdminDao{
 	
 	@Override
 	public int setMenu_Upd(Map MenuMap) throws Exception {
-		String sql = "UPDATE TB_FOOD SET fdnm = ?, fdprice = ?, fdop_yn = ?, timg = ? WHERE fdno = ? ";
-		jdbcTemplate.update(sql, MenuMap.get("mName")
-				               , MenuMap.get("mPrice")
-				               , MenuMap.get("mYn")
-				               , MenuMap.get("mImage")
-				               , MenuMap.get("mNo"));
+		String sql = "";
+		
+		if(!MenuMap.get("mSize").toString().equals("0")) {
+			sql = "UPDATE TB_FOOD SET fdnm = ?, fdprice = ?, fdop_yn = ?, timg = ? WHERE fdno = ? ";
+			jdbcTemplate.update(sql, MenuMap.get("mName")
+					               , MenuMap.get("mPrice")
+					               , MenuMap.get("mYn")
+					               , MenuMap.get("mImage")
+					               , MenuMap.get("mNo"));
+		} else {
+			sql = "UPDATE TB_FOOD SET fdnm = ?, fdprice = ?, fdop_yn = ? WHERE fdno = ? ";
+			jdbcTemplate.update(sql, MenuMap.get("mName")
+					               , MenuMap.get("mPrice")
+					               , MenuMap.get("mYn")
+					               , MenuMap.get("mNo"));
+		}		
 		
 		return 0;
 	}	
