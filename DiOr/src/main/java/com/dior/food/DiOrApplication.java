@@ -7,7 +7,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-@EnableAspectJAutoProxy
 @SpringBootApplication
 @Configuration
 public class DiOrApplication extends SpringBootServletInitializer{
