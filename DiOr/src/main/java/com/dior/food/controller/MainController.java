@@ -353,6 +353,7 @@ public class MainController {
 		mv.setViewName("tableQr");
 		return mv;
 	}
+	
 		
 	//바코드
 	@ResponseBody

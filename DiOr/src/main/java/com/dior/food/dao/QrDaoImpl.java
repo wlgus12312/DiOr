@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository("QrDao")
 public class QrDaoImpl implements QrDao{
 
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	

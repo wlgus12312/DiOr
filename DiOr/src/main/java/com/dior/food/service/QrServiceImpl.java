@@ -8,6 +8,7 @@ import com.dior.food.dao.QrDao;
 @Service("QrService")
 public class QrServiceImpl implements QrService{
 	
+	
 	@Autowired
 	private QrDao qrDao;
 
