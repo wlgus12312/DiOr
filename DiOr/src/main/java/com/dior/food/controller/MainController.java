@@ -95,21 +95,6 @@ public class MainController {
 		
 		return mv;
 	}
-
-	@RequestMapping("/menupan")
-	public ModelAndView menupan(HttpServletRequest req) throws Exception{
-
-		ModelAndView mv = new ModelAndView();
-		List testList   = new ArrayList<famFood>();
-		Map testMap     = new HashMap<String, Map<String, Object>>();
-		  
-		testList = MainService.Maintest();
-		
-		mv.addObject(testList);
-		mv.setViewName("menupan");
-		
-		return mv;
-	}
 	  
 	@RequestMapping("/menuAdmin")
 	public ModelAndView menuAdmin(HttpServletRequest req, HttpServletResponse res) throws Exception{
@@ -133,11 +118,12 @@ public class MainController {
 		List storeList   = new ArrayList<famFood>();
 		
 		//storeMap.put("storeId", req.getParameter("storeId"));
-		storeMap.put("storeId", "1"); //Test.. 화면에서 레스토랑ID 받아서 처리예정 
+		storeMap.put("storeId", req.getParameter("stono")); //Test.. 화면에서 레스토랑ID 받아서 처리예정 
 		
 		storeList = AdminService.get_ResFood(storeMap);
-		mv.addObject("storeList",storeList);
 		
+		mv.addObject("storeList",storeList);
+		mv.addObject("storeMap",storeMap);
 		mv.setViewName("menu_Res_Admin");
 		
 		return mv;
