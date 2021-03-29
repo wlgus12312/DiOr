@@ -17,7 +17,7 @@
      
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-
+  <script src="js/enscript.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
@@ -55,20 +55,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		<div class="w3-center w3-padding-16">디지털메뉴판</div>
 	</div>
 	<div class="w3-center">
-		<c:forEach items="${userList}" var="item" varStatus="stsc">
-		    <div>${item.stonm} </div>
-			<div>${item.userid}</div>
-			<hr>
-		</c:forEach>
-		<form id="frmParam"name="frmParam" enctype="multipart/form-data" contentType="application/json">
-			<input type="hidden" id="frmStono" name="stono" value="${userList[0].stono}">
+	<hr>
+		<form id="frmParam"name="frmParam" method="post" enctype="multipart/form-data" contentType="application/json">
+			<div class="w3-center">
+				<input type="text" id="stonm" name="stonm" accesskey="L" placeholder="레스토랑이름" class="int" maxlength="41" value="">
+			</div>
+			<div class="w3-center">				
+				<input type="text" id="userid" name="userid" accesskey="L" placeholder="관라지아이디" class="int" maxlength="41" value="">
+			</div>
+			<div class="w3-center">
+				<input type="password" id="userpw" name="userpw" placeholder="관리자비밀번호" class="int" maxlength="16">
+			</div>
+			<div class="w3-center">
+				<input type="text" id="tel" name="tel" accesskey="L" placeholder="관리자연락처" class="int" maxlength="41" value="">
+			</div>		
+			
+			<input type="button" title="가입신청" value="가입신청" class="w3-bar-item w3-black w3-button" id="btn_sign_on" onclick="fn_signOn()">
 		</form>
-		<div class="w3-quarter">
-			<input type="button" title="메뉴관리" value="메뉴관리" class="w3-bar-item w3-black w3-button" id="btn_go_menu_admin" onclick="fn_go_menuAdmin()">
-			<input type="button" title="주문받기" value="주문받기" class="w3-bar-item w3-black w3-button" id="btn_go_ordering" onclick="fn_go_ordering()">
-			<input type="button" title="주문내역보기" value="주문내역보기" class="w3-bar-item w3-black w3-button" id="btn_go_order_list" onclick="fn_go_orderList()">
-			<input type="button" title="QR생성" value="QR생성" class="w3-bar-item w3-black w3-button" id="btn_go_qr" onclick="fn_go_qr()">
-		</div>
 	</div>
 </div>
 
@@ -77,34 +80,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <script> 
 
 var url = document.location.href.split("/")[3]; 
-if(url == 'login'){
-	//alert("");
-	
+if(url == 'insUser'){
+	alert("가입신청이 완료되었습니다.");
+	window.close();  
 }
 
-const userid = "${userList[0].userid}"; 
-const apv_yn = "${userList[0].apv_yn}";
-const stono = "${userList[0].stono}";
-const stonm = "${userList[0].stonm}";
 
-// 1:승인 0:미승
-if(apv_yn == 0){
-	alert(" 아직 승인되지 않은 아이디입니다. \n 관리자에게 문의하세요.");
-}
-
-function fn_go_menuAdmin(){
-	document.frmParam.action = "/menuAdmin";
+function fn_signOn(){
+	document.getElementById("userpw").value = SHA256(document.getElementById("userpw").value);
+	document.frmParam.action = "/insUser";
 	document.frmParam.submit();
-}
-
-function fn_go_ordering(){
-
-}
-function fn_go_orderList(){
-
-}
-function fn_go_qr(){
-
+	
 }
 </script>
 </html>

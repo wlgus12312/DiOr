@@ -1,72 +1,79 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hello WebSocket</title>
-  <!-- <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-  <!-- <link href="/main.css" rel="stylesheet"> -->
-  <!-- <script src="/webjars/jquery/jquery.min.js"></script> -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" 
-          integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-  crossorigin="anonymous"></script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-  <script src="/app.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>QR 디지털 메뉴판</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/apple-touch-icon.png">
+	<script src="js/enscript.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+.w3-bar-block .w3-bar-item {padding:20px}
+.arrow-right {
+  position: absolute;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid black;
+  margin-left: 9px;
+  animation: horizontal 0.7s ease-in-out infinite;
+}
+
+@keyframes horizontal {
+  0% {
+    margin-left: 9px;
+  }
+  50% {
+    margin-left: 11px;
+  }
+  100% {
+    margin-left: 9px;
+  }
+}
+</style>
 </head>
+
 <body>
-<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable Javascript and reload this page!</h2></noscript>
-<div id="main-content" class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <form class="form-inline">
-        <div class="form-group">
-          <label for="connect">WebSocket connection:</label>
-          <button id="connect" class="btn btn-default" type="submit">Connect</button>
-          <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
-          </button>
-            <label for="connect2">WebSocket connection:</label>
-          <button id="connect2" class="btn btn-default" type="submit">Connect2</button>
-          <button id="disconnect2" class="btn btn-default" type="submit" disabled="disabled">Disconnect
-          </button>       
-        </div>
-      </form>
-    </div>
-    <div class="col-md-6">
-      <form class="form-inline">
-        <div class="form-group">
-          <label for="name">What is your name?</label>
-          <input type="text" id="name" class="form-control" placeholder="Your name here...">
-        </div>
-        <button id="send" class="btn btn-default" type="submit">Send</button>
-        <button id="send2" class="btn btn-default" type="submit">Send2</button>
-      </form>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <table id="conversation" class="table table-striped">
-        <thead>
-        <tr>
-          <th>Greetings</th>
-        </tr>
-        </thead>
-        <tbody id="greetings">
-        </tbody>
-      </table>
-      <table id="conversation2" class="table table-striped">
-        <thead>
-        <tr>
-          <th>Greetings2</th>
-        </tr>
-        </thead>
-        <tbody id="greetings2">
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+	<div class="w3-top">
+		<div class="w3-white" style="max-width:1200px;margin:auto">
+			<div class="w3-center w3-padding-16">QR 디지털 메뉴판</div>
+		</div>
+		<div class="w3-center">
+		<form id="frmParam"name="frmParam" method="post" contentType="application/json" action = "/login">
+		<hr>
+			<div class="w3-center">
+				<input type="text" id="userid" name="userid" accesskey="L" placeholder="아이디" class="int" maxlength="41" value="">
+			</div>
+			<div class="w3-center">
+				<input type="password" id="userpw" name="userpw" placeholder="비밀번호" class="int" maxlength="16">
+			</div>
+			<br>
+			<input type="button" title="로그인" value="로그인" class="w3-bar-item w3-black w3-button" id="btn_login" onclick="fn_logIn()">
+		</form>
+		<form id="frmJoin"name="frmJoin" method="get" contentType="application/json">
+			<button title="가입신청" value="가입신청" class="w3-bar-item w3-black w3-button" id="btn_sign_on" onclick="fn_signOn()">가입신청</button>
+		</form>
+		</div>
+	</div>
 </body>
+
+<script> 
+function fn_logIn(){
+	document.getElementById("userpw").value = SHA256(document.getElementById("userpw").value);
+	document.frmParam.action = "/login";
+	document.frmParam.submit();
+}
+
+function fn_signOn(){
+	var url = "/signon";
+	var name = "popup";
+	window.open(url, name, "width=50, hegiht=100, tollbar=no, status=no, location=no, scrollbar=no,menubar=no,resize=no,left=50, right=50");
+}
+
+</script>
 </html>
