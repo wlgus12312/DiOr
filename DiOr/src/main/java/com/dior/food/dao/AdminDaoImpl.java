@@ -171,9 +171,10 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public int setStore_Upd(Map storeMap) throws Exception {
 		//String sql  = "UPDATE TB_STORE SET stonm = ?, stoopyn = ? WHERE stono = ? ";
-		String sql  = "UPDATE TB_STORE SET stonm = ? WHERE stono = ? ";
+		String sql  = "UPDATE TB_STORE SET stonm = ?, stotel = ? WHERE stono = ? ";
 		jdbcTemplate.update(sql, storeMap.get("sName")
 				               //, storeMap.get("sYn")
+							   , storeMap.get("sTel")
 				               , storeMap.get("sId"));
 		
 		return 0;
@@ -182,7 +183,8 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public int setMenu_Ins(Map MenuMap) throws Exception {
 		
-		String sql = "INSERT INTO TB_FOOD(fdno, fdnm, fdprice, fdop_yn, stono, timg) VALUES ((select isnull(max(fdno)+1,1) from tb_food), ?, ?, '1', ?, ?)";
+		String sql = "INSERT INTO TB_FOOD(fdno, fddiv, fdnm, fdprice, fdop_yn, stono, timg) VALUES "
+				   + " ((select isnull(max(fdno)+1,1) from tb_food), 1, ?, ?, '1', ?, ?)";
 		jdbcTemplate.update(sql, MenuMap.get("menuName")
 				               , MenuMap.get("menuPrice")
 				               , MenuMap.get("selectStore")
