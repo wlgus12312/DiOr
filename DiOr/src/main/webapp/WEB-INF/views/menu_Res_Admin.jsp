@@ -75,6 +75,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 			<td align="center">${item.fdop_yn}</td>
 		</tr>
 		</c:forEach>
+		<input type="hidden" id="storeId" name="storeId" value="${storeMap.storeId}">
 	</table>
 	</div>
 </div>

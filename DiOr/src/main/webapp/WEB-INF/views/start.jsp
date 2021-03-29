@@ -60,8 +60,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 			<div>${item.userid}</div>
 			<hr>
 		</c:forEach>
-		<form id="frmParam"name="frmParam" enctype="multipart/form-data" contentType="application/json">
-			<input type="hidden" id="frmStono" name="stono" value="${userList[0].stono}">
+		<form id="frmParam"name="frmParam" method="POST" enctype="multipart/form-data" contentType="application/json">
+			<input type="hidden" id="stono" name="stono" value="${userList[0].stono}">
 		</form>
 		<div class="w3-quarter">
 			<input type="button" title="메뉴관리" value="메뉴관리" class="w3-bar-item w3-black w3-button" id="btn_go_menu_admin" onclick="fn_go_menuAdmin()">
@@ -93,12 +93,13 @@ if(apv_yn == 0){
 }
 
 function fn_go_menuAdmin(){
-	document.frmParam.action = "/menuAdmin";
+	document.frmParam.action = "/menu_Res_Admin";
 	document.frmParam.submit();
 }
 
 function fn_go_ordering(){
-
+	document.frmParam.action = "/food";
+	document.frmParam.submit();
 }
 function fn_go_orderList(){
 
