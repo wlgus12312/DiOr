@@ -32,12 +32,7 @@ connectFood(${stono});
 <body>
 
 <!-- Top menu -->
-<div class="w3-top">
-  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-center w3-padding-16">주문내역 </div>
-  </div>
-</div>
-
+<%@ include file = "start.jsp" %>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">

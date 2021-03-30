@@ -36,12 +36,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 </script>
 
 <body>
+
 <!-- Top menu -->
-<div class="w3-top">
+<!-- <div class="w3-top">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-center w3-padding-16"> 레스토랑관리자 메뉴관리 </div>
   </div>
-</div>
+</div> -->
+<%@ include file = "start.jsp" %>
 <hr>
 <div class="w3-main w3-content w3-padding" style="max-width:auto;margin-top:50px">
 	<table align="center">

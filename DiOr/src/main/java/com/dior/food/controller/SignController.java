@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -38,9 +39,19 @@ public class SignController {
 		jObect.put("userpw", req.getParameter("userpw"));
 		
 		userList = SignService.getUserInfo(jObect);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("userid", req.getParameter("userid"));
+		session.setAttribute("stono", ((signDto) userList.get(0)).getStono());
+		session.setAttribute("stonm", ((signDto) userList.get(0)).getStonm());
+		session.setAttribute("apv_yn", ((signDto) userList.get(0)).getApv_yn());
+		
+		System.out.println(session.getAttribute("stono"));
+		System.out.println(session.getAttribute("stonm"));
+		System.out.println(session.getAttribute("apv_yn"));
+		
 		mv.addObject("userList",userList);
-		mv.setViewName("start");
-		//menuList.forEach(System.out :: println);
+		mv.setViewName("index");
 		return mv;
 		
 	}
