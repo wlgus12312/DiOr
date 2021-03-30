@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ include file = "start.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,41 +52,64 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <script> 
 	function createQr(){
 
-		//조리시작	
 		$.ajax({
 			url:'/createQr',
 			type:'POST',
 			dataType:'json',
 			data:{
-				stono:$("#stono").val(),
-				tableno:$("#tableno").val(),
+				stono:<%=stono%>,
+				tableno:$("#tablenoQ").val(),
 			},
 			success:function(data) {			
 				var imgTag = "";
-				imgTag = "<img class='w3-image' src='data:image/png;base64," + data.qrCode + "'>";
+				imgTag += "<div style='width:50%; border:1px solid black; float:left;'><label>" + "테이블번호 : " + $("#tablenoQ").val() + "</label>";
+				imgTag += "<img height='280' width='180' class='w3-image' src='data:image/png;base64," + data.qrCode + "'></div>";
 				$("#qrImg").append(imgTag);
 			}
-		});		
-		
+		});				
 	}
-
+	
+	
+	//페이지 로딩 시 qr코드 불러오기
+	window.onload = function(){
+		
+		$.ajax({
+			url:'/selectQr',
+			type:'POST',
+			dataType:'json',
+			data:{
+				stono:<%=stono%>,				
+			},
+			success:function(data) {
+				
+				for(var i = 0; i < data.length; i++){					
+					var imgTag = "";
+					imgTag += "<div style='width:50%; border:1px solid black; float:left;'><label>" + "테이블번호 : " + data[i].FDNO + "</label>";
+					imgTag += "<img height='280' width='180' class='w3-image' src='data:image/png;base64," + data[i].QIMG + "'></div>";
+					$("#qrImg").append(imgTag);		
+				}			
+			}
+		});		
+	
+	
+	
+	}
+	
 </script>
 
 <body>
-<div class="w3-top">
-	<div class="w3-white" style="max-width:1200px;margin:auto">
-		<div class="w3-center w3-padding-16">테이블 QR 생성</div>
+<!-- Top menu -->
+	
+	<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+		<form id="qrfrm" method="post">		
+			<label>테이블 번호 : </label><input id="tablenoQ">
+			<button onclick="createQr()">QR코드 생성</button>
+		</form>
+		<br>
+		<form>
+			<div id="qrImg" style='width:100%;'>
+			</div>
+		</form>
 	</div>
-	<form id="qrfrm" method="post">
-		<input id="stono">
-		<input id="tableno">
-		<button onclick="createQr()">QR코드 생성</button>
-		
-	</form>
-	<form id="qrImg">
-		
-	</form>
-</div>
-
 </body>
 </html>

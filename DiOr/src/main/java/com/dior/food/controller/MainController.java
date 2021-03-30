@@ -378,7 +378,7 @@ public class MainController {
 	}
 	
 		
-	//바코드
+	//바코드 생성
 	@ResponseBody
 	@RequestMapping(value="/createQr", method=RequestMethod.POST)
 	public Map createQr(HttpServletRequest req, HttpServletResponse res) throws Exception{
@@ -433,12 +433,26 @@ public class MainController {
 		//ModelAndView mv = new ModelAndView();			
 		//mv.setViewName("qrList");
 		
-		//mv.addObject("qrCode",imageString);
-		
+		//mv.addObject("qrCode",imageString);		
 		return reMap;
 		
-	}
+	}		
+	
+	//바코드 생성
+		@ResponseBody
+		@RequestMapping(value="/selectQr", method=RequestMethod.POST)
+		public List selectQr(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		
+			List reList = new ArrayList<Map>();			
+			String stono   = req.getParameter("stono");
+			
+			reList = qrService.selectQr(stono);
+			
+			return reList;
+		}
+	
+	
+	
 }
 
 
