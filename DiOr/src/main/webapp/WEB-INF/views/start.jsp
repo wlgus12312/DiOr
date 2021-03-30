@@ -57,7 +57,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <body>
 <!-- Sidebar (hidden by default) -->
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
-	<a href="javascript:void(0)" onclick="bask_reset()" class="w3-button w3-left"><h5>초기화</h5></a>
 	<a href="javascript:void(0)" onclick="bask_close()" class="w3-button w3-right">◀</a>
 	<div class="w3-center w3-padding-16">
 		마이메뉴 
@@ -74,18 +73,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
   <div class="w3-white" style="max-width:1200px;margin:auto">
     <div class="w3-button w3-padding-16 w3-left ">
     	<img src="/images/iconmonstr-friend-6-240.png" style="max-width:45px;" onclick="bask_open()">
-    		<div id="foodcnt" class="w3-red"></div>
     </div>
     <div class="w3-center w3-padding-16"><%=stonm%> 디지털메뉴판</div>
-		<form id="frmParam"name="frmParam" method="POST" enctype="multipart/form-data" contentType="application/json">
-			<input type="hidden" id="stono" name="stono" value="${userList[0].stono}">
+		<form id="top_frmParam"name="top_frmParam" method="POST" enctype="multipart/form-data" contentType="application/json">
+			<input type="hidden" id="top_stono" name="stono" value="${userList[0].top_stono}">
 		</form>
   </div>
 </div>
-<div class="w3-center">
-	<div class="w3-quarter">
-		</div>
-</div>
+
 
 </body>
 
@@ -103,20 +98,20 @@ if(<%=apv_yn%> == 0){
 }
 
 function fn_go_menuAdmin(){
-	document.frmParam.action = "/menu_Res_Admin";
-	document.frmParam.submit();
+	document.top_frmParam.action = "/menu_Res_Admin";
+	document.top_frmParam.submit();
 }
 
 function fn_go_ordering(){
-	document.frmParam.action = "/food";
-	document.frmParam.submit();
+	document.top_frmParam.action = "/food";
+	document.top_frmParam.submit();
 }
 function fn_go_orderList(){
 	
 }
 function fn_go_qr(){
-	document.frmParam.action = "/tableQr";
-	document.frmParam.submit();
+	document.top_frmParam.action = "/tableQr";
+	document.top_frmParam.submit();
 }
 function bask_open() {
   document.getElementById("mySidebar").style.display = "block";
