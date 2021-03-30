@@ -4,7 +4,7 @@
 <%
     session = request.getSession();
     String stonm = session.getAttribute("stonm").toString();
-    String top_stono = session.getAttribute("top_stono").toString();
+    String stono = session.getAttribute("stono").toString();
     String userid = session.getAttribute("userid").toString();
     String apv_yn = session.getAttribute("apv_yn").toString();
 %>
