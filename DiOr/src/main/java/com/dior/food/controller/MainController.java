@@ -387,7 +387,7 @@ public class MainController {
 		String stono   = req.getParameter("stono");
 		String tableno = req.getParameter("tableno");
 				
-		String urlParam = "http://192.168.0.210/menupan?stono="+stono+"?tableno="+tableno;
+		String urlParam = "http://brain21c.iptime.org:8080/menupan?stono="+stono+"?tableno="+tableno;
 				
 		String url = new String (urlParam.getBytes("UTF-8"),"ISO-8859-1");		
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
