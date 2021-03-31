@@ -110,7 +110,7 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping("/foodList")
+	@RequestMapping("/foodList") 
 	public ModelAndView foodList(HttpServletRequest req, HttpServletResponse res) throws Exception{
 
 		ModelAndView mv = new ModelAndView();

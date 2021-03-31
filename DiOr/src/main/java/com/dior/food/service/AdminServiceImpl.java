@@ -50,7 +50,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public ArrayList<famFood> get_FoodList(Map menuMap) throws Exception {
 		// TODO Auto-generated method stub
-		return AdminDao.get_FoodList(menuMap);
+		return AdminDao.get_FoodList(menuMap); 
 	}		
 
 	public int setStore_Ins(Map storeMap) throws Exception{
