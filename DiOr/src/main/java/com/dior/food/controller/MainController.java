@@ -29,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,6 +81,10 @@ public class MainController {
 	private OrderService OrderService;
 	@Autowired
 	private QrService qrService;
+	
+	@Value("${say-hello}")
+    private String sayHello;
+	
 	
 	
 	@RequestMapping("/main")
@@ -407,7 +412,9 @@ public class MainController {
 		String stono   = req.getParameter("stono");
 		String tableno = req.getParameter("tableno");
 				
-		String urlParam = "http://brain21c.iptime.org:8080/menupan?stono="+stono+"&tableno="+tableno;
+		System.out.println("sayHello : " + sayHello);
+		
+		String urlParam = sayHello + "/menupan?stono="+stono+"&tableno="+tableno;
 				
 		String url = new String (urlParam.getBytes("UTF-8"),"ISO-8859-1");		
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
