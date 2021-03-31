@@ -16,6 +16,8 @@ public class famFood {
 	private String ordstsc;
 	private byte[] timg;
 	private String vimg;
+	private String rg_dt  ;
+	private String ud_dt  ;	
 	
 	public long getStono() {
 		return stono;
@@ -123,6 +125,8 @@ public class famFood {
 				+ ", fdno=" + fdno + ""
 				+ ", ordcnt=" + ordcnt + "" 
 				+ ", vimg=" + vimg + ""
+				+ ", rg_dt=" + rg_dt + ""
+				+ ", ud_dt=" + ud_dt + ""				
 				+ ", ordstsc=" + ordstsc + "]";
 	}
 
@@ -133,6 +137,22 @@ public class famFood {
 	public void setVimg(String vimg) {
 		this.vimg = vimg;
 	}
+	
+	public String getRg_dt() {
+		return rg_dt;
+	}
+
+	public void setRg_dt(String rg_dt) {
+		this.rg_dt = rg_dt;
+	}
+
+	public String getUd_dt() {
+		return ud_dt;
+	}
+
+	public void setUd_dt(String ud_dt) {
+		this.ud_dt = ud_dt;
+	}	
 	
 
 }

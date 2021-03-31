@@ -46,6 +46,12 @@ public class AdminServiceImpl implements AdminService{
 	public ArrayList<famFood> get_ResFood2(Map menuMap) throws Exception{
 		return AdminDao.get_ResFood2(menuMap);
 	}	
+	
+	@Override
+	public ArrayList<famFood> get_FoodList(Map menuMap) throws Exception {
+		// TODO Auto-generated method stub
+		return AdminDao.get_FoodList(menuMap); 
+	}		
 
 	public int setStore_Ins(Map storeMap) throws Exception{
 		// TODO Auto-generated method stub
@@ -86,6 +92,6 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		int result = AdminDao.setQR_Ins(qrMap);
 		return result;
-	}	
+	}
 		
 }
