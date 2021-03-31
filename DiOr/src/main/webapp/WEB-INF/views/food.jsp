@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ include file = "start.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,12 +27,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 </style>
 </head>
 <script>
-connectFood(${stono});
+connectFood(<%=stono%>);
 </script>
 <body>
-
-<!-- Top menu -->
-<%@ include file = "start.jsp" %>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
