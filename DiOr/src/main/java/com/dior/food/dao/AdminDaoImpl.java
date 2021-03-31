@@ -158,6 +158,26 @@ public class AdminDaoImpl implements AdminDao{
 		
 		return (ArrayList<famFood>) foods;
 	}
+	
+	@Override
+	public ArrayList<famFood> get_FoodList(Map menuMap) throws Exception{		
+		String sql = " SELECT A.ORDNO      \r\n"
+				+ " 	    , A.FDNO       \r\n"
+				+ " 	    , A.ORDCNT     \r\n"
+				+ " 	    , B.FDNM       \r\n"
+				+ " 	    , CONVERT(VARCHAR,A.RG_DT,120) AS RG_DT  \r\n"
+				+ " 	    , CONVERT(VARCHAR,A.UD_DT,120) AS UD_DT  \r\n"
+				+ " 	 FROM TB_ORDER A, TB_FOOD B                  \r\n"
+				+ " 	WHERE A.FDNO = B.FDNO                        \r\n"
+				+ "       AND B.STONO = " + menuMap.get("stono") +  "\r\n"
+				+ "     ORDER BY RG_DT DESC ";
+		
+		List<famFood> foods = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(famFood.class));		
+		
+		//foods.forEach(System.out :: println);
+		
+		return (ArrayList<famFood>) foods;
+	}
 
 	@Override
 	public int setStore_Ins(Map storeMap) throws Exception {

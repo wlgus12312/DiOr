@@ -107,7 +107,8 @@ function fn_go_ordering(){
 	document.top_frmParam.submit();
 }
 function fn_go_orderList(){
-	
+	document.top_frmParam.action = "/foodList";
+	document.top_frmParam.submit();	
 }
 function fn_go_qr(){
 	document.top_frmParam.action = "/tableQr";

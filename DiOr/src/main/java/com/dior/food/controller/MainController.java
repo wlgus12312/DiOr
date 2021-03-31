@@ -110,6 +110,26 @@ public class MainController {
 		return mv;
 	}
 	
+	@RequestMapping("/foodList")
+	public ModelAndView foodList(HttpServletRequest req, HttpServletResponse res) throws Exception{
+
+		ModelAndView mv = new ModelAndView();
+		Map storeMap     = new HashMap<String, Map<String, Object>>();
+		List storeList   = new ArrayList<famFood>();
+		
+		HttpSession session = req.getSession();
+		//session.getAttribute("stono");
+		
+		storeMap.put("stono", session.getAttribute("stono")); //Test.. 화면에서 레스토랑ID 받아서 처리예정
+		storeList = AdminService.get_FoodList(storeMap);
+		
+		mv.addObject("storeList",storeList);
+		//mv.addObject("storeMap",storeMap);
+		mv.setViewName("foodList");
+		
+		return mv;
+	}	
+	
 	@RequestMapping("/menu_Res_Admin")
 	public ModelAndView menu_Res_Admin(HttpServletRequest req, HttpServletResponse res) throws Exception{
 
