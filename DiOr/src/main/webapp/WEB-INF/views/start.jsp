@@ -76,7 +76,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
     </div>
     <div class="w3-center w3-padding-16"><%=stonm%> 디지털메뉴판</div>
 		<form id="top_frmParam"name="top_frmParam" method="POST" enctype="multipart/form-data" contentType="application/json">
-			<input type="hidden" id="top_stono" name="stono" value="${userList[0].stono}">
+			<input type="hidden" id="top_stono" name="stono" value="<%=stono%>">
 		</form>
   </div>
 </div>

@@ -95,21 +95,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	
 	}
 	
+	function fn_print(){
+		var inbody = document.body.innerHTML; // 이전 body 영역 저장
+		document.body.innerHTML = document.getElementById('qrImg').innerHTML;
+		window.print();
+		document.body.innerHTML = inbody; // 이전 body 영역으로 복구
+	}	
 </script>
 
 <body>
-<!-- Top menu -->
-	
 	<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-		<form id="qrfrm" method="post">		
-			<label>테이블 번호 : </label><input id="tablenoQ">
-			<button onclick="createQr()">QR코드 생성</button>
-		</form>
-		<br>
-		<form>
-			<div id="qrImg" style='width:100%;'>
-			</div>
-		</form>
+		<div class="w3-left">
+			<form id="qrfrm" method="post">		
+				<span>테이블 번호 : </span><input id="tablenoQ">
+				<button onclick="createQr()">QR코드 생성</button>
+			</form>
+		</div>
+		<div class="w3-right">
+			<button onclick="fn_print()">프린트</button>
+		</div>
+		<br><br>
+		<div id="qrImg" style='width:100%;'>
+		</div>
 	</div>
 </body>
 </html>
